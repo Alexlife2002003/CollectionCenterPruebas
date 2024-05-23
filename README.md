@@ -68,6 +68,4 @@ dart pub get
 ```sh
 flutter run
 ```
-=======
->>>>>>> 7109550c22085bdc3342ca3639f6eb7cdb1a061f
-# CollectionCenterPruebas
+
