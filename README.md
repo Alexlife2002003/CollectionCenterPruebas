@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Collection_Center
 
 Nuestra aplicación móvil ayuda a los coleccionistas de 16 a 25 años a presumir de su colección y ver la de sus amigos y familiares, mejorando la organización general y la presentación de sus preciados objetos.
@@ -67,4 +68,6 @@ dart pub get
 ```sh
 flutter run
 ```
+=======
+>>>>>>> 7109550c22085bdc3342ca3639f6eb7cdb1a061f
 # CollectionCenterPruebas
