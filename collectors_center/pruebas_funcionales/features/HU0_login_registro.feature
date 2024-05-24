@@ -61,3 +61,37 @@ Característica: Iniciar sesión
             Entonces puedo ver el mensaje "Sin conexión a Internet"
         
 
+
+
+--------------------------
+        Escenario: Login éxitoso
+            Dado que abro la aplicación
+            Y doy click en el boton Acceder
+            Y en la pantalla de login ingreso mi correo "test123@gmail.com" y contraseña "jkafgea"
+            Cuando presiono el botón Ingresar
+            Entonces puedo ver la pantalla de Bienvenido
+
+        Escenario: Login no éxitoso
+            Dado que abro la aplicación
+            Y doy click en el boton Acceder
+            Y en la pantalla de login ingreso mi correo "Miguel@gmail.com" y contraseña "Test123!"
+            Cuando presiono el botón Ingresar
+            Entonces puedo ver el mensaje "La contraseña o el correo electrónico son incorrectos"
+
+        
+        Escenario: Login sin correo
+            Dado que abro la aplicación
+            Y doy click en el boton Acceder
+            Y en la pantalla de login ingreso mi correo "" y contraseña "Test123!"
+            Cuando presiono el botón Ingresar
+            Entonces puedo ver el mensaje "Ingresa tu correo electrónico y contraseña"
+
+        Escenario: Login sin contraseña
+            Dado que abro la aplicación
+            Y doy click en el boton Acceder
+            Y en la pantalla de login ingreso mi correo "test@gmail.com" y contraseña ""
+            Cuando presiono el botón Ingresar
+            Entonces puedo ver el mensaje "Ingresa tu correo electrónico y contraseña"
+        
+
+   
