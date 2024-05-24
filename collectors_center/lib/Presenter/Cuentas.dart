@@ -153,7 +153,7 @@ Future<void> registrarUsuario(BuildContext context, String usuario,
 
     if (usernameCheck.docs.isNotEmpty) {
       // Username is already taken
-      showSnackbar(context, 'Usuario ya se encuentra en uso ', red);
+      showSnackbar(context, 'Usuario ya se encuentra en uso', red);
       Navigator.pop(context);
       return;
     }

@@ -39,6 +39,7 @@ class Bienvenido extends StatelessWidget {
               Center(
                 child: Text(
                   'Bienvenido',
+                  key: Key('Bienvenido'),
                   style: TextStyle(
                       fontSize: 60, color: brown, fontWeight: FontWeight.bold),
                 ),

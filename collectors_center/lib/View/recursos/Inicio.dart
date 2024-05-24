@@ -4,7 +4,6 @@
 //   Descripción:                     Pantalla donde puedes decidir entre registrarte o iniciar sesión       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'package:collectors_center/View/Cuentas/Ingresar.dart';
 import 'package:collectors_center/View/Cuentas/Registrarse.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -22,10 +21,6 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
-
-   
-
-    
 
     return Scaffold(
       body: Stack(
@@ -62,11 +57,12 @@ class _InicioState extends State<Inicio> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: GestureDetector(
-                          onTap: (){
-                             Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const Ingresar()),
-  );
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Ingresar()),
+                            );
                           },
                           child: Material(
                             elevation: 5,
@@ -98,16 +94,18 @@ class _InicioState extends State<Inicio> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: GestureDetector(
-                          onTap: (){
-                             Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const Registrarse()),
-  );
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Registrarse()),
+                            );
                           },
                           child: Material(
                             elevation: 5,
                             borderRadius: BorderRadius.circular(12),
                             child: Container(
+                              key: const Key('Registrarse'),
                               width: 146,
                               height: 50,
                               decoration: BoxDecoration(

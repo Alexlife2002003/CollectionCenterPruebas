@@ -25,12 +25,13 @@ class _RegistrarseState extends State<Registrarse> {
 
   //Crea todos los textfields para recibir los datos
   Widget buildInputField(String hintText, TextEditingController controller,
-      bool obscureText, TextInputType inputType, double screenWidth) {
+      bool obscureText, TextInputType inputType, double screenWidth, Key key) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: TextField(
+          key: key,
           controller: controller,
           obscureText: obscureText,
           keyboardType: inputType,
@@ -122,12 +123,12 @@ class _RegistrarseState extends State<Registrarse> {
                   height: 20,
                 ),
                 buildInputField('Nombre de Usuario', _nombreUsuarioController,
-                    false, TextInputType.text, screenWidth),
+                    false, TextInputType.text, screenWidth, Key('Usuario')),
                 const SizedBox(
                   height: 15,
                 ),
                 buildInputField('Correo Electrónico', _emailController, false,
-                    TextInputType.emailAddress, screenWidth),
+                    TextInputType.emailAddress, screenWidth, Key('correo')),
                 const SizedBox(
                   height: 15,
                 ),
@@ -136,6 +137,7 @@ class _RegistrarseState extends State<Registrarse> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
+                      key: Key('pass'),
                       controller: _passwordController,
                       obscureText: !_passwordVisible,
                       keyboardType: TextInputType.text,
@@ -185,6 +187,7 @@ class _RegistrarseState extends State<Registrarse> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
+                      key: Key('confpass'),
                       controller: _confirmPasswordController,
                       obscureText: !_confirmPasswordVisible,
                       keyboardType: TextInputType.text,
@@ -233,6 +236,7 @@ class _RegistrarseState extends State<Registrarse> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
+                    key: Key('registrarse'),
                     onTap: registrarse,
                     child: Material(
                       elevation: 5,
