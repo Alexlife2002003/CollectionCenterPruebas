@@ -30,7 +30,7 @@ Característica: Iniciar sesión y registro usuario
             Y doy click en el boton Registrarse
             Y en la pantalla de registro ingreso mi usuario "Test123" ,correo "test123@gmail.com", contraseña "Tes3!" y confirmo contraseña "Test123!"
             Cuando presiono el botón Registrar
-            Entonces puedo ver el mensaje "Las contraseñas no son iguales"
+            Entonces puedo ver el mensaje "Las contraseñas no son igualess"
         
         Escenario: Registro sin nombre de usuario
             Dado que abro la aplicación
