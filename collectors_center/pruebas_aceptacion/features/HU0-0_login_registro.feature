@@ -22,7 +22,7 @@ Característica: Iniciar sesión y registro usuario
             Y doy click en el boton Registrarse
             Y en la pantalla de registro ingreso mi usuario "ale" ,correo "test123@gmail.com", contraseña "Test123!" y confirmo contraseña "Test123!"
             Cuando presiono el botón Registrar
-            Entonces puedo ver el mensaje de registro duplicado "Correo ya se encuentra en uso"
+            Entonces puedo ver el mensaje de registro duplicado del correo "Correo ya se encuentra en uso"
 
 
         Escenario: Registro contraseñas no son iguales
@@ -30,7 +30,7 @@ Característica: Iniciar sesión y registro usuario
             Y doy click en el boton Registrarse
             Y en la pantalla de registro ingreso mi usuario "Test123" ,correo "test123@gmail.com", contraseña "Tes3!" y confirmo contraseña "Test123!"
             Cuando presiono el botón Registrar
-            Entonces puedo ver el mensaje "Las contraseñas no son igualess"
+            Entonces puedo ver el mensaje de las contraseñas de "Las contraseñas no son igualess"
         
         Escenario: Registro sin nombre de usuario
             Dado que abro la aplicación

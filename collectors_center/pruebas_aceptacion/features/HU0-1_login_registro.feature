@@ -24,7 +24,7 @@ Característica: Iniciar sesión y registro usuario
             Y doy click en el boton Acceder
             Y en la pantalla de login ingreso mi correo "Miguel@gmail.com" y contraseña "Test123!"
             Cuando presiono el botón Ingresar
-            Entonces puedo ver el mensaje "La contraseña o el correo electrónico son incorrectos"
+            Entonces puedo ver el mensaje que "La contraseña o el correo electrónico son incorrectos"
 
          Escenario: Login sin correo
             Dado que abro la aplicación
