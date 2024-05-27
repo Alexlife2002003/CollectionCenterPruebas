@@ -5,96 +5,130 @@ from appium.options.android import UiAutomator2Options
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+def send_keys_with_retry(element, text, retries=10):
+    for attempt in range(retries):
+        element.clear()
+        element.send_keys(text)
+        if element.get_attribute('text') == text:
+            return True
+        time.sleep(3)
+    logger.warning(f"Failed to set text '{text}' in element after {retries} retries")
+    return False
 
 @given(u'que abro la aplicación')
 def step_impl(context):
+    time.sleep(20)
+    # Asegúrate de que la aplicación esté abierta
     pass
 
+@given(u'espero un rato')
+def step_impl(context):
+    pass
 
 @given(u'doy click en el boton Registrarse')
 def step_impl(context):
-    context.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Registrarse').click()
+    WebDriverWait(context.driver, 30).until(
+        EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, 'Registrarse'))
+    ).click()
 
-
-@given(u'en la pantalla de registro ingreso mi usuario "{usuario}" ,correo "{correo}", contraseña "{contra}" y confirmo contraseña "{confcontra}"')
-def step_impl(context,usuario,correo,contra,confcontra):
-    username = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]')
+@given(u'ingreso mi usuario "{usuario}"')
+def step_impl(context, usuario):
+    username = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]'))
+    )
     username.clear()
     username.click()
-    username.send_keys(usuario)
+    success=send_keys_with_retry(username,usuario)
+    assert success, "Failed to input text in the field"
 
-    email = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.ScrollView/android.widget.EditText[2]')
+@given(u'luego ingreso mi correo "{correo}"')
+def step_impl(context, correo):
+    email = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.ScrollView/android.widget.EditText[2]'))
+    )
     email.clear()
     email.click()
-    email.send_keys(correo)
+    success=send_keys_with_retry(email,correo)
+    assert success, "Failed to input text in the field"
 
-    password = context.driver.find_element(by=AppiumBy.XPATH , value='//android.widget.ScrollView/android.widget.EditText[3]')
+@given(u'luego ingreso mi contraseña "{contra}"')
+def step_impl(context, contra):
+    password = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.ScrollView/android.widget.EditText[3]'))
+    )
     password.clear()
-    password.click() ### importante dar click en la caja de texto para que tenga el foco
+    password.click()
     password.send_keys(contra)
+    success=send_keys_with_retry(password,contra)
+    assert success, "Failed to input text in the field"
 
-    confpassword = context.driver.find_element(by=AppiumBy.XPATH , value='//android.widget.ScrollView/android.widget.EditText[4]')
+@given(u'luego confirmo mi contraseña "{confcontra}"')
+def step_impl(context, confcontra):
+    confpassword = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.ScrollView/android.widget.EditText[4]'))
+    )
     confpassword.clear()
-    confpassword.click() ### importante dar click en la caja de texto para que tenga el foco
+    confpassword.click()
     confpassword.send_keys(confcontra)
-    context.driver.hide_keyboard()
+    success=send_keys_with_retry(confpassword,confcontra)
+    assert success, "Failed to input text in the field"
 
 @when(u'presiono el botón Registrar')
 def step_impl(context):
-    context.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Registrar').click()
-
+    context.driver.hide_keyboard()
+    registrar_button = WebDriverWait(context.driver, 30).until(
+        EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, 'Registrar'))
+    )
+    registrar_button.click()
 
 @then(u'puedo ver la pantalla de Bienvenido')
 def step_impl(context):
-    welcome_screen_element = context.driver.find_element(by=AppiumBy.XPATH, value='//android.view.View[contains(@content-desc, "Bienvenido")]')
+    welcome_screen_element = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.View[contains(@content-desc, "Bienvenido")]'))
+    )
     assert welcome_screen_element.is_displayed(), "No se encontró la pantalla de Bienvenido"
+
+@then(u'puedo ver el mensaje de que usuario se encuentra en uso')
+def step_impl(context):
+    message = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.View[@content-desc="Usuario ya se encuentra en uso"]'))
+    )
+    assert message.is_displayed(), f"No se encontró el mensaje 'Usuario ya se encuentra en uso' en la pantalla"
 
 @then(u'puedo ver el mensaje de registro duplicado "{mensaje}"')
 def step_impl(context, mensaje): 
-    message = context.driver.find_element(by=AppiumBy.XPATH, value=f'//android.view.View[contains(@content-desc, "{mensaje}")]')
+    message = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, f'//android.view.View[@content-desc="{mensaje}"]'))
+    )
     assert message.is_displayed(), f"No se encontró el mensaje '{mensaje}' en la pantalla"
 
+@then(u'puedo ver el mensaje de que las contraseñas no son iguales')
+def step_impl(context):
+    message = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.View[@content-desc="Las contraseñas no son iguales"]'))
+    )
+    assert message.is_displayed(), f"No se encontró el mensaje 'Las contraseñas no son iguales' en la pantalla"
+
+@given(u'ingreso mi correo "{correo}"')
+def step_impl(context,correo):
+    email = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]'))
+    )
+    email.clear()
+    email.click()
+    success=send_keys_with_retry(email,correo)
+    assert success, "Failed to input text in the field"
 
 @then(u'puedo ver el mensaje "{mensaje}"')
 def step_impl(context, mensaje): 
-    message = context.driver.find_element(by=AppiumBy.XPATH, value=f'//android.view.View[contains(@content-desc, "{mensaje}")]')
+    message = WebDriverWait(context.driver, 30).until(
+        EC.presence_of_element_located((AppiumBy.XPATH, f'//android.view.View[@content-desc="{mensaje}"]'))
+    )
     assert message.is_displayed(), f"No se encontró el mensaje '{mensaje}' en la pantalla"
 
-
-@given(u'en la pantalla de registro ingreso mi correo "{correo}", contraseña "{contra}" y confirmo contraseña "{confcontra}"')
-def step_impl(context,correo, contra, confcontra):
-    email = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]')
-    email.clear()
-    email.click()
-    email.send_keys(correo)
-
-    password = context.driver.find_element(by=AppiumBy.XPATH , value='//android.widget.ScrollView/android.widget.EditText[3]')
-    password.clear()
-    password.click() ### importante dar click en la caja de texto para que tenga el foco
-    password.send_keys(contra)
-
-    confpassword = context.driver.find_element(by=AppiumBy.XPATH , value='//android.widget.ScrollView/android.widget.EditText[4]')
-    confpassword.clear()
-    confpassword.click() ### importante dar click en la caja de texto para que tenga el foco
-    confpassword.send_keys(confcontra)
-    context.driver.hide_keyboard()
-
-
-@given(u'en la pantalla de registro ingreso mi usuario "{usuario}" ,correo "{correo}", y confirmo contraseña "{confcontra}"')
-def step_impl(context,usuario,correo,confcontra):
-    username = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]')
-    username.clear()
-    username.click()
-    username.send_keys(usuario)
-    
-    email = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.ScrollView/android.widget.EditText[2]')
-    email.clear()
-    email.click()
-    email.send_keys(correo)
-
-    confpassword = context.driver.find_element(by=AppiumBy.XPATH , value='//android.widget.ScrollView/android.widget.EditText[4]')
-    confpassword.clear()
-    confpassword.click() ### importante dar click en la caja de texto para que tenga el foco
-    confpassword.send_keys(confcontra)
-    context.driver.hide_keyboard()

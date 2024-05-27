@@ -24,7 +24,7 @@ logger.info("Appium driver initialized successfully.")
 @fixture
 def appium_driver(context):
     context.driver = webdriver.Remote(command_executor=appium_server_url, options=capabilities_options)
-    context.driver.implicitly_wait(10)
+    context.driver.implicitly_wait(30)
     yield context.driver
     context.driver.quit()
 

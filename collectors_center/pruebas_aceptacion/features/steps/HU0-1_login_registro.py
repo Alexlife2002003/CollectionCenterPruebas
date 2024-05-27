@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @given(u'en la pantalla de registro ingreso mi usuario "{usuario}", contraseña "{contra}" y confirmo contraseña "{confcontra}"')
 def step_impl(context,usuario,contra,confcontra):
+    time.sleep(2)
     username = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]')
     username.clear()
     username.click()
@@ -27,6 +28,7 @@ def step_impl(context,usuario,contra,confcontra):
 
 @given(u'en la pantalla de registro ingreso mi usuario "{usuario}" ,correo "{correo}", contraseña "{contra}"')
 def step_impl(context,usuario,correo,contra):
+    time.sleep(2)
     username = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]')
     username.clear()
     username.click()
@@ -51,6 +53,7 @@ def step_impl(context):
 
 @given(u'en la pantalla de login ingreso mi correo "{correo}" y contraseña "{contra}"')
 def step_impl(context,correo,contra):
+    time.sleep(2)
     email = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]')
     email.clear()
     email.click()
@@ -70,6 +73,7 @@ def step_impl(context):
     
 @given(u'en la pantalla de login ingreso mi correo "" y contraseña "{contra}"')
 def step_impl(context,contra):
+    time.sleep(2)
     password = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]')
     password.clear()
     password.click()
@@ -79,6 +83,7 @@ def step_impl(context,contra):
 
 @given(u'en la pantalla de login ingreso mi correo "{correo}" y contraseña ""')
 def step_impl(context,correo):
+    time.sleep(2)
     email = context.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]')
     email.clear()
     email.click()

@@ -5,58 +5,78 @@ Característica: Iniciar sesión y registro usuario
 
         Escenario: Registro éxitoso
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi usuario "Test123" ,correo "test123@gmail.com", contraseña "Test123!" y confirmo contraseña "Test123!"
+            Y espero un rato
+            Y ingreso mi usuario "Test123"
+            Y luego ingreso mi correo "test123@gmail.com"
+            Y luego ingreso mi contraseña "Test123!"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
             Entonces puedo ver la pantalla de Bienvenido
 
-        Escenario: Registro duplicado usuario
+       Escenario: Registro duplicado usuario
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi usuario "Test123" ,correo "ale@gmail.com", contraseña "Test123!" y confirmo contraseña "Test123!"
+            Y espero un rato
+            Y ingreso mi usuario "Test123"
+            Y luego ingreso mi correo "ale@gmail.com"
+            Y luego ingreso mi contraseña "Test123!"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
-            Entonces puedo ver el mensaje de registro duplicado "Usuario ya se encuentra en uso"
+            Entonces puedo ver el mensaje de que usuario se encuentra en uso
 
         Escenario: Registro duplicado correo
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi usuario "ale" ,correo "test123@gmail.com", contraseña "Test123!" y confirmo contraseña "Test123!"
+            Y espero un rato
+            Y ingreso mi usuario "ale"
+            Y luego ingreso mi correo "test123@gmail.com"
+            Y luego ingreso mi contraseña "Test123!"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
-            Entonces puedo ver el mensaje de registro duplicado del correo "Correo ya se encuentra en uso"
-
-
+            Entonces puedo ver el mensaje de registro duplicado "Correo ya se encuentra en uso"
+        
         Escenario: Registro contraseñas no son iguales
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi usuario "Test123" ,correo "test123@gmail.com", contraseña "Tes3!" y confirmo contraseña "Test123!"
+            Y espero un rato
+            Y ingreso mi usuario "Test123L"
+            Y luego ingreso mi correo "test123@gmail.com"
+            Y luego ingreso mi contraseña "Tes3!"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
-            Entonces puedo ver el mensaje de las contraseñas de "Las contraseñas no son igualess"
+            Entonces puedo ver el mensaje de que las contraseñas no son iguales
         
         Escenario: Registro sin nombre de usuario
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi correo "test123@gmail.com", contraseña "Test123!" y confirmo contraseña "Test123!"
+            Y ingreso mi correo "test123@gmail.com"
+            Y luego ingreso mi contraseña "Test123!"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
             Entonces puedo ver el mensaje "Ingresa los datos faltantes."
 
         Escenario: Registro sin correo
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi usuario "Test123", contraseña "Test123!" y confirmo contraseña "Test123!"
+            Y ingreso mi usuario "Test123"
+            Y luego ingreso mi contraseña "Test123!"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
             Entonces puedo ver el mensaje "Ingresa los datos faltantes."
 
         Escenario: Registro sin contraseña
             Dado que abro la aplicación
+            Y espero un rato
             Y doy click en el boton Registrarse
-            Y en la pantalla de registro ingreso mi usuario "Test123" ,correo "test123@gmail.com", y confirmo contraseña "Test123!"
+            Y ingreso mi usuario "Test123"
+            Y luego ingreso mi correo "test123@gmail.com"
+            Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar
             Entonces puedo ver el mensaje "Ingresa los datos faltantes."
-
-        
-
-
-
-        
-
-   

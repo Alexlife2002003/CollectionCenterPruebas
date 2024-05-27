@@ -123,12 +123,12 @@ class _RegistrarseState extends State<Registrarse> {
                   height: 20,
                 ),
                 buildInputField('Nombre de Usuario', _nombreUsuarioController,
-                    false, TextInputType.text, screenWidth, Key('Usuario')),
+                    false, TextInputType.text, screenWidth, ValueKey('NombreUsuario'),),
                 const SizedBox(
                   height: 15,
                 ),
                 buildInputField('Correo Electrónico', _emailController, false,
-                    TextInputType.emailAddress, screenWidth, Key('correo')),
+                    TextInputType.emailAddress, screenWidth, Key('CorreoRegistro')),
                 const SizedBox(
                   height: 15,
                 ),
@@ -137,7 +137,7 @@ class _RegistrarseState extends State<Registrarse> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
-                      key: Key('pass'),
+                      key: ValueKey('pass'),
                       controller: _passwordController,
                       obscureText: !_passwordVisible,
                       keyboardType: TextInputType.text,
@@ -187,7 +187,7 @@ class _RegistrarseState extends State<Registrarse> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
-                      key: Key('confpass'),
+                      key: ValueKey('confPass'),
                       controller: _confirmPasswordController,
                       obscureText: !_confirmPasswordVisible,
                       keyboardType: TextInputType.text,
@@ -236,7 +236,7 @@ class _RegistrarseState extends State<Registrarse> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
-                    key: Key('registrarse'),
+                    key: ValueKey('Registrar'),
                     onTap: registrarse,
                     child: Material(
                       elevation: 5,
