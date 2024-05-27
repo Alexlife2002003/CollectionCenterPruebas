@@ -6,11 +6,11 @@ Característica: Agregar articulo
         Escenario: Agregar articulo
             Dado que abro la aplicación
             Y espero un rato
-            Y doy click en el boton Ingresar
+            Y doy click en el boton Acceder
             Y espero un rato
             Y ingreso mi correo "test123@gmail.com"
             Y luego ingreso mi contraseña "Test123!"
-            Y presiono el botón Acceder
+            Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
             Y presiono agregar nuevo articulo
             Y selecciono una imagen "imagen.jpg"
@@ -23,11 +23,11 @@ Característica: Agregar articulo
         Escenario: Agregar articulo nombre igual categoria
             Dado que abro la aplicación
             Y espero un rato
-            Y doy click en el boton Ingresar
+            Y doy click en el boton Acceder
             Y espero un rato
             Y ingreso mi correo "test123@gmail.com"
             Y luego ingreso mi contraseña "Test123!"
-            Y presiono el botón Acceder
+            Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
             Y presiono agregar nuevo articulo
             Y selecciono una imagen "imagen.jpg"
@@ -39,11 +39,11 @@ Característica: Agregar articulo
         Escenario: Agregar articulo nombre vacio
             Dado que abro la aplicación
             Y espero un rato
-            Y doy click en el boton Ingresar
+            Y doy click en el boton Acceder
             Y espero un rato
             Y ingreso mi correo "test123@gmail.com"
             Y luego ingreso mi contraseña "Test123!"
-            Y presiono el botón Acceder
+            Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
             Y presiono agregar nuevo articulo
             Y selecciono una imagen "imagen.jpg"

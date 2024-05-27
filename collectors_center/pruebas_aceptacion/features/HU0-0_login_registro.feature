@@ -15,9 +15,23 @@ Característica: Iniciar sesión y registro usuario
             Cuando presiono el botón Registrar
             Entonces puedo ver la pantalla de Bienvenido
 
+        Escenario: Registro sin internet
+            Dado que abro la aplicación
+            Y espero un rato
+            Y doy click en el boton Registrarse
+            Y no tengo internet
+            Y espero un rato
+            Y ingreso mi usuario "Test123"
+            Y luego ingreso mi correo "test123@gmail.com"
+            Y luego ingreso mi contraseña "Test123!"
+            Y luego confirmo mi contraseña "Test123!"
+            Cuando presiono el botón Registrar
+            Entonces puedo ver el mensaje "Sin conexión a Internet"
+
        Escenario: Registro duplicado usuario
             Dado que abro la aplicación
             Y espero un rato
+            Y conecto la conexión a internet
             Y doy click en el boton Registrarse
             Y espero un rato
             Y ingreso mi usuario "Test123"

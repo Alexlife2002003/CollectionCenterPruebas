@@ -9,8 +9,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import logging
+import os
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 def send_keys_with_retry(element, text, retries=10):
     for attempt in range(retries):
         element.clear()
@@ -20,6 +23,18 @@ def send_keys_with_retry(element, text, retries=10):
         time.sleep(3)
     logger.warning(f"Failed to set text '{text}' in element after {retries} retries")
     return False
+
+def disable_wifi():
+    os.system("adb shell svc wifi disable")
+
+def enable_wifi():
+    os.system("adb shell svc wifi enable")
+
+def disable_data():
+    os.system("adb shell svc data disable")
+
+def enable_data():
+    os.system("adb shell svc data enable")
 
 @given(u'que abro la aplicación')
 def step_impl(context):
@@ -132,3 +147,14 @@ def step_impl(context, mensaje):
     )
     assert message.is_displayed(), f"No se encontró el mensaje '{mensaje}' en la pantalla"
 
+@given(u'no tengo internet')
+def step_impl(context):
+    disable_wifi()
+    disable_data()
+    time.sleep(3)
+
+@given(u'conecto la conexión a internet')
+def step_impl(context):
+    enable_wifi()
+    enable_data()
+    time.sleep(3)

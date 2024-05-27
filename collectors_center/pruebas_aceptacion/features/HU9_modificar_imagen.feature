@@ -7,11 +7,11 @@ Característica: Agregar articulo
     Escenario: Agregar articulo descripcion
             Dado que abro la aplicación
             Y espero un rato
-            Y doy click en el boton Ingresar
+            Y doy click en el boton Acceder
             Y espero un rato
             Y ingreso mi correo "test123@gmail.com"
             Y luego ingreso mi contraseña "Test123!"
-            Y presiono el botón Acceder
+            Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
             Y presiono Categorias
             Y selecciono la categoria "pitufos"
