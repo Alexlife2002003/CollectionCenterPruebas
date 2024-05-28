@@ -20,7 +20,6 @@ def send_keys_with_retry(element, text, retries=10):
     logger.warning(f"Failed to set text '{text}' in element after {retries} retries")
     return False
 
-
 @given(u'presiono el botón Ingresar')
 def step_impl(context):
     context.driver.hide_keyboard()

@@ -107,6 +107,7 @@ Característica: Agregar articulo
             Entonces puedo ver el mensaje "Error al subir la imagen"
 
 
+
         
 
         
