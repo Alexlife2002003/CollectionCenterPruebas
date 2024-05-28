@@ -45,3 +45,4 @@ app.*.map.json
 
 #made by me
 .env
+/pruebas_aceptacion/features/environment.py

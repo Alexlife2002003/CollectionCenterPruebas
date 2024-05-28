@@ -13,6 +13,7 @@ capabilities = {
     "appium:automationName": "uiautomator2",
     "appium:deviceName": "emulator-5554",
     "appium:app": "/home/alexia/Documents/projects/Flutter/collection_Center_pruebas/collectors_center/build/app/outputs/flutter-apk/app-debug.apk",
+    "appium:autoGrantPermissions": True,
     "language": "en",
     "locale": "US",
 }
