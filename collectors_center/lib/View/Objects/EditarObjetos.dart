@@ -27,9 +27,6 @@ class EditarObjetos extends StatefulWidget {
   State<EditarObjetos> createState() => _EditarObjetosState();
 }
 
-@override
-void dispose() {}
-
 class _EditarObjetosState extends State<EditarObjetos> {
   String filepath = "";
   File? uploadImage;
@@ -97,7 +94,13 @@ class _EditarObjetosState extends State<EditarObjetos> {
     }
   }
 
-  void editDescription() async {
+  void toggleEditDescription() {
+    setState(() {
+      isEditing = !isEditing;
+    });
+  }
+
+  void saveDescription() async {
     bool internet = await conexionInternt(context);
     if (internet == false) {
       return;
@@ -130,11 +133,11 @@ class _EditarObjetosState extends State<EditarObjetos> {
           "La descripción no puede ser igual al nombre del artículo", red);
       return;
     }
-    if (isEditing) {
-      editarDescripcion(
-          context, widget.firebaseURL, _descripcionController.text);
-    }
-    isEditing = !isEditing;
+    editarDescripcion(
+        context, widget.firebaseURL, _descripcionController.text);
+    setState(() {
+      isEditing = false;
+    });
   }
 
   void borrarDescripcion() async {
@@ -381,8 +384,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                                 width: 200,
                                 height: 200,
                                 // Adjust the opacity as needed
-                                color: Colors.grey.withOpacity(
-                                    0.4), 
+                                color: Colors.grey.withOpacity(0.4),
                               ),
                               const Positioned(
                                 top: 50,
@@ -443,8 +445,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                             width: screenWidth - 50,
                             decoration: BoxDecoration(
                               color: myColor,
-                              border:
-                                  Border.all(color: Colors.white, width: .2),
+                              border: Border.all(color: Colors.white, width: .2),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Padding(
@@ -454,8 +455,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                                   Expanded(
                                     child: isEditing
                                         ? TextFormField(
-                                            keyboardType:
-                                                TextInputType.multiline,
+                                            keyboardType: TextInputType.multiline,
                                             maxLines: null,
                                             maxLength: 300,
                                             controller: _descripcionController,
@@ -478,22 +478,21 @@ class _EditarObjetosState extends State<EditarObjetos> {
                                           color: Colors.green,
                                         ),
                                         onPressed: () {
-                                          setState(() {
-                                            editDescription();
-                                          });
+                                          if (isEditing) {
+                                            saveDescription();
+                                          } else {
+                                            toggleEditDescription();
+                                          }
                                         },
                                       ),
-                                      IconButton(
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
+                                      if (isEditing) // Only show delete icon when editing
+                                        IconButton(
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
+                                          onPressed: borrarDescripcion,
                                         ),
-                                        onPressed: () {
-                                          setState(() {
-                                            borrarDescripcion();
-                                          });
-                                        },
-                                      ),
                                     ],
                                   ),
                                 ],
@@ -526,8 +525,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                       width: screenWidth - 200,
                       child: ElevatedButton(
                         style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue),
+                          backgroundColor: MaterialStatePropertyAll(Colors.blue),
                         ),
                         onPressed: cancelar,
                         child: const Text('Regresar'),
