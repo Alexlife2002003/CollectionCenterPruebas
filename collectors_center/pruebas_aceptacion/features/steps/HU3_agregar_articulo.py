@@ -93,12 +93,13 @@ def step_impl(context,name):
     nombre.clear()
     nombre.click()
     success=send_keys_with_retry(nombre,name)
+    context.driver.hide_keyboard()
     assert success, "Failed to input text in the field"
 
 
 @given(u'presiono Guardar')
 def step_impl(context):
-    context.driver.hide_keyboard()
+
     WebDriverWait(context.driver, 30).until(
         EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, 'Guardar'))
     ).click()

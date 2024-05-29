@@ -8,8 +8,8 @@ Característica: Iniciar sesión y registro usuario
             Y espero un rato
             Y doy click en el boton Registrarse
             Y espero un rato
-            Y ingreso mi usuario "Test123"
-            Y luego ingreso mi correo "test123@gmail.com"
+            Y ingreso mi usuario "Noexiste"
+            Y luego ingreso mi correo "noexiste@gmail.com"
             Y luego ingreso mi contraseña "Test123!"
             Y luego confirmo mi contraseña "Test123!"
             Cuando presiono el botón Registrar

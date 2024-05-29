@@ -1,79 +1,118 @@
-Característica: Agregar articulo
-    Como joven coleccionista deseo agregar una descrcipcion al articulo 
+Característica: Agregar descripcion articulo
+    Como joven coleccionista deseo agregar una descripcion al articulo 
     para facilitar la informacion importante del articulo de la colecccion y  
     sea necesario obtenerla tiempo depues.
 
-
-    Escenario: Agregar articulo descrcipcion
+    Escenario: Agregar articulo nuevo descripcion
             Dado que abro la aplicación
             Y espero un rato
             Y doy click en el boton Acceder
             Y espero un rato
-            Y ingreso mi correo "test123@gmail.com"
-            Y luego ingreso mi contraseña "Test123!"
+            Y en login ingreso mi correo "test123@gmail.com"
+            Y luego en login ingreso mi contraseña "Test123!"
             Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
-            Y presiono Categorias
-            Y selecciono la categoria "pitufos"
+            Y presiono Articulos
+            Y presiono el dropdown de categoria "ranas"
+            Y selecciono la categoria "sapos"
             Y le doy click en el boton de mas
-            Y subo la imagen "imagen.jpg"
-            Y le doy el nombre "Gato Burbuja"
-            Y le doy la descrcipcion "El gato burbuja que burbujea"
+            Y selecciono el icono de imagen
+            Y selecciono la opcion de camara
+            Y tomo la foto
+            Y acepto la foto
+            Y le asigno un nombre "Gato Burbuja"
+            Y le doy la descripcion "El gato burbuja que burbujea"
             Y presiono Guardar
-            Entonces puedo ver el mensaje "Articulo agregado exitosamente"
+            Entonces puedo ver el mensaje "Artículo agregado exitosamente"
 
 
-    Escenario: Agregar articulo descrcipcion igual a su nombre
+    Escenario: Agregar articulo descripcion
             Dado que abro la aplicación
             Y espero un rato
             Y doy click en el boton Acceder
             Y espero un rato
-            Y ingreso mi correo "test123@gmail.com"
-            Y luego ingreso mi contraseña "Test123!"
+            Y en login ingreso mi correo "test123@gmail.com"
+            Y luego en login ingreso mi contraseña "Test123!"
             Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
-            Y presiono Categorias
-            Y selecciono la categoria "pitufos"
+            Y presiono Articulos
+            Y presiono el dropdown de categoria "ranas"
+            Y selecciono la categoria "sapos"
+            Y le doy click en el articulo "0"
+            Y le doy click al boton de editar descripcion
+            Y edito la descripcion "El gato burbuja que burbujea" a "El gato triste esta llorando"
+            Y le doy click a la palomita
+            Entonces puedo ver el mensaje "Se han guardado los cambios"
+
+
+    Escenario: Agregar articulo descripcion con menos de 10 caracteres
+            Dado que abro la aplicación
+            Y espero un rato
+            Y doy click en el boton Acceder
+            Y espero un rato
+            Y en login ingreso mi correo "test123@gmail.com"
+            Y luego en login ingreso mi contraseña "Test123!"
+            Y presiono el botón Ingresar
+            Y presiono el boton hamburguesa
+            Y presiono Articulos
+            Y presiono el dropdown de categoria "ranas"
+            Y selecciono la categoria "sapos"
             Y le doy click en el boton de mas
-            Y subo la imagen "imagen.jpg"
-            Y le doy el nombre "aaaaaaaaaa"
-            Y le doy la descrcipcion "aaaaaaaaaa"
+            Y selecciono el icono de imagen
+            Y selecciono la opcion de camara
+            Y tomo la foto
+            Y acepto la foto
+            Y le asigno un nombre "lena luthor"
+            Y le doy la descripcion "si"
             Y presiono Guardar
-            Entonces puedo ver el mensaje "Descripcion no puede ser igual al nombre del articulo"
+            Entonces puedo ver el mensaje "Descripción debe contener mínimo 10 caracteres si no es vacia"
+
+            
+    
+
+    Escenario: Agregar articulo descripcion igual a su nombre
+            Dado que abro la aplicación
+            Y espero un rato
+            Y doy click en el boton Acceder
+            Y espero un rato
+            Y en login ingreso mi correo "test123@gmail.com"
+            Y luego en login ingreso mi contraseña "Test123!"
+            Y presiono el botón Ingresar
+            Y presiono el boton hamburguesa
+            Y presiono Articulos
+            Y presiono el dropdown de categoria "ranas"
+            Y selecciono la categoria "sapos"
+            Y le doy click en el boton de mas
+            Y selecciono el icono de imagen
+            Y selecciono la opcion de camara
+            Y tomo la foto
+            Y acepto la foto
+            Y le asigno un nombre "aaaaaaaaaa"
+            Y le doy la descripcion "aaaaaaaaaa"
+            Y presiono Guardar
+            Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre del artículo"
 
     
-    Escenario: Agregar articulo descrcipcion igual a su nombre de categoria
+    Escenario: Agregar articulo Descripcion igual a su nombre de categoria
             Dado que abro la aplicación
             Y espero un rato
             Y doy click en el boton Acceder
             Y espero un rato
-            Y ingreso mi correo "test123@gmail.com"
-            Y luego ingreso mi contraseña "Test123!"
+            Y en login ingreso mi correo "test123@gmail.com"
+            Y luego en login ingreso mi contraseña "Test123!"
             Y presiono el botón Ingresar
             Y presiono el boton hamburguesa
-            Y presiono Categorias
-            Y selecciono la categoria "pitufos"
+            Y presiono Articulos
+            Y presiono el dropdown de categoria "ranas"
+            Y selecciono la categoria "sapos"
             Y le doy click en el boton de mas
-            Y subo la imagen "imagen.jpg"
-            Y le doy el nombre "aaaaaaaaaa"
-            Y le doy la descrcipcion "pitufos"
+            Y selecciono el icono de imagen
+            Y selecciono la opcion de camara
+            Y tomo la foto
+            Y acepto la foto
+            Y le asigno un nombre "aaaaaaaaaa"
+            Y le doy la descripcion "sapos"
             Y presiono Guardar
-            Entonces puedo ver el mensaje "Descripcion no puede ser igual al nombre de la categoria"
+            Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre de la categoría"
 
-    Escenario: Agregar articulo descrcipcion con menos de 10 caracteres
-            Dado que abro la aplicación
-            Y espero un rato
-            Y doy click en el boton Acceder
-            Y espero un rato
-            Y ingreso mi correo "test123@gmail.com"
-            Y luego ingreso mi contraseña "Test123!"
-            Y presiono el botón Ingresar
-            Y presiono el boton hamburguesa
-            Y presiono Categorias
-            Y selecciono la categoria "pitufos"
-            Y le doy click en el boton de mas
-            Y subo la imagen "imagen.jpg"
-            Y le doy el nombre "lena luthor"
-            Y le doy la descrcipcion "si"
-            Y presiono Guardar
-            Entonces puedo ver el mensaje "Descripcion debe contener minimo 10 caracteres si no es vacio"
+    
