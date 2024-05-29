@@ -25,13 +25,13 @@ class _RegistrarseState extends State<Registrarse> {
 
   //Crea todos los textfields para recibir los datos
   Widget buildInputField(String hintText, TextEditingController controller,
-      bool obscureText, TextInputType inputType, double screenWidth, Key key) {
+      bool obscureText, TextInputType inputType, double screenWidth, Key key2) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: TextField(
-          key: key,
+          key: key2,
           controller: controller,
           obscureText: obscureText,
           keyboardType: inputType,

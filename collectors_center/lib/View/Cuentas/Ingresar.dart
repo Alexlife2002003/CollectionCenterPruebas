@@ -22,12 +22,13 @@ class _IngresarState extends State<Ingresar> {
 
   //Crea todos los textfields para recibir los datos
   Widget buildInputField(String hintText, TextEditingController controller,
-      bool obscureText, TextInputType inputType, double screenWidth) {
+      bool obscureText, TextInputType inputType, double screenWidth, Key key) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: TextField(
+          key: key,
           controller: controller,
           obscureText: obscureText,
           keyboardType: inputType,
@@ -113,7 +114,7 @@ class _IngresarState extends State<Ingresar> {
                   height: 100,
                 ),
                 buildInputField('Correo Electrónico', _emailController, false,
-                    TextInputType.emailAddress, screenWidth),
+                    TextInputType.emailAddress, screenWidth,Key('email')),
                 const SizedBox(
                   height: 15,
                 ),
@@ -122,6 +123,7 @@ class _IngresarState extends State<Ingresar> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
+                      key: Key('password'),
                       controller: _passwordController,
                       obscureText: !_passwordVisible,
                       keyboardType: TextInputType.text,
@@ -149,6 +151,7 @@ class _IngresarState extends State<Ingresar> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         labelText: 'Contraseña',
+                        
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -169,6 +172,7 @@ class _IngresarState extends State<Ingresar> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
+                    key: Key('Ingresar'),
                     onTap: ingresar,
                     child: Material(
                       elevation: 5,

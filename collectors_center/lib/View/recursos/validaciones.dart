@@ -16,7 +16,6 @@ Future<bool> conexionInternt(BuildContext context) async {
   } else {
     // Check Wi-Fi speed
     double responseTime = await checkNetworkResponseTime();
-    print('Network Response Time: $responseTime milliseconds');
 
     if (responseTime > 3000) {
       // Slow connection

@@ -121,78 +121,83 @@ Future<void> deleteDocumentsInCollection(
 //////////////////////////////////////////////////////////////
 
 // Función encargada de realizar el registro del usuario para su acceso en la aplicación
-Future<void> registrarUsuario(BuildContext context, String usuario,
-    String correo, String password, String confirmPassword) async {
-  bool internet = await conexionInternt(context);
-  if (internet == false) {
-    Navigator.pop(context);
-    return;
-  }
 
-  if (correo.isEmpty ||
-      usuario.isEmpty ||
-      password.isEmpty ||
-      confirmPassword.isEmpty) {
-    Navigator.pop(context);
-    showSnackbar(context, 'Ingresa los datos faltantes.', red);
-    return;
+Future<String> registrarUsuarioLogic(
+  String usuario,
+  String correo,
+  String password,
+  String confirmPassword,
+) async {
+  if (correo.isEmpty || usuario.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+    return 'Ingresa los datos faltantes.';
   }
 
   if (!isValidEmail(correo)) {
-    showSnackbar(context, 'Ingresa un correo válido', red);
+    return 'Ingresa un correo válido';
+  }
+
+  final QuerySnapshot usernameCheck = await FirebaseFirestore.instance
+      .collection('Users')
+      .where('User', isEqualTo: usuario)
+      .get();
+
+  if (usernameCheck.docs.isNotEmpty) {
+    return 'Usuario ya se encuentra en uso';
+  }
+
+  if (password != confirmPassword) {
+    return 'Las contraseñas no son iguales';
+  }
+
+  if (password.length < 6) {
+    return 'Contraseña debe tener 6 caracteres o más';
+  }
+
+  if (!isStrongPassword(password)) {
+    return 'La contraseña debe contener al menos una letra, una mayúscula y un símbolo especial.';
+  }
+
+  try {
+    final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: correo,
+      password: password,
+    );
+    createUserDatabase(userCredential.user!.uid, usuario, correo);
+    return 'ok';
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'email-already-in-use') {
+      return 'Correo ya se encuentra en uso';
+    }
+    return 'Error desconocido';
+  }
+}
+
+Future<void> registrarUsuario(
+  BuildContext context,
+  String usuario,
+  String correo,
+  String password,
+  String confirmPassword,
+) async {
+  bool internet = await conexionInternt(context);
+  if (!internet) {
     Navigator.pop(context);
     return;
   }
 
-  try {
-    // Check if the username is already taken in Firestore
-    final QuerySnapshot usernameCheck = await FirebaseFirestore.instance
-        .collection('Users')
-        .where('User', isEqualTo: usuario)
-        .get();
+  final result = await registrarUsuarioLogic(usuario, correo, password, confirmPassword);
 
-    if (usernameCheck.docs.isNotEmpty) {
-      // Username is already taken
-      showSnackbar(context, 'Usuario ya se encuentra en uso', red);
-      Navigator.pop(context);
-      return;
-    }
-
-    if (password == confirmPassword) {
-      if (password.length < 6) {
-        showSnackbar(context, 'Contraseña debe tener 6 caracteres o más', red);
-        Navigator.pop(context);
-      } else if (!isStrongPassword(password)) {
-        showSnackbar(
-            context,
-            'La contraseña debe contener al menos una letra, una mayúscula y un símbolo especial.',
-            red);
-        Navigator.pop(context);
-      } else {
-        final userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: correo,
-          password: password,
-        );
-
-        // Create the user in Firestore
-        createUserDatabase(userCredential.user!.uid, usuario, correo);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Bienvenido()),
-        );
-      }
-    } else {
-      showSnackbar(context, 'Las contraseñas no son iguales', red);
-      Navigator.pop(context);
-    }
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'email-already-in-use') {
-      showSnackbar(context, 'Correo ya se encuentra en uso', red);
-      Navigator.pop(context);
-    }
+  if (result == 'ok') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Bienvenido()),
+    );
+  } else {
+    showSnackbar(context, result, red);
+    Navigator.pop(context);
   }
 }
+
 
 // Funcion encargada de ingresar a la sesión del usuario que ya creó anteriormente
 Future<void> ingresarUsuario(
