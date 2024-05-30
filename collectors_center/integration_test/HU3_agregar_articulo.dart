@@ -44,7 +44,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('El gran mundo').last);
+    await tester.tap(find.text('El super mundo').last);
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AddIcon')));
     await tester.pumpAndSettle();
@@ -93,7 +93,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('El gran mundo').last);
+    await tester.tap(find.text('El super mundo').last);
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AddIcon')));
     await tester.pumpAndSettle();
@@ -142,7 +142,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('El gran mundo').last);
+    await tester.tap(find.text('El super mundo').last);
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AddIcon')));
     await tester.pumpAndSettle();
@@ -189,7 +189,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('El gran mundo').last);
+    await tester.tap(find.text('El super mundo').last);
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AddIcon')));
     await tester.pumpAndSettle();
