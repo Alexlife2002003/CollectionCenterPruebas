@@ -52,11 +52,11 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _buildOption("Camera", ImageSource.camera, brown),
+              _buildOption("Camera", ImageSource.camera, brown,Key('Camera')),
               const SizedBox(height: 8),
-              _buildOption("Gallery", ImageSource.gallery, brown),
+              _buildOption("Gallery", ImageSource.gallery, brown,Key('Gallery')),
               const SizedBox(height: 8),
-              _buildOption("Cancel", null, red),
+              _buildOption("Cancel", null, red,Key('Cancel')),
             ],
           ),
         );
@@ -64,8 +64,9 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
     );
   }
 
-  Widget _buildOption(String text, ImageSource? source, Color color) {
+  Widget _buildOption(String text, ImageSource? source, Color color,Key key) {
     return GestureDetector(
+      key:key,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -236,6 +237,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                 ),
                 Center(
                   child: GestureDetector(
+                    key: Key('Image'),
                     onTap: _pickImage,
                     child: Column(
                       children: [
@@ -291,6 +293,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                         child: TextField(
+                          key:Key('nombreArticulo')
                           maxLength: 20,
                           controller: _nombreArticuloController,
                           decoration: const InputDecoration(
@@ -356,6 +359,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                   child: SizedBox(
                     width: screenWidth - 200,
                     child: ElevatedButton(
+                      key:Key('Guardar'),
                       style: const ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(Colors.blue)),

@@ -252,6 +252,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                           width: screenWidth - 160,
                         ),
                         IconButton(
+                          key: Key('AddIcon'),
                           onPressed: () {
                             Navigator.push(
                                 context,
