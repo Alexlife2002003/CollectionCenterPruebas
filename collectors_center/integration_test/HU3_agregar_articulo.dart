@@ -22,6 +22,11 @@ void main() {
   testWidgets('Agregar artículo', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(isLoggedIn: false,));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('Acceder')), findsOneWidget);
+
+    // Tap the 'Acceder' button
+    await tester.tap(find.byKey(const Key('Acceder')));
+    await tester.pumpAndSettle();
     // Verify the email and password fields are present
     expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
     expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
@@ -48,10 +53,10 @@ void main() {
     await tester.tap(find.byKey(const Key('Camera')));
     await tester.pumpAndSettle();
      // Simulate tapping the camera shutter button at coordinates (100, 200)
-    await tester.tapAt(const Offset(100, 200));
+    await tester.tapAt(const Offset(540, 1977));
     await tester.pumpAndSettle();
     // Simulate tapping the accept photo button at coordinates (300, 400)
-    await tester.tapAt(const Offset(300, 400));
+    await tester.tapAt(const Offset(540, 1977));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('nombreArticulo')), "Chaiman");
     await tester.pumpAndSettle();
@@ -65,6 +70,11 @@ void main() {
   testWidgets('Agregar artículo nombre igual categoria', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(isLoggedIn: false,));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('Acceder')), findsOneWidget);
+
+    // Tap the 'Acceder' button
+    await tester.tap(find.byKey(const Key('Acceder')));
+    await tester.pumpAndSettle();
     expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
     expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
 
@@ -92,10 +102,10 @@ void main() {
     await tester.tap(find.byKey(const Key('Camera')));
     await tester.pumpAndSettle();
      // Simulate tapping the camera shutter button at coordinates (100, 200)
-    await tester.tapAt(const Offset(100, 200));
+    await tester.tapAt(const Offset(540, 1977));
     await tester.pumpAndSettle();
     // Simulate tapping the accept photo button at coordinates (300, 400)
-    await tester.tapAt(const Offset(300, 400));
+    await tester.tapAt(const Offset(540, 1977));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('nombreArticulo')), "El gran mundo");
     await tester.pumpAndSettle();
@@ -109,6 +119,11 @@ void main() {
    testWidgets('Agregar artículo nombre vacío', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(isLoggedIn: false,));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('Acceder')), findsOneWidget);
+
+    // Tap the 'Acceder' button
+    await tester.tap(find.byKey(const Key('Acceder')));
+    await tester.pumpAndSettle();
     expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
     expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
 
@@ -136,10 +151,10 @@ void main() {
     await tester.tap(find.byKey(const Key('Camera')));
     await tester.pumpAndSettle();
      // Simulate tapping the camera shutter button at coordinates (100, 200)
-    await tester.tapAt(const Offset(100, 200));
+    await tester.tapAt(const Offset(540, 1977));
     await tester.pumpAndSettle();
     // Simulate tapping the accept photo button at coordinates (300, 400)
-    await tester.tapAt(const Offset(300, 400));
+    await tester.tapAt(const Offset(540, 1977));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Guardar')));
     expect(find.text('El nombre del artículo no puede ir vacío'), findsOneWidget, reason: "'El nombre del artículo no puede ir vacío' text not found");
@@ -150,6 +165,11 @@ void main() {
 
   testWidgets('Agregar artículo sin foto', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(isLoggedIn: false,));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('Acceder')), findsOneWidget);
+
+    // Tap the 'Acceder' button
+    await tester.tap(find.byKey(const Key('Acceder')));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
     expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");

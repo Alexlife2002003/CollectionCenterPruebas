@@ -293,7 +293,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                         child: TextField(
-                          key:Key('nombreArticulo')
+                          key:Key('nombreArticulo'),
                           maxLength: 20,
                           controller: _nombreArticuloController,
                           decoration: const InputDecoration(

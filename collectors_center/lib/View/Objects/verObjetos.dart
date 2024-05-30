@@ -222,7 +222,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                       height: 20,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
                           onPressed: () {
@@ -248,9 +248,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                             size: 60,
                           ),
                         ),
-                        SizedBox(
-                          width: screenWidth - 160,
-                        ),
+                       
                         IconButton(
                           key: Key('AddIcon'),
                           onPressed: () {

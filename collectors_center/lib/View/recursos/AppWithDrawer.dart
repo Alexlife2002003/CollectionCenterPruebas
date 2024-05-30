@@ -99,10 +99,10 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Collectors\nCenter',
+                        'Collectors Center',
                         style: TextStyle(
                           color: Color(0xFFFFEDBD),
-                          fontSize: 40,
+                          fontSize: 34,
                         ),
                         textAlign: TextAlign.center,
                       ),
