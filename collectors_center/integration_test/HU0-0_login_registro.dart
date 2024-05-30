@@ -67,8 +67,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
     await tester.enterText(find.byKey(const Key('password')), "Te123!");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -96,7 +95,7 @@ void main() {
 
     await tester.enterText(find.byKey(const Key('password')), "Te123!");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -123,7 +122,7 @@ void main() {
     // Enter email and password
     await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -161,7 +160,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed

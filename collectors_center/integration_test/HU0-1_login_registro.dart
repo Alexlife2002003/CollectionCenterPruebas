@@ -47,7 +47,7 @@ testWidgets('Registro duplicado correo', (WidgetTester tester) async {
     await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+     await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -82,7 +82,7 @@ testWidgets('Registro duplicado correo', (WidgetTester tester) async {
     await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -117,7 +117,7 @@ testWidgets('Registro duplicado correo', (WidgetTester tester) async {
     await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+     await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -152,7 +152,7 @@ testWidgets('Registro duplicado correo', (WidgetTester tester) async {
     await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -188,7 +188,7 @@ testWidgets('Registro sin password', (WidgetTester tester) async {
     await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
@@ -223,7 +223,7 @@ testWidgets('Registro sin confirmar password', (WidgetTester tester) async {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(Duration(seconds:1));
     await tester.tap(find.byKey(const Key('Registrar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed

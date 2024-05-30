@@ -99,8 +99,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('Camera')));
-    await Future.delayed(const Duration(seconds: 20));
+    await tester.tap(find.byKey(const Key('App Asset')));
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.enterText(find.byKey(const Key('nombreArticulo')), "Chaiman");
     FocusManager.instance.primaryFocus?.unfocus();
@@ -144,8 +143,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('Camera')));
-    await Future.delayed(const Duration(seconds: 20));
+    await tester.tap(find.byKey(const Key('App Asset')));
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.enterText(find.byKey(const Key('nombreArticulo')), "El super mundo");
     FocusManager.instance.primaryFocus?.unfocus();
@@ -189,9 +187,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('Camera')));
-    await Future.delayed(const Duration(seconds: 20));
-    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.tap(find.byKey(const Key('App Asset')));
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
     expect(find.text('El nombre del artículo no puede ir vacío'), findsOneWidget, reason: "'El nombre del artículo no puede ir vacío' text not found");

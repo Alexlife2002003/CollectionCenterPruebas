@@ -130,7 +130,7 @@ class _verCategoriasState extends State<verCategorias> {
 
                   // Icons and Buttons
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
                         onPressed: () async {
@@ -153,9 +153,7 @@ class _verCategoriasState extends State<verCategorias> {
                           size: 60,
                         ),
                       ),
-                      SizedBox(
-                        width: screenWidth - 160,
-                      ),
+                     
                       IconButton(
                         onPressed: () {
                           Navigator.push(
