@@ -22,7 +22,49 @@ void main() {
 
   });
 
-  
+   testWidgets('Agregar artículo', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('Acceder')), findsOneWidget);
+
+    // Tap the 'Acceder' button
+    await tester.tap(find.byKey(const Key('Acceder')));
+    await tester.pumpAndSettle();
+    // Verify the email and password fields are present
+    expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
+    expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
+    // Enter email and password
+    await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
+    await tester.enterText(find.byKey(const Key('password')), "Test123!");
+    await tester.pumpAndSettle();
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.byKey(const Key('Ingresar')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('Articulos')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(DropdownButton<String>));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('El super mundo').last);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('AddIcon')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('Image')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('AppAsset')));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.enterText(find.byKey(const Key('nombreArticulo')), "Chaiman");
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.byKey(const Key('Guardar')));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    expect(find.text('Artículo agregado exitosamente'), findsOneWidget, reason: "'Artículo agregado exitosamente' text not found");
+
+    
+    await Future.delayed(const Duration(seconds: 5));
+  });
 
   
 
@@ -61,6 +103,7 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
+    await tester.pumpAndSettle();
     expect(find.text('Error al subir la imagen'), findsOneWidget, reason: "'Error al subir la imagen' text not found");
 
 
@@ -68,48 +111,7 @@ void main() {
   });
 
 
-  testWidgets('Agregar artículo', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('Acceder')), findsOneWidget);
-
-    // Tap the 'Acceder' button
-    await tester.tap(find.byKey(const Key('Acceder')));
-    await tester.pumpAndSettle();
-    // Verify the email and password fields are present
-    expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
-    expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
-    // Enter email and password
-    await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
-    await tester.enterText(find.byKey(const Key('password')), "Test123!");
-    await tester.pumpAndSettle();
-    FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.byKey(const Key('Ingresar')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip('Open navigation menu'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('Articulos')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byType(DropdownButton<String>));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('El super mundo').last);
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('AddIcon')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('Image')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('App Asset')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.enterText(find.byKey(const Key('nombreArticulo')), "Chaiman");
-    FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.byKey(const Key('Guardar')));
-    expect(find.text('Artículo agregado exitosamente'), findsOneWidget, reason: "'Artículo agregado exitosamente' text not found");
-
-    
-    await Future.delayed(const Duration(seconds: 5));
-  });
+ 
 
   testWidgets('Agregar artículo nombre igual categoria', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(isLoggedIn: false,));
@@ -143,12 +145,13 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('App Asset')));
+    await tester.tap(find.byKey(const Key('AppAsset')));
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.enterText(find.byKey(const Key('nombreArticulo')), "El super mundo");
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
+    await tester.pumpAndSettle();
     expect(find.text('No puede llevar el nombre de la categoría'), findsOneWidget, reason: "'No puede llevar el nombre de la categoría' text not found");
 
 
@@ -187,9 +190,10 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('App Asset')));
+    await tester.tap(find.byKey(const Key('AppAsset')));
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
+    await tester.pumpAndSettle();
     expect(find.text('El nombre del artículo no puede ir vacío'), findsOneWidget, reason: "'El nombre del artículo no puede ir vacío' text not found");
 
 
