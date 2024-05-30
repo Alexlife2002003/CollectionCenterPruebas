@@ -3,6 +3,7 @@
 //   Descripción:                     Editar los objetos                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:collectors_center/Presenter/Objects.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
@@ -12,10 +13,13 @@ import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:collectors_center/View/Objects/verObjetos.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart' as img;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:path_provider/path_provider.dart';
+
 
 class EditarObjetos extends StatefulWidget {
   final String url;
@@ -223,28 +227,36 @@ class _EditarObjetosState extends State<EditarObjetos> {
     });
   }
 
-  Future<void> _pickImage() async {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    Navigator.pop(context);
-    if (pickedFile != null) {
-      final File compressedImage = await _compressImage(File(pickedFile.path));
-      setState(() {
-        _selectedImage = PickedFile(compressedImage.path);
-        filepath = compressedImage.path;
-        uploadImage = compressedImage;
-      });
-    }
-  }
+  
+Future<void> _pickImage() async {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+  );
+
+  // Load the image from assets
+  final ByteData imageData = await rootBundle.load('lib/assets/images/lopez.jpeg');
+  final tempDir = await getTemporaryDirectory();
+  final File tempFile = File('${tempDir.path}/lopez.jpeg');
+  await tempFile.writeAsBytes(imageData.buffer.asUint8List());
+
+  // Compress the image if needed
+  final File compressedImage = await _compressImage(tempFile);
+
+  Navigator.pop(context);
+
+  setState(() {
+    _selectedImage = PickedFile(compressedImage.path);
+    filepath = compressedImage.path;
+    uploadImage = compressedImage;
+  });
+}
+
 
   Future<File> _compressImage(File originalImage) async {
     final img.Image image = img.decodeImage(await originalImage.readAsBytes())!;

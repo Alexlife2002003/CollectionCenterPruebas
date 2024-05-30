@@ -15,6 +15,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart' as img;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart'; // Add this import
+import 'package:path_provider/path_provider.dart'; // Add this import
 
 class agregarObjectsCategoria extends StatefulWidget {
   final String categoria;
@@ -56,6 +58,8 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
               const SizedBox(height: 8),
               _buildOption("Gallery", ImageSource.gallery, brown,Key('Gallery')),
               const SizedBox(height: 8),
+              _buildOption('App Asset', null, brown, Key('AppAsset')),
+              const SizedBox(height: 8,),
               _buildOption("Cancel", null, red,Key('Cancel')),
             ],
           ),
@@ -87,9 +91,29 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
         Navigator.of(context).pop();
         if (source != null) {
           _pickImageFromSource(source);
-        }
+        }else if (key == const Key('AppAsset')) {
+        _pickImageFromAsset('lib/assets/images/lopez.jpeg');
+      }
       },
     );
+  }
+
+  Future<void> _pickImageFromAsset(String assetPath) async {
+    // Load the image from assets
+    final ByteData data = await rootBundle.load(assetPath);
+    final List<int> bytes = data.buffer.asUint8List();
+    final String tempPath = (await getTemporaryDirectory()).path;
+    final File assetFile = File('$tempPath/${assetPath.split('/').last}');
+    
+    await assetFile.writeAsBytes(bytes);
+
+    final File compressedImage = await _compressImage(assetFile);
+
+    setState(() {
+      _selectedImage = PickedFile(compressedImage.path);
+      filepath = compressedImage.path;
+      uploadImage = compressedImage;
+    });
   }
 
   Future<void> _pickImageFromSource(ImageSource source) async {
