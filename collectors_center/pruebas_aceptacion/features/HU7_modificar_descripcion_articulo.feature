@@ -67,11 +67,11 @@ Característica: Modificar descripción de artículo
     Y presiono el boton hamburguesa
     Y presiono Articulos
     Y presiono el dropdown de categoria "ranas"
-    Y selecciono la categoria "sapos"
+    Y selecciono la categoria "El super mundo"
     Y le doy click en el articulo "0"
     Y espero un rato
     Y le doy click al boton de editar descripcion
-    Y edito la descripcion "El gato hizo BOOM" a "sapos"
+    Y edito la descripcion "El gato hizo BOOM" a "El super mundo"
     Cuando le doy click a la palomita
     Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre de la categoría"
   
