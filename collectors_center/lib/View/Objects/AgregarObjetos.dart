@@ -356,6 +356,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                         child: TextField(
+                          key: Key('Descripcion'),
                           maxLength: 300,
                           controller: _descripcionController,
                           maxLines: null,

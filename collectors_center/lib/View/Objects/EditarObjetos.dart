@@ -20,7 +20,6 @@ import 'package:image/image.dart' as img;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
 
-
 class EditarObjetos extends StatefulWidget {
   final String url;
   final String firebaseURL;
@@ -137,8 +136,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
           "La descripción no puede ser igual al nombre del artículo", red);
       return;
     }
-    editarDescripcion(
-        context, widget.firebaseURL, _descripcionController.text);
+    editarDescripcion(context, widget.firebaseURL, _descripcionController.text);
     setState(() {
       isEditing = false;
     });
@@ -227,36 +225,35 @@ class _EditarObjetosState extends State<EditarObjetos> {
     });
   }
 
-  
-Future<void> _pickImage() async {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    },
-  );
+  Future<void> _pickImage() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 
-  // Load the image from assets
-  final ByteData imageData = await rootBundle.load('lib/assets/images/lopez.jpeg');
-  final tempDir = await getTemporaryDirectory();
-  final File tempFile = File('${tempDir.path}/lopez.jpeg');
-  await tempFile.writeAsBytes(imageData.buffer.asUint8List());
+    // Load the image from assets
+    final ByteData imageData =
+        await rootBundle.load('lib/assets/images/lopez.jpeg');
+    final tempDir = await getTemporaryDirectory();
+    final File tempFile = File('${tempDir.path}/lopez.jpeg');
+    await tempFile.writeAsBytes(imageData.buffer.asUint8List());
 
-  // Compress the image if needed
-  final File compressedImage = await _compressImage(tempFile);
+    // Compress the image if needed
+    final File compressedImage = await _compressImage(tempFile);
 
-  Navigator.pop(context);
+    Navigator.pop(context);
 
-  setState(() {
-    _selectedImage = PickedFile(compressedImage.path);
-    filepath = compressedImage.path;
-    uploadImage = compressedImage;
-  });
-}
-
+    setState(() {
+      _selectedImage = PickedFile(compressedImage.path);
+      filepath = compressedImage.path;
+      uploadImage = compressedImage;
+    });
+  }
 
   Future<File> _compressImage(File originalImage) async {
     final img.Image image = img.decodeImage(await originalImage.readAsBytes())!;
@@ -457,7 +454,8 @@ Future<void> _pickImage() async {
                             width: screenWidth - 50,
                             decoration: BoxDecoration(
                               color: myColor,
-                              border: Border.all(color: Colors.white, width: .2),
+                              border:
+                                  Border.all(color: Colors.white, width: .2),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Padding(
@@ -467,7 +465,9 @@ Future<void> _pickImage() async {
                                   Expanded(
                                     child: isEditing
                                         ? TextFormField(
-                                            keyboardType: TextInputType.multiline,
+                                            key: Key('Descripcion'),
+                                            keyboardType:
+                                                TextInputType.multiline,
                                             maxLines: null,
                                             maxLength: 300,
                                             controller: _descripcionController,
@@ -485,6 +485,7 @@ Future<void> _pickImage() async {
                                   Column(
                                     children: [
                                       IconButton(
+                                        key: Key('edit'),
                                         icon: Icon(
                                           isEditing ? Icons.check : Icons.edit,
                                           color: Colors.green,
@@ -537,7 +538,8 @@ Future<void> _pickImage() async {
                       width: screenWidth - 200,
                       child: ElevatedButton(
                         style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue),
                         ),
                         onPressed: cancelar,
                         child: const Text('Regresar'),

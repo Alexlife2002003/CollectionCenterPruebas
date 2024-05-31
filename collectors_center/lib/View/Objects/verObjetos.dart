@@ -357,7 +357,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                 _objectList[i],
                                 i + 1 < _objectList.length
                                     ? _objectList[i + 1]
-                                    : null),
+                                    : null, Key(i.toString()),Key((i+1).toString())),
                         ],
                       ),
                   ],
@@ -370,10 +370,10 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
     );
   }
 
-  Widget _buildObjectRow(MyObject object1, MyObject? object2) {
+  Widget _buildObjectRow(MyObject object1, MyObject? object2, Key keyobject1,Key keyobject2) {
     final String imageUrl1 = object1.imageUrl;
     final String? imageUrl2 = object2?.imageUrl;
-
+    
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -424,6 +424,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                           offset: Offset(2, 2))
                                     ]),
                                     child: CachedNetworkImage(
+                                      key: keyobject1,
                                       imageUrl: imageUrl,
                                       fit: BoxFit.cover,
                                       width: 188,
@@ -511,6 +512,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                                 offset: Offset(2, 2))
                                           ]),
                                       child: CachedNetworkImage(
+                                        key: keyobject2,
                                         imageUrl: imageUrl,
                                         fit: BoxFit.cover,
                                         width: 188,
