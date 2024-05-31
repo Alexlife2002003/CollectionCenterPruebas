@@ -369,6 +369,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                     child: Column(
                       children: [
                         GestureDetector(
+                          key: Key('Image'),
                           onTap: () {
                             setState(() {
                               agregar();
