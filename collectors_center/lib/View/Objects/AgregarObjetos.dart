@@ -3,8 +3,10 @@
 //   Descripción:                     Agregar objetos a categoria                                         //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
-import 'package:collectors_center/Presenter/Objects.dart';
+import 'package:collectors_center/Presenter/objects.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -54,13 +56,17 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _buildOption("Camera", ImageSource.camera, brown,Key('Camera')),
+              _buildOption(
+                  "Camera", ImageSource.camera, brown, const Key('Camera')),
               const SizedBox(height: 8),
-              _buildOption("Gallery", ImageSource.gallery, brown,Key('Gallery')),
+              _buildOption(
+                  "Gallery", ImageSource.gallery, brown, const Key('Gallery')),
               const SizedBox(height: 8),
-              _buildOption('App Asset', null, brown, Key('AppAsset')),
-              const SizedBox(height: 8,),
-              _buildOption("Cancel", null, red,Key('Cancel')),
+              _buildOption('App Asset', null, brown, const Key('AppAsset')),
+              const SizedBox(
+                height: 8,
+              ),
+              _buildOption("Cancel", null, red, const Key('Cancel')),
             ],
           ),
         );
@@ -68,9 +74,9 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
     );
   }
 
-  Widget _buildOption(String text, ImageSource? source, Color color,Key key) {
+  Widget _buildOption(String text, ImageSource? source, Color color, Key key) {
     return GestureDetector(
-      key:key,
+      key: key,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -91,9 +97,9 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
         Navigator.of(context).pop();
         if (source != null) {
           _pickImageFromSource(source);
-        }else if (key == const Key('AppAsset')) {
-        _pickImageFromAsset('lib/assets/images/lopez.jpeg');
-      }
+        } else if (key == const Key('AppAsset')) {
+          _pickImageFromAsset('lib/assets/images/lopez.jpeg');
+        }
       },
     );
   }
@@ -104,7 +110,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
     final List<int> bytes = data.buffer.asUint8List();
     final String tempPath = (await getTemporaryDirectory()).path;
     final File assetFile = File('$tempPath/${assetPath.split('/').last}');
-    
+
     await assetFile.writeAsBytes(bytes);
 
     final File compressedImage = await _compressImage(assetFile);
@@ -132,12 +138,14 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
     final pickedFile = await ImagePicker().pickImage(
       source: source,
       // Set your desired max height
-      maxHeight: 1000, 
+      maxHeight: 1000,
       // Set your desired max width
-      maxWidth: 1000, 
+      maxWidth: 1000,
     );
 
-    Navigator.pop(context);
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
 
     if (pickedFile != null) {
       final File compressedImage = await _compressImage(File(pickedFile.path));
@@ -209,9 +217,9 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
 
       // Close the progress dialog if an error occurs
     } catch (e) {
-      showSnackbar(context, "Error al subir la imagen", red);
+      if(context.mounted){showSnackbar(context, "Error al subir la imagen", red);
 
-      Navigator.of(context).pop();
+      Navigator.of(context).pop();}
     }
   }
 
@@ -261,7 +269,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                 ),
                 Center(
                   child: GestureDetector(
-                    key: Key('Image'),
+                    key: const Key('Image'),
                     onTap: _pickImage,
                     child: Column(
                       children: [
@@ -317,7 +325,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                         child: TextField(
-                          key:Key('nombreArticulo'),
+                          key: const Key('nombreArticulo'),
                           maxLength: 20,
                           controller: _nombreArticuloController,
                           decoration: const InputDecoration(
@@ -356,7 +364,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Center(
                         child: TextField(
-                          key: Key('Descripcion'),
+                          key: const Key('Descripcion'),
                           maxLength: 300,
                           controller: _descripcionController,
                           maxLines: null,
@@ -384,7 +392,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                   child: SizedBox(
                     width: screenWidth - 200,
                     child: ElevatedButton(
-                      key:Key('Guardar'),
+                      key: const Key('Guardar'),
                       style: const ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(Colors.blue)),

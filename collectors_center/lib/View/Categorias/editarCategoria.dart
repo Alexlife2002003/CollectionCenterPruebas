@@ -2,7 +2,9 @@
 //   Nombre:                          Equipo Tacos de asada                                                 //
 //   Descripción:                     Interfaz para editar categorias                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import 'package:collectors_center/Presenter/Categorias.dart';
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/verCategorias.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
@@ -388,7 +390,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                                         },
                                       ),
                                       IconButton(
-                                        key: Key('delete'),
+                                        key: const Key('delete'),
                                         icon: const Icon(
                                           Icons.delete,
                                           color: Colors.red,

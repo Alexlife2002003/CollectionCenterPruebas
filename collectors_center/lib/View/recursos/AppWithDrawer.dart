@@ -1,6 +1,8 @@
-import 'package:collectors_center/Presenter/Amigos.dart';
-import 'package:collectors_center/Presenter/Categorias.dart';
-import 'package:collectors_center/Presenter/Cuentas.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/amigos.dart';
+import 'package:collectors_center/Presenter/categorias.dart';
+import 'package:collectors_center/Presenter/cuentas.dart';
 import 'package:collectors_center/View/Amigos/verAmigos.dart';
 import 'package:collectors_center/View/Amigos/verSolicitudes.dart';
 import 'package:collectors_center/View/Categorias/verCategorias.dart';
@@ -16,7 +18,7 @@ class AppWithDrawer extends StatefulWidget {
   final Widget content;
   String currentPage;
 
-  AppWithDrawer({required this.content, required this.currentPage});
+  AppWithDrawer({super.key, required this.content, required this.currentPage});
 
   @override
   _AppWithDrawerState createState() => _AppWithDrawerState();
@@ -141,7 +143,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
               },
             ),
             ListTile(
-              key:Key('Articulos'),
+              key: const Key('Articulos'),
               title: Row(
                 children: [
                   Image.asset("lib/assets/images/Articles_icon.png"),
@@ -160,7 +162,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => verObjectsCategoria(
+                            builder: ((context) => const verObjectsCategoria(
                                   categoria: "",
                                 ))));
                   } else {
@@ -173,7 +175,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
               },
             ),
             ListTile(
-              key:Key('Categorias'),
+              key: const Key('Categorias'),
               title: Row(
                 children: [
                   Image.asset("lib/assets/images/Categories_icon.png"),

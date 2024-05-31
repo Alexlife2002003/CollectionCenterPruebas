@@ -3,6 +3,8 @@
 //   Fecha:                           29/09/23                                                              //
 //   Descripción:                     Permite hacer operaciones sobre los objetos                           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
+
 import 'package:collectors_center/View/Objects/verObjetos.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
@@ -24,7 +26,7 @@ Future<void> editarDescripcion(
     return;
   }
 
-  if (description.length < 10 && description.length != 0) {
+  if (description.length < 10 && description.isNotEmpty) {
     showSnackbar(context,
         "Descripción debe contener mínimo 10 caracteres si no es vacia", red);
     return;
@@ -56,7 +58,6 @@ Future<void> editarDescripcion(
 
         // Loop through the category documents
         for (final categoryDoc in categoriesQuerySnapshot.docs) {
-            
           // Reference to the "Objects" subcollection within the category document
           CollectionReference objectsCollection =
               categoryDoc.reference.collection('Objects');
@@ -190,7 +191,7 @@ void agregarObjeto(
         "Descripción no puede ser igual al nombre de la categoría", red);
     return;
   }
-  if (descripcion.length < 10 && descripcion.length != 0) {
+  if (descripcion.length < 10 && descripcion.isNotEmpty) {
     showSnackbar(context,
         "Descripción debe contener mínimo 10 caracteres si no es vacia", red);
     return;
@@ -495,6 +496,6 @@ Future<void> deleteImageByImageUrlNoMessage(
       }
     }
   } catch (e) {
-    print("");
+    debugPrint("");
   }
 }

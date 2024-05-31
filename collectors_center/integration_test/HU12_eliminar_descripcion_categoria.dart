@@ -37,7 +37,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
@@ -45,13 +45,15 @@ void main() {
     await tester.tap(find.byKey(const Key('Categorias')));
     await tester.pumpAndSettle();
     await tester.tap(find.text('ranas2').last);
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('delete')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.text('Eliminar').last);
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    expect(find.text('Descripción de la categoría eliminada exitosamente'), findsOneWidget,
-        reason: "'Descripción de la categoría eliminada exitosamente' text not found");
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    expect(find.text('Descripción de la categoría eliminada exitosamente'),
+        findsOneWidget,
+        reason:
+            "'Descripción de la categoría eliminada exitosamente' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
     // Entonces puedo ver el mensaje "Descripción de la categoría eliminada exitosamente"

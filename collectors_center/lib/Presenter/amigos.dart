@@ -4,8 +4,11 @@
 //   Descripción:                     Lógica detras del apartado de amigos como solicitudes y ver categorías//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 Future<bool> eliminarSolicitud(String usuario) async {
   bool eliminada = false;
@@ -79,7 +82,7 @@ Future<bool> aceptarSolicitud(String usuario) async {
       }
     }
   } catch (e) {
-    print('Error sending request: $e');
+    debugPrint('Error sending request: $e');
   }
 
   return aceptado;
@@ -206,7 +209,7 @@ Future<List<String>> obtenerSolicitudes() async {
       }
     }
   } catch (e) {
-    print('Error fetching requests: $e');
+    debugPrint('Error fetching requests: $e');
   }
   return solicitudes;
 }
@@ -230,7 +233,7 @@ Future<List<String>> obtenerAceptados() async {
       }
     }
   } catch (e) {
-    print('Error fetching requests: $e');
+    debugPrint('Error fetching requests: $e');
   }
   return solicitudes;
 }
@@ -265,7 +268,7 @@ Future<List<String>> obtenerCategoriasAmigos(String usuario) async {
       }
     }
   } catch (e) {
-    print("Error fetching categories: $e");
+    debugPrint("Error fetching categories: $e");
   }
   return categories;
 }
@@ -324,7 +327,7 @@ Future<List<Map<String, dynamic>>> obtenerObjetosCategoriasAmigos(
         }
       }
     } catch (e) {
-      print("error $e");
+      debugPrint("error $e");
     }
   }
 

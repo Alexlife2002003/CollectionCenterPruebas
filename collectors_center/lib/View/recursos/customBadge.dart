@@ -4,7 +4,7 @@ class CustomBadge extends StatelessWidget {
   final Widget icon;
   final int badgeValue;
 
-  CustomBadge({
+  const CustomBadge({
     required this.icon,
     required this.badgeValue,
   });

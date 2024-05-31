@@ -4,8 +4,10 @@
 //   Descripción:                     Lógica de la aplicacion (Cuenta, navegacion, apartado primario)       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import 'package:collectors_center/Presenter/Amigos.dart';
-import 'package:collectors_center/Presenter/Categorias.dart';
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/amigos.dart';
+import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/recursos/Bienvenido.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -53,7 +55,7 @@ Future<void> eliminarCuenta(BuildContext context) async {
             .get();
 
         if (acceptedQuery.docs.isNotEmpty) {
-          print("entered accepted");
+          debugPrint("entered accepted");
           await acceptedQuery.docs.first.reference.delete();
         }
 
@@ -99,7 +101,7 @@ Future<void> eliminarCuenta(BuildContext context) async {
       showSnackbar(context, "Se ha borrado la cuenta", green);
     }
   } catch (e, stackTrace) {
-    print("Error: $e\nStack Trace: $stackTrace");
+    debugPrint("Error: $e\nStack Trace: $stackTrace");
     // Show an error message to the user
     showSnackbar(context, "Error al eliminar la cuenta", red);
   }
@@ -128,7 +130,10 @@ Future<String> registrarUsuarioLogic(
   String password,
   String confirmPassword,
 ) async {
-  if (correo.isEmpty || usuario.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+  if (correo.isEmpty ||
+      usuario.isEmpty ||
+      password.isEmpty ||
+      confirmPassword.isEmpty) {
     return 'Ingresa los datos faltantes.';
   }
 
@@ -158,7 +163,8 @@ Future<String> registrarUsuarioLogic(
   }
 
   try {
-    final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    final userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: correo,
       password: password,
     );
@@ -185,7 +191,8 @@ Future<void> registrarUsuario(
     return;
   }
 
-  final result = await registrarUsuarioLogic(usuario, correo, password, confirmPassword);
+  final result =
+      await registrarUsuarioLogic(usuario, correo, password, confirmPassword);
 
   if (result == 'ok') {
     Navigator.push(
@@ -197,7 +204,6 @@ Future<void> registrarUsuario(
     Navigator.pop(context);
   }
 }
-
 
 // Funcion encargada de ingresar a la sesión del usuario que ya creó anteriormente
 Future<void> ingresarUsuario(
@@ -263,9 +269,9 @@ Future<void> cerrarSesion(BuildContext context) async {
 //////////////////////////////////////
 
 //Crea la coleccion USERS con los datos del usuario
-void createUserDatabase(String UID, String usuario, String correo) {
+void createUserDatabase(String uid, String usuario, String correo) {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final CollectionReference usersDetails = firestore.collection('Users');
-  usersDetails.doc(UID).set({'User': usuario, 'Email': correo});
+  usersDetails.doc(uid).set({'User': usuario, 'Email': correo});
   FirebaseAuth.instance.currentUser?.updateDisplayName(usuario);
 }

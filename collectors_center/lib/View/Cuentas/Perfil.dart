@@ -4,7 +4,7 @@
 //   Descripción:                     Vista de inicio de sesión de usuarios ya registrados                  //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import 'package:collectors_center/Presenter/Cuentas.dart';
+import 'package:collectors_center/Presenter/cuentas.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
@@ -105,25 +105,30 @@ class _PerfilState extends State<Perfil> {
     );
 
     if (confirmacion == true) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: peach,
-            ),
-          );
-        },
-      );
-      await eliminarCuenta(context);
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: peach,
+              ),
+            );
+          },
+        );
 
-      Navigator.pop(context);
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => Inicio(),
-        ),
-        (route) => false,
-      );
+        await eliminarCuenta(context);
+      }
+
+      if (context.mounted) {
+        Navigator.pop(context);
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => Inicio(),
+          ),
+          (route) => false,
+        );
+      }
     }
   }
 

@@ -4,6 +4,8 @@
 //   Descripción:                     Lógica detras de los procesos encargados de las categorías.           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
+
 import 'package:collectors_center/View/Categorias/verCategorias.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
@@ -216,7 +218,7 @@ Future<List<String>> fetchCategories() async {
       }
     }
   } catch (e) {
-    print('Error fetching categories: $e');
+    debugPrint('Error fetching categories: $e');
   }
 
   return categories;
@@ -243,7 +245,7 @@ Future<bool> categoriesExist(String category) async {
       }
     }
   } catch (e) {
-    print('Error fetching categories: $e');
+    debugPrint('Error fetching categories: $e');
   }
 
   return false;
@@ -273,7 +275,7 @@ Future<String> fetchDescriptions(String category) async {
       }
     }
   } catch (e) {
-    print('Error fetching categories: $e');
+    debugPrint('Error fetching categories: $e');
   }
 
   return "";

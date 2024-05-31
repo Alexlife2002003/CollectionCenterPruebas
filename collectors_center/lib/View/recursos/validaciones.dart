@@ -1,4 +1,5 @@
-import 'package:collectors_center/View/recursos/colors.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
@@ -11,7 +12,7 @@ Future<bool> conexionInternt(BuildContext context) async {
 
   if (connectivityResult == ConnectivityResult.none) {
     // No internet connection
-    showSnackbar(context, "Sin conexión a Internet", Colors.red);
+    if(context.mounted){showSnackbar(context, "Sin conexión a Internet", Colors.red);}
     return false;
   } else {
     // Check Wi-Fi speed
@@ -19,7 +20,7 @@ Future<bool> conexionInternt(BuildContext context) async {
 
     if (responseTime > 3000) {
       // Slow connection
-      showSnackbar(context, "Slow Wi-Fi Connection", Colors.yellow);
+      
       return false;
     } else {
       return true;

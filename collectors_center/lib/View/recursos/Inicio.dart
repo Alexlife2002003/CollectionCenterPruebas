@@ -68,8 +68,8 @@ class _InicioState extends State<Inicio> {
                                 decoration: BoxDecoration(
                                   color: myColor,
                                   borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(
-                                      color: Colors.white, width: 2),
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
                                 ),
                                 child: Center(
                                   child: Text(

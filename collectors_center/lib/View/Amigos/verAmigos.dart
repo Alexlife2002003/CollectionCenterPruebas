@@ -3,10 +3,12 @@
 //   Fecha:                           19/11/23                                                              //
 //   Descripción:                     View de los amigos dentro de la aplicación                           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
+
 import 'package:collectors_center/View/Amigos/verColeccionesAmigos.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
-import 'package:collectors_center/Presenter/Amigos.dart';
+import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Bienvenido.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -209,11 +211,11 @@ class _VerAmigosState extends State<VerAmigos> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   backgroundColor: peach,
-                                  title: Text(
+                                  title: const Text(
                                     'Aviso',
                                     textAlign: TextAlign.center,
                                   ),
-                                  content: Text(
+                                  content: const Text(
                                     'Esta funcionalidad se realizará a futuro, no forma parte de esta iteración.',
                                     textAlign: TextAlign.justify,
                                   ),
@@ -222,7 +224,7 @@ class _VerAmigosState extends State<VerAmigos> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('OK'),
+                                      child: const Text('OK'),
                                     ),
                                   ],
                                 );

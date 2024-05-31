@@ -3,7 +3,9 @@
 //   Fecha:                           16/11/23                                                              //
 //   Descripción:                     View de las colecciones de los amigos                                 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import 'package:collectors_center/Presenter/Amigos.dart';
+// ignore_for_file: depend_on_referenced_packages, use_key_in_widget_constructors, use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/View/Amigos/verAmigos.dart';
 import 'package:collectors_center/View/Amigos/verObjetosAmigos.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
@@ -37,7 +39,7 @@ class MyObject {
 class verColeccionesAmigos extends StatefulWidget {
   final String amigo;
 
-  verColeccionesAmigos({required this.amigo});
+  const verColeccionesAmigos({required this.amigo});
 
   @override
   _verColeccionesAmigosState createState() => _verColeccionesAmigosState();

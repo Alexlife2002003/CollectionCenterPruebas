@@ -4,6 +4,8 @@
 //   Descripción:                    Este es el programa principal, inicializa firebase                     //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:collectors_center/View/recursos/Bienvenido.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
 import 'package:flutter/material.dart';

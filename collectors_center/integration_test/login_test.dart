@@ -20,7 +20,9 @@ void main() {
   });
 
   testWidgets('Credenciales correctas en login', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
+    await tester.pumpWidget(const MyApp(
+      isLoggedIn: false,
+    ));
     await tester.pumpAndSettle();
 
     // Verify the 'Acceder' button is present
@@ -31,8 +33,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify the email and password fields are present
-    expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
-    expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
+    expect(find.byKey(const Key('email')), findsOneWidget,
+        reason: "Email field not found");
+    expect(find.byKey(const Key('password')), findsOneWidget,
+        reason: "Password field not found");
 
     // Enter email and password
     await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
@@ -43,13 +47,16 @@ void main() {
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
-    expect(find.text('Bienvenido'), findsOneWidget, reason: "'Bienvenido' text not found");
+    expect(find.text('Bienvenido'), findsOneWidget,
+        reason: "'Bienvenido' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
 
-   testWidgets('Credenciales incorrectas en login', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
+  testWidgets('Credenciales incorrectas en login', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
+      isLoggedIn: false,
+    ));
     await tester.pumpAndSettle();
 
     // Verify the 'Acceder' button is present
@@ -60,8 +67,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify the email and password fields are present
-    expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
-    expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
+    expect(find.byKey(const Key('email')), findsOneWidget,
+        reason: "Email field not found");
+    expect(find.byKey(const Key('password')), findsOneWidget,
+        reason: "Password field not found");
 
     // Enter email and password
     await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
@@ -71,14 +80,18 @@ void main() {
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
-    expect(find.text('La contraseña o el correo electrónico son incorrectos'), findsOneWidget, reason: "'La contraseña o el correo electrónico son incorrectos' text not found");
+    expect(find.text('La contraseña o el correo electrónico son incorrectos'),
+        findsOneWidget,
+        reason:
+            "'La contraseña o el correo electrónico son incorrectos' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
-
 
   testWidgets('login sin correo', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
+    await tester.pumpWidget(const MyApp(
+      isLoggedIn: false,
+    ));
     await tester.pumpAndSettle();
 
     // Verify the 'Acceder' button is present
@@ -89,9 +102,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify the email and password fields are present
-    expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
-    expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
-
+    expect(find.byKey(const Key('email')), findsOneWidget,
+        reason: "Email field not found");
+    expect(find.byKey(const Key('password')), findsOneWidget,
+        reason: "Password field not found");
 
     await tester.enterText(find.byKey(const Key('password')), "Te123!");
     FocusManager.instance.primaryFocus?.unfocus();
@@ -99,13 +113,16 @@ void main() {
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
-    expect(find.text(''), findsOneWidget, reason: "Ingresa tu correo electrónico y contraseña.' text not found");
+    expect(find.text(''), findsOneWidget,
+        reason: "Ingresa tu correo electrónico y contraseña.' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
 
-   testWidgets('login sin contrasenia', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp(isLoggedIn: false,));
+  testWidgets('login sin contrasenia', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
+      isLoggedIn: false,
+    ));
     await tester.pumpAndSettle();
 
     // Verify the 'Acceder' button is present
@@ -116,8 +133,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify the email and password fields are present
-    expect(find.byKey(const Key('email')), findsOneWidget, reason: "Email field not found");
-    expect(find.byKey(const Key('password')), findsOneWidget, reason: "Password field not found");
+    expect(find.byKey(const Key('email')), findsOneWidget,
+        reason: "Email field not found");
+    expect(find.byKey(const Key('password')), findsOneWidget,
+        reason: "Password field not found");
 
     // Enter email and password
     await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
@@ -126,11 +145,10 @@ void main() {
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
-    expect(find.text('Ingresa tu correo electrónico y contraseña.'), findsOneWidget, reason: "'Ingresa tu correo electrónico y contraseña.' text not found");
+    expect(find.text('Ingresa tu correo electrónico y contraseña.'),
+        findsOneWidget,
+        reason: "'Ingresa tu correo electrónico y contraseña.' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
-
-
-
 }

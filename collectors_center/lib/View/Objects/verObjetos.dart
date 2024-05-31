@@ -2,7 +2,9 @@
 //   Nombre:                          Equipo Tacos de asada                                                 //
 //   Descripción:                     Ver los objetos                                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import 'package:collectors_center/Presenter/Categorias.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Objects/AgregarObjetos.dart';
 import 'package:collectors_center/View/Objects/EditarObjetos.dart';
 import 'package:collectors_center/View/recursos/Bienvenido.dart';
@@ -11,11 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
-import 'package:collectors_center/Presenter/Objects.dart';
+import 'package:collectors_center/Presenter/objects.dart';
 
 String imageUrlKey = 'Image URL';
 
@@ -38,7 +39,7 @@ class MyObject {
 class verObjectsCategoria extends StatefulWidget {
   final String categoria;
 
-  verObjectsCategoria({required this.categoria});
+  const verObjectsCategoria({required this.categoria});
 
   @override
   _verObjectsCategoriaState createState() => _verObjectsCategoriaState();
@@ -54,10 +55,10 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
   String selectedDescription = "";
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-    _fetchObjects();
-    _fetchCategories();
+    await _fetchObjects();
+    await _fetchCategories();
   }
 
   Future<void> _fetchCategories() async {
@@ -69,14 +70,14 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
       showSnackbar(context, "Error al buscar categorías", red);
     }
 
-    setState(() {
+    setState(() async {
       categories = fetchedCategories;
       if (categories.isNotEmpty && widget.categoria.isEmpty) {
         selectedCategory = categories[0];
-        _fetchObjects();
+        await _fetchObjects();
       } else if (widget.categoria.isNotEmpty) {
         selectedCategory = widget.categoria;
-        _fetchObjects();
+        await _fetchObjects();
       } else {
         selectedCategory = 'Sin categorias';
       }
@@ -164,7 +165,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
     try {
       for (MyObject selectedObject in _selectedObjects) {
         if (_selectedObjects.isNotEmpty) {
-          eliminarVariosObjetos(
+          await eliminarVariosObjetos(
               context, selectedObject.imageUrl, widget.categoria);
         }
       }
@@ -248,9 +249,8 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                             size: 60,
                           ),
                         ),
-                       
                         IconButton(
-                          key: Key('AddIcon'),
+                          key: const Key('AddIcon'),
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -284,9 +284,9 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                               child: DropdownButton<String>(
                                 value: selectedCategory,
                                 onChanged: (String? newValue) {
-                                  setState(() {
+                                  setState(() async {
                                     selectedCategory = newValue!;
-                                    _fetchObjects();
+                                    await _fetchObjects();
                                   });
                                 },
                                 items: categories.map<DropdownMenuItem<String>>(
@@ -357,7 +357,9 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                 _objectList[i],
                                 i + 1 < _objectList.length
                                     ? _objectList[i + 1]
-                                    : null, Key(i.toString()),Key((i+1).toString())),
+                                    : null,
+                                Key(i.toString()),
+                                Key((i + 1).toString())),
                         ],
                       ),
                   ],
@@ -370,10 +372,11 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
     );
   }
 
-  Widget _buildObjectRow(MyObject object1, MyObject? object2, Key keyobject1,Key keyobject2) {
+  Widget _buildObjectRow(
+      MyObject object1, MyObject? object2, Key keyobject1, Key keyobject2) {
     final String imageUrl1 = object1.imageUrl;
     final String? imageUrl2 = object2?.imageUrl;
-    
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -489,7 +492,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                               return GestureDetector(
                                 onTap: () {
                                   if (deleteActivated) {
-                                    _toggleSelection(object2!);
+                                    _toggleSelection(object2);
                                   } else {
                                     Navigator.push(
                                       context,

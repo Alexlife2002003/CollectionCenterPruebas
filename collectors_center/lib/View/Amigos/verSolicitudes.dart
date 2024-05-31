@@ -4,7 +4,9 @@
 //   Descripción:                     View para las solicitudes de amigos dentro de la aplicación           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import 'package:collectors_center/Presenter/Amigos.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Bienvenido.dart';
 import 'package:collectors_center/View/recursos/colors.dart';

@@ -40,7 +40,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
@@ -56,7 +56,7 @@ void main() {
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AppAsset')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.byKey(const Key('nombreArticulo')), findsOneWidget,
         reason: "nombreARticulo field not found");
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -67,9 +67,9 @@ void main() {
     await tester.enterText(
         find.byKey(const Key('Descripcion')), "El gato burbuja que burbujea");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 3));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.text('Artículo agregado exitosamente'), findsOneWidget,
         reason: "'Artículo agregado exitosamente' text not found");
 
@@ -96,7 +96,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
@@ -106,7 +106,7 @@ void main() {
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
     await tester.tap(find.text('El super mundo').last);
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('0')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('edit')));
@@ -117,9 +117,9 @@ void main() {
     await tester.enterText(
         find.byKey(const Key('Descripcion')), "El gato triste de korra");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 3));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
     await tester.tap(find.byKey(const Key('edit')));
-    await tester.pumpAndSettle(Duration(seconds: 3));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
     expect(find.text('Se han guardado los cambios'), findsOneWidget,
         reason: "'Se han guardado los cambios' text not found");
 
@@ -147,7 +147,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
@@ -163,7 +163,7 @@ void main() {
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AppAsset')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.byKey(const Key('nombreArticulo')), findsOneWidget,
         reason: "nombreARticulo field not found");
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -173,9 +173,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('Descripcion')), "Si");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(
         find.text(
             'Descripción debe contener mínimo 10 caracteres si no es vacia'),
@@ -207,7 +207,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
@@ -223,7 +223,7 @@ void main() {
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AppAsset')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.byKey(const Key('nombreArticulo')), findsOneWidget,
         reason: "nombreARticulo field not found");
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -233,9 +233,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('Descripcion')), "Lucy chen");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.text('Descripción no puede ser igual al nombre del artículo'),
         findsOneWidget,
         reason:
@@ -265,7 +265,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
@@ -281,7 +281,7 @@ void main() {
     await tester.tap(find.byKey(const Key('Image')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('AppAsset')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.byKey(const Key('nombreArticulo')), findsOneWidget,
         reason: "nombreARticulo field not found");
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -292,9 +292,9 @@ void main() {
     await tester.enterText(
         find.byKey(const Key('Descripcion')), "El super mundo");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(
         find.text('Descripción no puede ser igual al nombre de la categoría'),
         findsOneWidget,

@@ -3,7 +3,9 @@
 //   Descripción:                     Ver categorias                                                        //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import 'package:collectors_center/Presenter/Categorias.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/agregarCategorias.dart';
 import 'package:collectors_center/View/Categorias/editarCategoria.dart';
 import 'package:collectors_center/View/recursos/Bienvenido.dart';
@@ -42,8 +44,6 @@ class _verCategoriasState extends State<verCategorias> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       // If the user is not authenticated, redirect them to the login screen
@@ -153,9 +153,8 @@ class _verCategoriasState extends State<verCategorias> {
                           size: 60,
                         ),
                       ),
-                     
                       IconButton(
-                        key: Key('AddIcon'),
+                        key: const Key('AddIcon'),
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -189,13 +188,13 @@ class _verCategoriasState extends State<verCategorias> {
                                   isEdit = false;
                                 });
                               } else {
-                                Navigator.push(
+                                if(context.mounted){Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => EditarCategoria(
                                           categoryName: category)),
                                 );
-                              }
+                              }}
                             }
                           },
                           child: Container(

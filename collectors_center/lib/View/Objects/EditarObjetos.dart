@@ -2,9 +2,10 @@
 //   Nombre:                          Equipo Tacos de asada                                                 //
 //   Descripción:                     Editar los objetos                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:collectors_center/Presenter/Objects.dart';
+import 'package:collectors_center/Presenter/objects.dart';
 import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
 import 'package:collectors_center/View/recursos/Inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -83,7 +84,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
     );
 
     if (confirmacion == true) {
-      showDialog(
+      if(context.mounted){showDialog(
         context: context,
         builder: (context) {
           return Center(
@@ -94,7 +95,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
         },
       );
       eliminarObjeto(context, widget.firebaseURL, category);
-    }
+    }}
   }
 
   void toggleEditDescription() {
@@ -111,32 +112,32 @@ class _EditarObjetosState extends State<EditarObjetos> {
     descripcion = _descripcionController.text;
     final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
     if (descripcion.length < 10 && descripcion.length != 0) {
-      showSnackbar(context,
-          "Descripción debe contener mínimo 10 caracteres si no es vacia", red);
+      if(context.mounted){showSnackbar(context,
+          "Descripción debe contener mínimo 10 caracteres si no es vacia", red);}
       return;
     }
 
     if (descripcion.length > 300) {
-      showSnackbar(
-          context, "No puede exceder la descripción los 300 caracteres", red);
+     if(context.mounted){ showSnackbar(
+          context, "No puede exceder la descripción los 300 caracteres", red);}
       return;
     }
 
     if (!containsLetter && descripcion.isNotEmpty) {
-      showSnackbar(context, "Descripción debe contener letras", red);
+      if(context.mounted){showSnackbar(context, "Descripción debe contener letras", red);}
       return;
     }
     if (descripcion.trim() == category) {
-      showSnackbar(context,
-          "La descripción no puede ser igual al nombre de la categoría", red);
+      if(context.mounted){showSnackbar(context,
+          "La descripción no puede ser igual al nombre de la categoría", red);}
       return;
     }
     if (descripcion.trim() == name) {
-      showSnackbar(context,
-          "La descripción no puede ser igual al nombre del artículo", red);
+      if(context.mounted){showSnackbar(context,
+          "La descripción no puede ser igual al nombre del artículo", red);}
       return;
     }
-    editarDescripcion(context, widget.firebaseURL, _descripcionController.text);
+    if(context.mounted){editarDescripcion(context, widget.firebaseURL, _descripcionController.text);}
     setState(() {
       isEditing = false;
     });
@@ -152,7 +153,8 @@ class _EditarObjetosState extends State<EditarObjetos> {
       return;
     }
     // Mostrar un diálogo de confirmación
-    bool confirmacion = await showDialog(
+    bool confirmacion =false;
+    if(context.mounted){ confirmacion = await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -179,7 +181,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
           ],
         );
       },
-    );
+    );}
 
     if (confirmacion == true) {
       setState(() {
@@ -201,7 +203,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
     }
     if (_selectedImage != null) {
       await subirStorage();
-      deleteImageByImageUrlNoMessage(context, widget.firebaseURL);
+      if(context.mounted){deleteImageByImageUrlNoMessage(context, widget.firebaseURL);}
     }
   }
 
@@ -246,7 +248,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
     // Compress the image if needed
     final File compressedImage = await _compressImage(tempFile);
 
-    Navigator.pop(context);
+    if(context.mounted){Navigator.pop(context);}
 
     setState(() {
       _selectedImage = PickedFile(compressedImage.path);
@@ -311,9 +313,9 @@ class _EditarObjetosState extends State<EditarObjetos> {
         Navigator.of(context).pop();
       });
     } catch (e) {
-      showSnackbar(context, "Error al subir la imagen", red);
+     if(context.mounted){ showSnackbar(context, "Error al subir la imagen", red);
 
-      Navigator.of(context).pop();
+      Navigator.of(context).pop();}
     }
   }
 
@@ -369,7 +371,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                     child: Column(
                       children: [
                         GestureDetector(
-                          key: Key('Image'),
+                          key: const Key('Image'),
                           onTap: () {
                             setState(() {
                               agregar();
@@ -466,7 +468,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                                   Expanded(
                                     child: isEditing
                                         ? TextFormField(
-                                            key: Key('Descripcion'),
+                                            key: const Key('Descripcion'),
                                             keyboardType:
                                                 TextInputType.multiline,
                                             maxLines: null,
@@ -486,7 +488,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                                   Column(
                                     children: [
                                       IconButton(
-                                        key: Key('edit'),
+                                        key: const Key('edit'),
                                         icon: Icon(
                                           isEditing ? Icons.check : Icons.edit,
                                           color: Colors.green,
