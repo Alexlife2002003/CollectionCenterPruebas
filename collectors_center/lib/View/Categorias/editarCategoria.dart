@@ -388,6 +388,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                                         },
                                       ),
                                       IconButton(
+                                        key: Key('delete'),
                                         icon: const Icon(
                                           Icons.delete,
                                           color: Colors.red,
