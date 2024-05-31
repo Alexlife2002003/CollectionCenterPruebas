@@ -173,6 +173,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
               },
             ),
             ListTile(
+              key:Key('Categorias'),
               title: Row(
                 children: [
                   Image.asset("lib/assets/images/Categories_icon.png"),
