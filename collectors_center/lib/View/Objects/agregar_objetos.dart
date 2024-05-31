@@ -217,9 +217,11 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
 
       // Close the progress dialog if an error occurs
     } catch (e) {
-      if(context.mounted){showSnackbar(context, "Error al subir la imagen", red);
+      if (context.mounted) {
+        showSnackbar(context, "Error al subir la imagen", red);
 
-      Navigator.of(context).pop();}
+        Navigator.of(context).pop();
+      }
     }
   }
 

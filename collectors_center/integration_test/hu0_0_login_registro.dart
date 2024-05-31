@@ -1,4 +1,3 @@
-
 import 'package:collectors_center/firebase_options.dart';
 import 'package:collectors_center/main.dart';
 import 'package:firebase_core/firebase_core.dart';

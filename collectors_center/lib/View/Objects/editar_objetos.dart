@@ -84,18 +84,20 @@ class _EditarObjetosState extends State<EditarObjetos> {
     );
 
     if (confirmacion == true) {
-      if(context.mounted){showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: peach,
-            ),
-          );
-        },
-      );
-      eliminarObjeto(context, widget.firebaseURL, category);
-    }}
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: peach,
+              ),
+            );
+          },
+        );
+        eliminarObjeto(context, widget.firebaseURL, category);
+      }
+    }
   }
 
   void toggleEditDescription() {
@@ -112,32 +114,47 @@ class _EditarObjetosState extends State<EditarObjetos> {
     descripcion = _descripcionController.text;
     final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
     if (descripcion.length < 10 && descripcion.length != 0) {
-      if(context.mounted){showSnackbar(context,
-          "Descripción debe contener mínimo 10 caracteres si no es vacia", red);}
+      if (context.mounted) {
+        showSnackbar(
+            context,
+            "Descripción debe contener mínimo 10 caracteres si no es vacia",
+            red);
+      }
       return;
     }
 
     if (descripcion.length > 300) {
-     if(context.mounted){ showSnackbar(
-          context, "No puede exceder la descripción los 300 caracteres", red);}
+      if (context.mounted) {
+        showSnackbar(
+            context, "No puede exceder la descripción los 300 caracteres", red);
+      }
       return;
     }
 
     if (!containsLetter && descripcion.isNotEmpty) {
-      if(context.mounted){showSnackbar(context, "Descripción debe contener letras", red);}
+      if (context.mounted) {
+        showSnackbar(context, "Descripción debe contener letras", red);
+      }
       return;
     }
     if (descripcion.trim() == category) {
-      if(context.mounted){showSnackbar(context,
-          "La descripción no puede ser igual al nombre de la categoría", red);}
+      if (context.mounted) {
+        showSnackbar(context,
+            "La descripción no puede ser igual al nombre de la categoría", red);
+      }
       return;
     }
     if (descripcion.trim() == name) {
-      if(context.mounted){showSnackbar(context,
-          "La descripción no puede ser igual al nombre del artículo", red);}
+      if (context.mounted) {
+        showSnackbar(context,
+            "La descripción no puede ser igual al nombre del artículo", red);
+      }
       return;
     }
-    if(context.mounted){editarDescripcion(context, widget.firebaseURL, _descripcionController.text);}
+    if (context.mounted) {
+      editarDescripcion(
+          context, widget.firebaseURL, _descripcionController.text);
+    }
     setState(() {
       isEditing = false;
     });
@@ -153,35 +170,37 @@ class _EditarObjetosState extends State<EditarObjetos> {
       return;
     }
     // Mostrar un diálogo de confirmación
-    bool confirmacion =false;
-    if(context.mounted){ confirmacion = await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: peach,
-          title: const Text('Confirmar eliminación'),
-          content:
-              const Text('¿Está seguro de que desea eliminar la descripción?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('Cancelar'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              child: Text(
-                'Eliminar',
-                style: TextStyle(color: red),
+    bool confirmacion = false;
+    if (context.mounted) {
+      confirmacion = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: peach,
+            title: const Text('Confirmar eliminación'),
+            content: const Text(
+                '¿Está seguro de que desea eliminar la descripción?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text('Cancelar'),
               ),
-            ),
-          ],
-        );
-      },
-    );}
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: Text(
+                  'Eliminar',
+                  style: TextStyle(color: red),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     if (confirmacion == true) {
       setState(() {
@@ -203,7 +222,9 @@ class _EditarObjetosState extends State<EditarObjetos> {
     }
     if (_selectedImage != null) {
       await subirStorage();
-      if(context.mounted){deleteImageByImageUrlNoMessage(context, widget.firebaseURL);}
+      if (context.mounted) {
+        deleteImageByImageUrlNoMessage(context, widget.firebaseURL);
+      }
     }
   }
 
@@ -248,7 +269,9 @@ class _EditarObjetosState extends State<EditarObjetos> {
     // Compress the image if needed
     final File compressedImage = await _compressImage(tempFile);
 
-    if(context.mounted){Navigator.pop(context);}
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
 
     setState(() {
       _selectedImage = PickedFile(compressedImage.path);
@@ -313,9 +336,11 @@ class _EditarObjetosState extends State<EditarObjetos> {
         Navigator.of(context).pop();
       });
     } catch (e) {
-     if(context.mounted){ showSnackbar(context, "Error al subir la imagen", red);
+      if (context.mounted) {
+        showSnackbar(context, "Error al subir la imagen", red);
 
-      Navigator.of(context).pop();}
+        Navigator.of(context).pop();
+      }
     }
   }
 

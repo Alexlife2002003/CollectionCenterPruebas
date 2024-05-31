@@ -12,7 +12,9 @@ Future<bool> conexionInternt(BuildContext context) async {
 
   if (connectivityResult == ConnectivityResult.none) {
     // No internet connection
-    if(context.mounted){showSnackbar(context, "Sin conexión a Internet", Colors.red);}
+    if (context.mounted) {
+      showSnackbar(context, "Sin conexión a Internet", Colors.red);
+    }
     return false;
   } else {
     // Check Wi-Fi speed
@@ -20,7 +22,7 @@ Future<bool> conexionInternt(BuildContext context) async {
 
     if (responseTime > 3000) {
       // Slow connection
-      
+
       return false;
     } else {
       return true;
