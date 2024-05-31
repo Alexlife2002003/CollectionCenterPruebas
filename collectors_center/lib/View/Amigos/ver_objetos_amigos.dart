@@ -4,8 +4,8 @@
 //   Descripción:                     View de los objetos de amigos dentro de la aplicación                 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';

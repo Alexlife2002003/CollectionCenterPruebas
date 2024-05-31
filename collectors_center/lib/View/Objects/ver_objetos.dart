@@ -1,70 +1,83 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//   Nombre:                          Tacos de Asada                                                        //
-//   Fecha:                           16/11/23                                                              //
-//   Descripción:                     View de las colecciones de los amigos                                 //
+//   Nombre:                          Equipo Tacos de asada                                                 //
+//   Descripción:                     Ver los objetos                                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ignore_for_file: depend_on_referenced_packages, use_key_in_widget_constructors, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
 
-import 'package:collectors_center/Presenter/amigos.dart';
-import 'package:collectors_center/View/Amigos/verAmigos.dart';
-import 'package:collectors_center/View/Amigos/verObjetosAmigos.dart';
+import 'package:collectors_center/Presenter/categorias.dart';
+import 'package:collectors_center/View/Objects/agregar_objetos.dart';
+import 'package:collectors_center/View/Objects/editar_objetos.dart';
+import 'package:collectors_center/View/recursos/bienvenido.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
+import 'package:collectors_center/Presenter/objects.dart';
 
 String imageUrlKey = 'Image URL';
-String nameKey = 'Name';
-String descriptionKey = 'Description';
 
 class MyObject {
   String imageUrl;
-  String name;
-  String description;
-  MyObject(
-      {required this.imageUrl, required this.name, required this.description});
+  bool isSelected;
+
+  MyObject({
+    required this.imageUrl,
+    this.isSelected = false,
+  });
 
   factory MyObject.fromMap(Map<String, dynamic> map) {
     return MyObject(
-        imageUrl: map[imageUrlKey],
-        name: map[nameKey],
-        description: map[descriptionKey]);
+      imageUrl: map[imageUrlKey],
+    );
   }
 }
 
-class verColeccionesAmigos extends StatefulWidget {
-  final String amigo;
+class verObjectsCategoria extends StatefulWidget {
+  final String categoria;
 
-  const verColeccionesAmigos({required this.amigo});
+  const verObjectsCategoria({super.key, required this.categoria});
 
   @override
-  _verColeccionesAmigosState createState() => _verColeccionesAmigosState();
+  _verObjectsCategoriaState createState() => _verObjectsCategoriaState();
 }
 
-class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
+class _verObjectsCategoriaState extends State<verObjectsCategoria> {
   final FirebaseStorage storage = FirebaseStorage.instance;
   List<MyObject> _objectList = [];
-
+  List<MyObject> _selectedObjects = [];
+  bool deleteActivated = false;
   String selectedCategory = 'Default';
   List<String> categories = [];
+  String selectedDescription = "";
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-
-    _fetchCategories();
+    await _fetchObjects();
+    await _fetchCategories();
   }
 
   Future<void> _fetchCategories() async {
-    categories = await obtenerCategoriasAmigos(widget.amigo);
-    setState(() {
-      if (categories.isNotEmpty) {
+    List<String> fetchedCategories = [];
+
+    try {
+      fetchedCategories = await fetchCategories();
+    } catch (e) {
+      showSnackbar(context, "Error al buscar categorías", red);
+    }
+
+    setState(() async {
+      categories = fetchedCategories;
+      if (categories.isNotEmpty && widget.categoria.isEmpty) {
         selectedCategory = categories[0];
-        _fetchObjects();
+        await _fetchObjects();
+      } else if (widget.categoria.isNotEmpty) {
+        selectedCategory = widget.categoria;
+        await _fetchObjects();
       } else {
         selectedCategory = 'Sin categorias';
       }
@@ -72,19 +85,10 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
   }
 
   Future<void> _fetchObjects() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: CircularProgressIndicator(
-            color: peach,
-          ),
-        );
-      },
-    );
     try {
       final List<Map<String, dynamic>> objects =
-          await obtenerObjetosCategoriasAmigos(widget.amigo, selectedCategory);
+          await fetchObjectsByCategory(selectedCategory);
+      selectedDescription = await fetchDescriptions(selectedCategory);
 
       final List<MyObject> myObjects = objects.map((object) {
         return MyObject.fromMap(object);
@@ -93,10 +97,88 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
       setState(() {
         _objectList = myObjects;
       });
-      Navigator.pop(context);
     } catch (error) {
       showSnackbar(context, "Error al obtener categorías", red);
     }
+  }
+
+  void _toggleSelection(MyObject myObject) {
+    setState(() {
+      myObject.isSelected = !myObject.isSelected;
+      if (myObject.isSelected) {
+        _selectedObjects.add(myObject);
+      } else {
+        _selectedObjects.remove(myObject);
+      }
+    });
+  }
+
+  void _deleteConfirmation() async {
+    bool confirmacion = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: peach,
+          title: const Text('Confirmar eliminación'),
+          content: const Text(
+              '¿Está seguro de que desea borrar los artículos seleccionados?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(false);
+                setState(() {
+                  deleteActivated = !deleteActivated;
+                });
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+              child: Text(
+                'Eliminar',
+                style: TextStyle(color: red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmacion == true) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: peach,
+            ),
+          );
+        },
+      );
+      _deleteSelectedObjects();
+    }
+  }
+
+  void _deleteSelectedObjects() async {
+    try {
+      for (MyObject selectedObject in _selectedObjects) {
+        if (_selectedObjects.isNotEmpty) {
+          await eliminarVariosObjetos(
+              context, selectedObject.imageUrl, widget.categoria);
+        }
+      }
+      showSnackbar(context, "Los artículos han sido eliminados", green);
+      Navigator.pop(context);
+    } catch (e) {
+      showSnackbar(context, "Los artículos no han sido eliminados", red);
+      Navigator.pop(context);
+    }
+    setState(() {
+      _objectList.removeWhere((object) => object.isSelected);
+      _selectedObjects.clear();
+    });
   }
 
   @override
@@ -112,12 +194,12 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
       onWillPop: () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const VerAmigos()),
+          MaterialPageRoute(builder: (context) => bienvenido()),
         );
         return true;
       },
       child: AppWithDrawer(
-        currentPage: "verColeccionesAmigos",
+        currentPage: "Objetos",
         content: Scaffold(
           backgroundColor: peach,
           body: Column(
@@ -129,48 +211,63 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: amigosBrown,
-                        borderRadius: BorderRadius.circular(16),
+                    const Text(
+                      'Artículos',
+                      style: TextStyle(
+                        fontSize: 42,
+                        color: Colors.brown,
+                        fontWeight: FontWeight.bold,
                       ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(width: 20),
-                          Icon(
-                            Icons.person,
-                            size: 50,
-                            color: peach,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            if (deleteActivated) {
+                              setState(() {
+                                deleteActivated = !deleteActivated;
+                              });
+                              if (_selectedObjects.isNotEmpty) {
+                                _deleteConfirmation();
+                              }
+                            } else {
+                              if (_objectList.isNotEmpty) {
+                                setState(() {
+                                  deleteActivated = !deleteActivated;
+                                });
+                              }
+                            }
+                          },
+                          icon: Icon(
+                            deleteActivated
+                                ? Icons.check_circle_outlined
+                                : Icons.delete,
+                            size: 60,
                           ),
-                          const SizedBox(width: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                widget.amigo,
-                                style: TextStyle(
-                                  color: peach,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                              Text(
-                                "\nColecciones",
-                                style: TextStyle(color: peach),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                            ],
+                        ),
+                        IconButton(
+                          key: const Key('AddIcon'),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        agregarObjectsCategoria(
+                                            categoria: selectedCategory))));
+                          },
+                          icon: const Icon(
+                            Icons.add_circle_outline,
+                            size: 60,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                     Row(
                       children: [
@@ -187,9 +284,9 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                               child: DropdownButton<String>(
                                 value: selectedCategory,
                                 onChanged: (String? newValue) {
-                                  setState(() {
+                                  setState(() async {
                                     selectedCategory = newValue!;
-                                    _fetchObjects();
+                                    await _fetchObjects();
                                   });
                                 },
                                 items: categories.map<DropdownMenuItem<String>>(
@@ -216,7 +313,32 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                   ],
                 ),
               ),
-
+              if (selectedDescription.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: screenWidth - 50,
+                          decoration: BoxDecoration(
+                            color: myColor,
+                            border: Border.all(color: Colors.white, width: .2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              selectedDescription,
+                              style: TextStyle(color: brown, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               // Object listing
               Expanded(
                 child: ListView(
@@ -235,7 +357,9 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                                 _objectList[i],
                                 i + 1 < _objectList.length
                                     ? _objectList[i + 1]
-                                    : null),
+                                    : null,
+                                Key(i.toString()),
+                                Key((i + 1).toString())),
                         ],
                       ),
                   ],
@@ -248,7 +372,8 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
     );
   }
 
-  Widget _buildObjectRow(MyObject object1, MyObject? object2) {
+  Widget _buildObjectRow(
+      MyObject object1, MyObject? object2, Key keyobject1, Key keyobject2) {
     final String imageUrl1 = object1.imageUrl;
     final String? imageUrl2 = object2?.imageUrl;
 
@@ -279,15 +404,18 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                             final imageUrl = snapshot.data.toString();
                             return GestureDetector(
                               onTap: () {
-                                Navigator.push(
+                                if (deleteActivated) {
+                                  _toggleSelection(object1);
+                                } else {
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => verObjetosAmigos(
+                                        builder: (context) => EditarObjetos(
                                               url: imageUrl,
-                                              name: object1.name,
-                                              category: selectedCategory,
-                                              description: object1.description,
-                                            )));
+                                              firebaseURL: imageUrl1,
+                                            )),
+                                  );
+                                }
                               },
                               child: Stack(
                                 children: [
@@ -299,12 +427,22 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                                           offset: Offset(2, 2))
                                     ]),
                                     child: CachedNetworkImage(
+                                      key: keyobject1,
                                       imageUrl: imageUrl,
                                       fit: BoxFit.cover,
                                       width: 188,
                                       height: 188,
                                     ),
                                   ),
+                                  if (object1.isSelected)
+                                    const Align(
+                                      alignment: Alignment.topRight,
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green,
+                                        size: 24,
+                                      ),
+                                    ),
                                 ],
                               ),
                             );
@@ -353,17 +491,18 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                               final imageUrl = snapshot.data.toString();
                               return GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
+                                  if (deleteActivated) {
+                                    _toggleSelection(object2);
+                                  } else {
+                                    Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              verObjetosAmigos(
+                                          builder: (context) => EditarObjetos(
                                                 url: imageUrl,
-                                                name: object2!.name,
-                                                category: selectedCategory,
-                                                description:
-                                                    object2.description,
-                                              )));
+                                                firebaseURL: imageUrl2,
+                                              )),
+                                    );
+                                  }
                                 },
                                 child: Stack(
                                   children: [
@@ -376,12 +515,22 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
                                                 offset: Offset(2, 2))
                                           ]),
                                       child: CachedNetworkImage(
+                                        key: keyobject2,
                                         imageUrl: imageUrl,
                                         fit: BoxFit.cover,
                                         width: 188,
                                         height: 188,
                                       ),
                                     ),
+                                    if (object2!.isSelected)
+                                      const Align(
+                                        alignment: Alignment.topRight,
+                                        child: Icon(
+                                          Icons.check_circle,
+                                          color: Colors.green,
+                                          size: 24,
+                                        ),
+                                      ),
                                   ],
                                 ),
                               );

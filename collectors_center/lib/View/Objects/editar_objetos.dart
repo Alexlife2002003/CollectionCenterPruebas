@@ -6,13 +6,13 @@
 
 import 'dart:io';
 import 'package:collectors_center/Presenter/objects.dart';
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
-import 'package:collectors_center/View/Objects/verObjetos.dart';
+import 'package:collectors_center/View/Objects/ver_objetos.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';

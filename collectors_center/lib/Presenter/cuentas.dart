@@ -8,8 +8,8 @@
 
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';
-import 'package:collectors_center/View/recursos/Bienvenido.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/bienvenido.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
@@ -197,7 +197,7 @@ Future<void> registrarUsuario(
   if (result == 'ok') {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Bienvenido()),
+      MaterialPageRoute(builder: (context) => bienvenido()),
     );
   } else {
     showSnackbar(context, result, red);
@@ -232,7 +232,7 @@ Future<void> ingresarUsuario(
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Bienvenido()),
+      MaterialPageRoute(builder: (context) => bienvenido()),
     );
   } on FirebaseAuthException catch (e) {
     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||

@@ -5,9 +5,9 @@
 // ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'package:collectors_center/Presenter/categorias.dart';
-import 'package:collectors_center/View/Categorias/verCategorias.dart';
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/Categorias/ver_categorias.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';

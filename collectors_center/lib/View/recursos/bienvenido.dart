@@ -3,13 +3,13 @@
 //   Fecha:                           25/09/23                                                              //
 //   Descripción:                     Pantalla de bienvida despues de registrarse o iniciar sesión          //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Bienvenido extends StatelessWidget {
+class bienvenido extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

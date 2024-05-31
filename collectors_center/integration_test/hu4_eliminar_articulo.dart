@@ -40,13 +40,13 @@ void main() {
     await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Open navigation menu'));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Articulos')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
     await tester.tap(find.text('El super mundo').last);
@@ -56,32 +56,32 @@ void main() {
     await tester.tap(find.byKey(const Key('AddIcon')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Image')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('AppAsset')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.byKey(const Key('nombreArticulo')), findsOneWidget,
         reason: "nombreARticulo field not found");
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
     await tester.enterText(find.byKey(const Key('nombreArticulo')), "Sapolote");
-    await tester.pumpAndSettle(Duration(seconds: 3));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
     await tester.enterText(find.byKey(const Key('Descripcion')), "Descripcion que puse en esta parte.");
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(Duration(seconds: 3));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar articulo
     await tester.tap(find.byKey(const Key('0')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Eliminar
     await tester.tap(find.byKey(const Key('Guardar'))); // Es eliminar pero la Key dice guardar
-    await tester.pumpAndSettle(Duration(seconds: 4));
+    await tester.pumpAndSettle(const Duration(seconds: 4));
     
     // Confirmar eliminación
     await tester.tap(find.byKey(const Key('Eliminar')));
-    await tester.pumpAndSettle(Duration(seconds: 4));
+    await tester.pumpAndSettle(const Duration(seconds: 4));
 
     // Mensaje
     expect(find.text('El artículo ha sido eliminado correctamente'), findsOneWidget,

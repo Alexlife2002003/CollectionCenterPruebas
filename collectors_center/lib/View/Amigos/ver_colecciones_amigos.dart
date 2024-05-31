@@ -1,83 +1,70 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//   Nombre:                          Equipo Tacos de asada                                                 //
-//   Descripción:                     Ver los objetos                                                       //
+//   Nombre:                          Tacos de Asada                                                        //
+//   Fecha:                           16/11/23                                                              //
+//   Descripción:                     View de las colecciones de los amigos                                 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: depend_on_referenced_packages, use_key_in_widget_constructors, use_build_context_synchronously
 
-import 'package:collectors_center/Presenter/categorias.dart';
-import 'package:collectors_center/View/Objects/AgregarObjetos.dart';
-import 'package:collectors_center/View/Objects/EditarObjetos.dart';
-import 'package:collectors_center/View/recursos/Bienvenido.dart';
+import 'package:collectors_center/Presenter/amigos.dart';
+import 'package:collectors_center/View/Amigos/ver_amigos.dart';
+import 'package:collectors_center/View/Amigos/ver_objetos_amigos.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
-import 'package:collectors_center/Presenter/objects.dart';
 
 String imageUrlKey = 'Image URL';
+String nameKey = 'Name';
+String descriptionKey = 'Description';
 
 class MyObject {
   String imageUrl;
-  bool isSelected;
-
-  MyObject({
-    required this.imageUrl,
-    this.isSelected = false,
-  });
+  String name;
+  String description;
+  MyObject(
+      {required this.imageUrl, required this.name, required this.description});
 
   factory MyObject.fromMap(Map<String, dynamic> map) {
     return MyObject(
-      imageUrl: map[imageUrlKey],
-    );
+        imageUrl: map[imageUrlKey],
+        name: map[nameKey],
+        description: map[descriptionKey]);
   }
 }
 
-class verObjectsCategoria extends StatefulWidget {
-  final String categoria;
+class verColeccionesAmigos extends StatefulWidget {
+  final String amigo;
 
-  const verObjectsCategoria({required this.categoria});
+  const verColeccionesAmigos({required this.amigo});
 
   @override
-  _verObjectsCategoriaState createState() => _verObjectsCategoriaState();
+  _verColeccionesAmigosState createState() => _verColeccionesAmigosState();
 }
 
-class _verObjectsCategoriaState extends State<verObjectsCategoria> {
+class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
   final FirebaseStorage storage = FirebaseStorage.instance;
   List<MyObject> _objectList = [];
-  List<MyObject> _selectedObjects = [];
-  bool deleteActivated = false;
+
   String selectedCategory = 'Default';
   List<String> categories = [];
-  String selectedDescription = "";
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    await _fetchObjects();
-    await _fetchCategories();
+
+    _fetchCategories();
   }
 
   Future<void> _fetchCategories() async {
-    List<String> fetchedCategories = [];
-
-    try {
-      fetchedCategories = await fetchCategories();
-    } catch (e) {
-      showSnackbar(context, "Error al buscar categorías", red);
-    }
-
-    setState(() async {
-      categories = fetchedCategories;
-      if (categories.isNotEmpty && widget.categoria.isEmpty) {
+    categories = await obtenerCategoriasAmigos(widget.amigo);
+    setState(() {
+      if (categories.isNotEmpty) {
         selectedCategory = categories[0];
-        await _fetchObjects();
-      } else if (widget.categoria.isNotEmpty) {
-        selectedCategory = widget.categoria;
-        await _fetchObjects();
+        _fetchObjects();
       } else {
         selectedCategory = 'Sin categorias';
       }
@@ -85,10 +72,19 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
   }
 
   Future<void> _fetchObjects() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(
+            color: peach,
+          ),
+        );
+      },
+    );
     try {
       final List<Map<String, dynamic>> objects =
-          await fetchObjectsByCategory(selectedCategory);
-      selectedDescription = await fetchDescriptions(selectedCategory);
+          await obtenerObjetosCategoriasAmigos(widget.amigo, selectedCategory);
 
       final List<MyObject> myObjects = objects.map((object) {
         return MyObject.fromMap(object);
@@ -97,88 +93,10 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
       setState(() {
         _objectList = myObjects;
       });
+      Navigator.pop(context);
     } catch (error) {
       showSnackbar(context, "Error al obtener categorías", red);
     }
-  }
-
-  void _toggleSelection(MyObject myObject) {
-    setState(() {
-      myObject.isSelected = !myObject.isSelected;
-      if (myObject.isSelected) {
-        _selectedObjects.add(myObject);
-      } else {
-        _selectedObjects.remove(myObject);
-      }
-    });
-  }
-
-  void _deleteConfirmation() async {
-    bool confirmacion = await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: peach,
-          title: const Text('Confirmar eliminación'),
-          content: const Text(
-              '¿Está seguro de que desea borrar los artículos seleccionados?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-                setState(() {
-                  deleteActivated = !deleteActivated;
-                });
-              },
-              child: const Text('Cancelar'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              child: Text(
-                'Eliminar',
-                style: TextStyle(color: red),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-
-    if (confirmacion == true) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: peach,
-            ),
-          );
-        },
-      );
-      _deleteSelectedObjects();
-    }
-  }
-
-  void _deleteSelectedObjects() async {
-    try {
-      for (MyObject selectedObject in _selectedObjects) {
-        if (_selectedObjects.isNotEmpty) {
-          await eliminarVariosObjetos(
-              context, selectedObject.imageUrl, widget.categoria);
-        }
-      }
-      showSnackbar(context, "Los artículos han sido eliminados", green);
-      Navigator.pop(context);
-    } catch (e) {
-      showSnackbar(context, "Los artículos no han sido eliminados", red);
-      Navigator.pop(context);
-    }
-    setState(() {
-      _objectList.removeWhere((object) => object.isSelected);
-      _selectedObjects.clear();
-    });
   }
 
   @override
@@ -194,12 +112,12 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
       onWillPop: () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Bienvenido()),
+          MaterialPageRoute(builder: (context) => const VerAmigos()),
         );
         return true;
       },
       child: AppWithDrawer(
-        currentPage: "Objetos",
+        currentPage: "verColeccionesAmigos",
         content: Scaffold(
           backgroundColor: peach,
           body: Column(
@@ -211,63 +129,48 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Artículos',
-                      style: TextStyle(
-                        fontSize: 42,
-                        color: Colors.brown,
-                        fontWeight: FontWeight.bold,
+                    Container(
+                      margin: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: amigosBrown,
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            if (deleteActivated) {
-                              setState(() {
-                                deleteActivated = !deleteActivated;
-                              });
-                              if (_selectedObjects.isNotEmpty) {
-                                _deleteConfirmation();
-                              }
-                            } else {
-                              if (_objectList.isNotEmpty) {
-                                setState(() {
-                                  deleteActivated = !deleteActivated;
-                                });
-                              }
-                            }
-                          },
-                          icon: Icon(
-                            deleteActivated
-                                ? Icons.check_circle_outlined
-                                : Icons.delete,
-                            size: 60,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(width: 20),
+                          Icon(
+                            Icons.person,
+                            size: 50,
+                            color: peach,
                           ),
-                        ),
-                        IconButton(
-                          key: const Key('AddIcon'),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) =>
-                                        agregarObjectsCategoria(
-                                            categoria: selectedCategory))));
-                          },
-                          icon: const Icon(
-                            Icons.add_circle_outline,
-                            size: 60,
+                          const SizedBox(width: 20),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                widget.amigo,
+                                style: TextStyle(
+                                  color: peach,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                "\nColecciones",
+                                style: TextStyle(color: peach),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
+                        ],
+                      ),
                     ),
                     Row(
                       children: [
@@ -284,9 +187,9 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                               child: DropdownButton<String>(
                                 value: selectedCategory,
                                 onChanged: (String? newValue) {
-                                  setState(() async {
+                                  setState(() {
                                     selectedCategory = newValue!;
-                                    await _fetchObjects();
+                                    _fetchObjects();
                                   });
                                 },
                                 items: categories.map<DropdownMenuItem<String>>(
@@ -313,32 +216,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                   ],
                 ),
               ),
-              if (selectedDescription.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: screenWidth - 50,
-                          decoration: BoxDecoration(
-                            color: myColor,
-                            border: Border.all(color: Colors.white, width: .2),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              selectedDescription,
-                              style: TextStyle(color: brown, fontSize: 16),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+
               // Object listing
               Expanded(
                 child: ListView(
@@ -357,9 +235,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                 _objectList[i],
                                 i + 1 < _objectList.length
                                     ? _objectList[i + 1]
-                                    : null,
-                                Key(i.toString()),
-                                Key((i + 1).toString())),
+                                    : null),
                         ],
                       ),
                   ],
@@ -372,8 +248,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
     );
   }
 
-  Widget _buildObjectRow(
-      MyObject object1, MyObject? object2, Key keyobject1, Key keyobject2) {
+  Widget _buildObjectRow(MyObject object1, MyObject? object2) {
     final String imageUrl1 = object1.imageUrl;
     final String? imageUrl2 = object2?.imageUrl;
 
@@ -404,18 +279,15 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                             final imageUrl = snapshot.data.toString();
                             return GestureDetector(
                               onTap: () {
-                                if (deleteActivated) {
-                                  _toggleSelection(object1);
-                                } else {
-                                  Navigator.push(
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditarObjetos(
+                                        builder: (context) => verObjetosAmigos(
                                               url: imageUrl,
-                                              firebaseURL: imageUrl1,
-                                            )),
-                                  );
-                                }
+                                              name: object1.name,
+                                              category: selectedCategory,
+                                              description: object1.description,
+                                            )));
                               },
                               child: Stack(
                                 children: [
@@ -427,22 +299,12 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                           offset: Offset(2, 2))
                                     ]),
                                     child: CachedNetworkImage(
-                                      key: keyobject1,
                                       imageUrl: imageUrl,
                                       fit: BoxFit.cover,
                                       width: 188,
                                       height: 188,
                                     ),
                                   ),
-                                  if (object1.isSelected)
-                                    const Align(
-                                      alignment: Alignment.topRight,
-                                      child: Icon(
-                                        Icons.check_circle,
-                                        color: Colors.green,
-                                        size: 24,
-                                      ),
-                                    ),
                                 ],
                               ),
                             );
@@ -491,18 +353,17 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                               final imageUrl = snapshot.data.toString();
                               return GestureDetector(
                                 onTap: () {
-                                  if (deleteActivated) {
-                                    _toggleSelection(object2);
-                                  } else {
-                                    Navigator.push(
+                                  Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => EditarObjetos(
+                                          builder: (context) =>
+                                              verObjetosAmigos(
                                                 url: imageUrl,
-                                                firebaseURL: imageUrl2,
-                                              )),
-                                    );
-                                  }
+                                                name: object2!.name,
+                                                category: selectedCategory,
+                                                description:
+                                                    object2.description,
+                                              )));
                                 },
                                 child: Stack(
                                   children: [
@@ -515,22 +376,12 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
                                                 offset: Offset(2, 2))
                                           ]),
                                       child: CachedNetworkImage(
-                                        key: keyobject2,
                                         imageUrl: imageUrl,
                                         fit: BoxFit.cover,
                                         width: 188,
                                         height: 188,
                                       ),
                                     ),
-                                    if (object2!.isSelected)
-                                      const Align(
-                                        alignment: Alignment.topRight,
-                                        child: Icon(
-                                          Icons.check_circle,
-                                          color: Colors.green,
-                                          size: 24,
-                                        ),
-                                      ),
                                   ],
                                 ),
                               );

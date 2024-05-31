@@ -5,12 +5,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
-import 'package:collectors_center/View/Amigos/verColeccionesAmigos.dart';
+import 'package:collectors_center/View/Amigos/ver_colecciones_amigos.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:collectors_center/Presenter/amigos.dart';
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Bienvenido.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/bienvenido.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 
 class VerAmigos extends StatefulWidget {
@@ -174,7 +174,7 @@ class _VerAmigosState extends State<VerAmigos> {
     return WillPopScope(
       onWillPop: () async {
         Navigator.push(
-            context, MaterialPageRoute(builder: ((context) => Bienvenido())));
+            context, MaterialPageRoute(builder: ((context) => bienvenido())));
         return true;
       },
       child: AppWithDrawer(

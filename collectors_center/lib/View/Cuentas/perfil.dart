@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import 'package:collectors_center/Presenter/cuentas.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -82,7 +82,7 @@ class _PerfilState extends State<Perfil> {
         return AlertDialog(
           backgroundColor: peach,
           title: const Text('Confirmar eliminación'),
-          content: Text('¿Está seguro de que desea borrar su cuenta ?'),
+          content: const Text('¿Está seguro de que desea borrar su cuenta ?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -124,7 +124,7 @@ class _PerfilState extends State<Perfil> {
         Navigator.pop(context);
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => Inicio(),
+            builder: (context) => const Inicio(),
           ),
           (route) => false,
         );

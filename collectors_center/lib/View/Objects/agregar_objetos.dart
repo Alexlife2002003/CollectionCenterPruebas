@@ -7,8 +7,8 @@
 
 import 'dart:io';
 import 'package:collectors_center/Presenter/objects.dart';
-import 'package:collectors_center/View/recursos/AppWithDrawer.dart';
-import 'package:collectors_center/View/recursos/Inicio.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
+import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';

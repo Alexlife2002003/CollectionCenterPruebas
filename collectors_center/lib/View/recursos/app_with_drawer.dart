@@ -3,14 +3,14 @@
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/Presenter/cuentas.dart';
-import 'package:collectors_center/View/Amigos/verAmigos.dart';
-import 'package:collectors_center/View/Amigos/verSolicitudes.dart';
-import 'package:collectors_center/View/Categorias/verCategorias.dart';
-import 'package:collectors_center/View/Objects/verObjetos.dart';
-import 'package:collectors_center/View/Cuentas/Perfil.dart';
-import 'package:collectors_center/View/recursos/Bienvenido.dart';
+import 'package:collectors_center/View/Amigos/ver_amigos.dart';
+import 'package:collectors_center/View/Amigos/ver_solicitudes.dart';
+import 'package:collectors_center/View/Categorias/ver_categorias.dart';
+import 'package:collectors_center/View/Objects/ver_objetos.dart';
+import 'package:collectors_center/View/Cuentas/perfil.dart';
+import 'package:collectors_center/View/recursos/bienvenido.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
-import 'package:collectors_center/View/recursos/customBadge.dart';
+import 'package:collectors_center/View/recursos/custom_badge.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +88,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                     if (widget.currentPage != "Bienvenido") {
                       Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                          builder: (context) => Bienvenido(),
+                          builder: (context) => bienvenido(),
                         ),
                         (route) => false,
                       );
@@ -133,7 +133,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                   widget.currentPage = "Bienvenido";
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (context) => Bienvenido(),
+                      builder: (context) => bienvenido(),
                     ),
                     (route) => false,
                   );
