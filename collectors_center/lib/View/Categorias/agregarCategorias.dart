@@ -29,6 +29,7 @@ class _agregarCategoriasState extends State<agregarCategorias> {
   void dispose() {
     _nombreCategoriaController.dispose();
     _descripcionCategoriaController.dispose();
+    super.dispose();  
   }
 
   @override
@@ -101,6 +102,7 @@ class _agregarCategoriasState extends State<agregarCategorias> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
+                        key:Key('nombreCategoria'),
                         maxLength: 20,
                         controller: _nombreCategoriaController,
                         decoration: const InputDecoration(
@@ -137,6 +139,7 @@ class _agregarCategoriasState extends State<agregarCategorias> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
+                        key:Key('descripcionCategoria'),
                         maxLength: 300,
                         controller: _descripcionCategoriaController,
                         maxLines: null,
@@ -163,6 +166,7 @@ class _agregarCategoriasState extends State<agregarCategorias> {
                   child: SizedBox(
                     width: screenWidth - 200,
                     child: ElevatedButton(
+                      key:Key('Guardar'),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.blue),
                       ),
