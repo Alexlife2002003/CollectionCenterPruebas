@@ -155,6 +155,7 @@ class _verCategoriasState extends State<verCategorias> {
                       ),
                      
                       IconButton(
+                        key: Key('AddIcon'),
                         onPressed: () {
                           Navigator.push(
                               context,
