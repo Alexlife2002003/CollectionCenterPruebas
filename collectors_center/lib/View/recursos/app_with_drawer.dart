@@ -163,7 +163,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const verObjectsCategoria(
+                            builder: ((context) => const VerObjectsCategoria(
                                   categoria: "",
                                 ))));
                   } else {

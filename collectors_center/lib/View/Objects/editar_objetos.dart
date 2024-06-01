@@ -48,7 +48,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => verObjectsCategoria(categoria: category)),
+          builder: (context) => VerObjectsCategoria(categoria: category)),
     );
   }
 

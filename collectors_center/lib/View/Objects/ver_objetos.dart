@@ -36,16 +36,16 @@ class MyObject {
   }
 }
 
-class verObjectsCategoria extends StatefulWidget {
+class VerObjectsCategoria extends StatefulWidget {
   final String categoria;
 
-  const verObjectsCategoria({super.key, required this.categoria});
+  const VerObjectsCategoria({super.key, required this.categoria});
 
   @override
-  _verObjectsCategoriaState createState() => _verObjectsCategoriaState();
+  _VerObjectsCategoriaState createState() => _VerObjectsCategoriaState();
 }
 
-class _verObjectsCategoriaState extends State<verObjectsCategoria> {
+class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
   final FirebaseStorage storage = FirebaseStorage.instance;
   List<MyObject> _objectList = [];
   List<MyObject> _selectedObjects = [];

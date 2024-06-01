@@ -272,7 +272,7 @@ class _VerAmigosState extends State<VerAmigos> {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) =>
-                                      verColeccionesAmigos(amigo: solicitud))));
+                                      VerColeccionesAmigos(amigo: solicitud))));
                         }
                       },
                       child: Container(

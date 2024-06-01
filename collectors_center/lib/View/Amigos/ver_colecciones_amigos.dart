@@ -36,16 +36,16 @@ class MyObject {
   }
 }
 
-class verColeccionesAmigos extends StatefulWidget {
+class VerColeccionesAmigos extends StatefulWidget {
   final String amigo;
 
-  const verColeccionesAmigos({required this.amigo});
+  const VerColeccionesAmigos({required this.amigo});
 
   @override
-  _verColeccionesAmigosState createState() => _verColeccionesAmigosState();
+  _VerColeccionesAmigosState createState() => _VerColeccionesAmigosState();
 }
 
-class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
+class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
   final FirebaseStorage storage = FirebaseStorage.instance;
   List<MyObject> _objectList = [];
 
@@ -117,7 +117,7 @@ class _verColeccionesAmigosState extends State<verColeccionesAmigos> {
         return true;
       },
       child: AppWithDrawer(
-        currentPage: "verColeccionesAmigos",
+        currentPage: "VerColeccionesAmigos",
         content: Scaffold(
           backgroundColor: peach,
           body: Column(

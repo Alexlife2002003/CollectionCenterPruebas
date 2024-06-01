@@ -239,7 +239,7 @@ void agregarObjeto(
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => verObjectsCategoria(categoria: categoria)),
+            builder: (context) => VerObjectsCategoria(categoria: categoria)),
       );
     } else {
       showSnackbar(context, mensajeError, red);
@@ -370,7 +370,7 @@ Future<void> eliminarObjeto(
   Navigator.push(
     context,
     MaterialPageRoute(
-        builder: (context) => verObjectsCategoria(categoria: category)),
+        builder: (context) => VerObjectsCategoria(categoria: category)),
   );
 }
 
