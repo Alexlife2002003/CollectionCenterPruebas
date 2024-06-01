@@ -9,7 +9,7 @@ import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/Presenter/cuentas.dart';
 
 class Registrarse extends StatefulWidget {
-  const Registrarse({super.key});
+  const Registrarse();
 
   @override
   State<Registrarse> createState() => _RegistrarseState();

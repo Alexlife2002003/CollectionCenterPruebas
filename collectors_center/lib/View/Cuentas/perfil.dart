@@ -12,7 +12,7 @@ import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Perfil extends StatefulWidget {
-  const Perfil({super.key});
+  const Perfil();
 
   @override
   State<Perfil> createState() => _PerfilState();

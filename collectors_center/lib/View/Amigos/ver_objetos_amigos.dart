@@ -19,7 +19,7 @@ class VerObjetosAmigos extends StatefulWidget {
   final String description;
 
   const VerObjetosAmigos(
-      {super.key,
+      {
       required this.url,
       required this.name,
       required this.category,

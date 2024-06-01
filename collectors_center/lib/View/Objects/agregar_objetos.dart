@@ -21,7 +21,7 @@ import 'package:path_provider/path_provider.dart'; // Add this import
 
 class AgregarObjectsCategoria extends StatefulWidget {
   final String categoria;
-  const AgregarObjectsCategoria({super.key, required this.categoria});
+  const AgregarObjectsCategoria({required this.categoria});
 
   @override
   State<AgregarObjectsCategoria> createState() =>

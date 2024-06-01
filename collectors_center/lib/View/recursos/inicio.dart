@@ -4,7 +4,7 @@ import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:flutter/material.dart';
 
 class Inicio extends StatefulWidget {
-  const Inicio({super.key});
+  const Inicio();
 
   @override
   State<Inicio> createState() => _InicioState();

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AgregarCategoria extends StatefulWidget {
-  const AgregarCategoria({super.key});
+  const AgregarCategoria();
 
   @override
   State<AgregarCategoria> createState() => _AgregarCategoriaState();

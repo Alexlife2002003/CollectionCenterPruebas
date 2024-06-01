@@ -24,7 +24,7 @@ class EditarObjetos extends StatefulWidget {
   final String url;
   final String firebaseURL;
   const EditarObjetos(
-      {super.key, required this.url, required this.firebaseURL});
+      {required this.url, required this.firebaseURL});
 
   @override
   State<EditarObjetos> createState() => _EditarObjetosState();

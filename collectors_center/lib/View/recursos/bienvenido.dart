@@ -11,7 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:collectors_center/View/recursos/app_with_drawer.dart';
 
 class Bienvenido extends StatelessWidget {
-  const Bienvenido({super.key});
+  const Bienvenido();
 
   @override
   Widget build(BuildContext context) {

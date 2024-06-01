@@ -87,6 +87,7 @@ class _VerAmigosState extends State<VerAmigos> {
                           break;
                         case 4:
                           message = "Usuario no existe";
+                          break;
                         case 10:
                           message = userInput;
                           break;

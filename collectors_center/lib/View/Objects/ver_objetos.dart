@@ -373,23 +373,32 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
   }
 
   Widget _buildObjectRow(
-    MyObject object1,
-    MyObject? object2,
-    Key keyobject1,
-    Key keyobject2,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        
-        children: [
-          _buildObjectCard(object1, keyobject1),
-          if (object2 != null) const SizedBox(width: 8),
-          if (object2 != null) _buildObjectCard(object2, keyobject2),
-        ],
-      ),
-    );
-  }
+  MyObject object1,
+  MyObject? object2,
+  Key keyobject1,
+  Key keyobject2,
+) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        _buildObjectCard(object1, keyobject1),
+        if (object2 != null)
+          const SizedBox(width: 8),
+        if (object2 != null)
+          _buildObjectCard(object2, keyobject2),
+        if (object2 == null)
+          Expanded(
+            child: Container(
+              color: peach,
+              height: 188,  // Adjust the height as per the object card height
+            ),
+          ),
+      ],
+    ),
+  );
+}
+
 
   Widget _buildObjectCard(MyObject object, Key key) {
     final String imageUrl = object.imageUrl;

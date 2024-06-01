@@ -18,7 +18,7 @@ class AppWithDrawer extends StatefulWidget {
   final Widget content;
   String currentPage;
 
-  AppWithDrawer({super.key, required this.content, required this.currentPage});
+  AppWithDrawer({required this.content, required this.currentPage});
 
   @override
   _AppWithDrawerState createState() => _AppWithDrawerState();

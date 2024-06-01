@@ -20,7 +20,8 @@ version: 1.2.5
 
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: ">=2.15.0 <4.0.0"
+
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,11 +41,16 @@ dependencies:
   flutter_dotenv: ^5.1.0
   firebase_core: ^2.3.0
   firebase_auth: ^4.2.0
+  dart_code_metrics: ^4.19.2
   #firebase_core_platform_interface: ^5.0.0
 
+  
+ 
+ 
+dependency_overrides:
+  file: 7.0.0
 
 dev_dependencies:
-  test:
   integration_test:
     sdk: flutter
   flutter_test:
@@ -59,7 +65,7 @@ dev_dependencies:
   cached_network_image:
   image:
   shared_preferences:
-  #dart_code_metrics: ^4.0.0 
+  
  
    
 

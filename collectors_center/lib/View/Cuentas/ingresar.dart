@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 
 class Ingresar extends StatefulWidget {
-  const Ingresar({super.key});
+  const Ingresar();
 
   @override
   State<Ingresar> createState() => _IngresarState();
