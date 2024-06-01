@@ -1,4 +1,4 @@
-import 'package:collectors_center/View/Cuentas/Ingresar.dart';
+import 'package:collectors_center/View/Cuentas/ingresar.dart';
 import 'package:collectors_center/View/Cuentas/Registrarse.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:flutter/material.dart';

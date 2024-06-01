@@ -4,6 +4,8 @@
 //   Descripción:                     View de los objetos de amigos dentro de la aplicación                 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:collectors_center/View/recursos/app_with_drawer.dart';
 import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';

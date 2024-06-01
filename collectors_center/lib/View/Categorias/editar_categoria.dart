@@ -36,7 +36,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
   void cancelar() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const verCategorias()),
+      MaterialPageRoute(builder: (context) => const VerCategorias()),
     );
   }
 
@@ -85,7 +85,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
       await eliminarCategoria(context, widget.categoryName, true);
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (context) => const verCategorias(),
+          builder: (context) => const VerCategorias(),
         ),
         (route) => false,
       );
@@ -236,7 +236,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
       onWillPop: () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const verCategorias()),
+          MaterialPageRoute(builder: (context) => const VerCategorias()),
         );
         return true;
       },

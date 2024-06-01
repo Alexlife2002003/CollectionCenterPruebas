@@ -194,7 +194,7 @@ class _verObjectsCategoriaState extends State<verObjectsCategoria> {
       onWillPop: () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => bienvenido()),
+          MaterialPageRoute(builder: (context) => const Bienvenido()),
         );
         return true;
       },

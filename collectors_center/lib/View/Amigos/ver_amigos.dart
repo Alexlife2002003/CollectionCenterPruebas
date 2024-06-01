@@ -173,8 +173,8 @@ class _VerAmigosState extends State<VerAmigos> {
     double screenWidth = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () async {
-        Navigator.push(
-            context, MaterialPageRoute(builder: ((context) => bienvenido())));
+        Navigator.push(context,
+            MaterialPageRoute(builder: ((context) => const Bienvenido())));
         return true;
       },
       child: AppWithDrawer(

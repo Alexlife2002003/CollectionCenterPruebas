@@ -197,7 +197,7 @@ Future<void> registrarUsuario(
   if (result == 'ok') {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => bienvenido()),
+      MaterialPageRoute(builder: (context) => const Bienvenido()),
     );
   } else {
     showSnackbar(context, result, red);
@@ -232,7 +232,7 @@ Future<void> ingresarUsuario(
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => bienvenido()),
+      MaterialPageRoute(builder: (context) => const Bienvenido()),
     );
   } on FirebaseAuthException catch (e) {
     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||

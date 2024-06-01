@@ -17,14 +17,14 @@ import 'package:collectors_center/View/recursos/app_with_drawer.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class verCategorias extends StatefulWidget {
-  const verCategorias({Key? key}) : super(key: key);
+class VerCategorias extends StatefulWidget {
+  const VerCategorias({Key? key}) : super(key: key);
 
   @override
-  _verCategoriasState createState() => _verCategoriasState();
+  _VerCategoriasState createState() => _VerCategoriasState();
 }
 
-class _verCategoriasState extends State<verCategorias> {
+class _VerCategoriasState extends State<VerCategorias> {
   bool isEdit = false;
   List<String> categories = [];
 
@@ -102,7 +102,7 @@ class _verCategoriasState extends State<verCategorias> {
       onWillPop: () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => bienvenido()),
+          MaterialPageRoute(builder: (context) => const Bienvenido()),
         );
         return true;
       },
@@ -160,7 +160,7 @@ class _verCategoriasState extends State<verCategorias> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const agregarCategorias()));
+                                      const AgregarCategoria()));
                         },
                         icon: const Icon(
                           Icons.add_circle_outline,

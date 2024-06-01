@@ -5,6 +5,7 @@ class CustomBadge extends StatelessWidget {
   final int badgeValue;
 
   const CustomBadge({
+    super.key,
     required this.icon,
     required this.badgeValue,
   });

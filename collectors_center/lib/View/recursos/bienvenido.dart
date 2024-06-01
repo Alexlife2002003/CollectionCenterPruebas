@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class bienvenido extends StatelessWidget {
+class Bienvenido extends StatelessWidget {
+  const Bienvenido({super.key});
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

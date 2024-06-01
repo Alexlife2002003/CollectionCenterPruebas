@@ -9,14 +9,14 @@ import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class agregarCategorias extends StatefulWidget {
-  const agregarCategorias({super.key});
+class AgregarCategoria extends StatefulWidget {
+  const AgregarCategoria({super.key});
 
   @override
-  State<agregarCategorias> createState() => _agregarCategoriasState();
+  State<AgregarCategoria> createState() => _AgregarCategoriaState();
 }
 
-class _agregarCategoriasState extends State<agregarCategorias> {
+class _AgregarCategoriaState extends State<AgregarCategoria> {
   final _nombreCategoriaController = TextEditingController();
   final _descripcionCategoriaController = TextEditingController();
 
@@ -44,7 +44,7 @@ class _agregarCategoriasState extends State<agregarCategorias> {
     }
 
     return AppWithDrawer(
-      currentPage: "agregarCategorias",
+      currentPage: "AgregarCategoria",
       content: Scaffold(
         body: Container(
           height: screenheight,
@@ -149,7 +149,7 @@ class _agregarCategoriasState extends State<agregarCategorias> {
                           hintText: 'Descripción',
                           hintStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFFF503A27),
+                            color: Color(0xfff503a27),
                             fontSize: 16,
                           ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 10),

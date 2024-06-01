@@ -82,7 +82,7 @@ class _verSolicitudesState extends State<verSolicitudes> {
       onWillPop: () async {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: ((context) => bienvenido())),
+          MaterialPageRoute(builder: ((context) => const Bienvenido())),
         );
         return true;
       },
@@ -159,7 +159,7 @@ class _verSolicitudesState extends State<verSolicitudes> {
                                             aceptar(solicitud);
                                           },
                                           style: ElevatedButton.styleFrom(
-                                            primary: Colors.blue,
+                                            backgroundColor: Colors.blue,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(16),
@@ -175,7 +175,7 @@ class _verSolicitudesState extends State<verSolicitudes> {
                                             rechazar(solicitud);
                                           },
                                           style: ElevatedButton.styleFrom(
-                                            primary: Colors.red,
+                                            backgroundColor: Colors.red,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(16),

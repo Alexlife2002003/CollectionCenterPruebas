@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';
@@ -9,6 +9,7 @@ import 'package:collectors_center/View/Categorias/ver_categorias.dart';
 import 'package:collectors_center/View/Objects/ver_objetos.dart';
 import 'package:collectors_center/View/Cuentas/perfil.dart';
 import 'package:collectors_center/View/recursos/bienvenido.dart';
+
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/custom_badge.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
@@ -88,7 +89,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                     if (widget.currentPage != "Bienvenido") {
                       Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                          builder: (context) => bienvenido(),
+                          builder: (context) => const Bienvenido(),
                         ),
                         (route) => false,
                       );
@@ -133,7 +134,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                   widget.currentPage = "Bienvenido";
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (context) => bienvenido(),
+                      builder: (context) => const Bienvenido(),
                     ),
                     (route) => false,
                   );
@@ -195,7 +196,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const verCategorias()),
+                        builder: (context) => const VerCategorias()),
                   );
                 } else {
                   Navigator.pop(context);

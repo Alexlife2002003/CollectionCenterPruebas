@@ -186,7 +186,7 @@ void agregarCategoria(
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const verCategorias()),
+        MaterialPageRoute(builder: (context) => const VerCategorias()),
       );
     } else {
       showSnackbar(context, "La categoría ya existe", red);
