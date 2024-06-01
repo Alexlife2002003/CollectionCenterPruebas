@@ -3,7 +3,6 @@
 //   Fecha:                           29/09/23                                                              //
 //   Descripción:                     Permite hacer operaciones sobre los objetos                           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
 
 import 'package:collectors_center/View/Objects/ver_objetos.dart';
 import 'package:collectors_center/View/recursos/colors.dart';

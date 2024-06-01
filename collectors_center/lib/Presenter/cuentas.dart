@@ -4,7 +4,7 @@
 //   Descripción:                     Lógica de la aplicacion (Cuenta, navegacion, apartado primario)       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
+
 
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';

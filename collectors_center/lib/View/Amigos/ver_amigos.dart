@@ -3,7 +3,6 @@
 //   Fecha:                           19/11/23                                                              //
 //   Descripción:                     View de los amigos dentro de la aplicación                           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
 import 'package:collectors_center/View/Amigos/ver_colecciones_amigos.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';

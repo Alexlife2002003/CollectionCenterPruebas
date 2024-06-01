@@ -2,7 +2,7 @@
 //   Nombre:                          Equipo Tacos de asada                                                 //
 //   Descripción:                     Ver los objetos                                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
+
 
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Objects/agregar_objetos.dart';

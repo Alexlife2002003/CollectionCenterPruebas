@@ -1,4 +1,3 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';

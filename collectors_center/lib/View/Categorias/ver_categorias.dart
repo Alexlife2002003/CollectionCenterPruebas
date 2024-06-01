@@ -3,7 +3,6 @@
 //   Descripción:                     Ver categorias                                                        //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ignore_for_file: use_build_context_synchronously
 
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/agregar_categorias.dart';

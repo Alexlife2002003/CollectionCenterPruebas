@@ -4,7 +4,6 @@
 //   Descripción:                     Lógica detras de los procesos encargados de las categorías.           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
 
 import 'package:collectors_center/View/Categorias/ver_categorias.dart';
 import 'package:collectors_center/View/recursos/colors.dart';

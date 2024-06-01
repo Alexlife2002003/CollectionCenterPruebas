@@ -2,7 +2,7 @@
 //   Nombre:                          Equipo Tacos de asada                                                 //
 //   Descripción:                     Interfaz para editar categorias                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ignore_for_file: must_be_immutable, use_build_context_synchronously
+
 
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/ver_categorias.dart';

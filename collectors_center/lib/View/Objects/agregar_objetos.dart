@@ -3,7 +3,6 @@
 //   Descripción:                     Agregar objetos a categoria                                         //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ignore_for_file: depend_on_referenced_packages
 
 import 'dart:io';
 import 'package:collectors_center/Presenter/objects.dart';
