@@ -335,7 +335,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                             hintText: 'Nombre',
                             hintStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFFF503A27),
+                                color: Color(0xFF503A27),
                                 fontSize: 20),
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10),
@@ -376,7 +376,7 @@ class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
                             hintText: 'Descripción',
                             hintStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFFF503A27),
+                                color: Color(0xFF503A27),
                                 fontSize: 16),
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10),

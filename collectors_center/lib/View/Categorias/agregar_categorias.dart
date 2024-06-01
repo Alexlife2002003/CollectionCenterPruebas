@@ -110,7 +110,7 @@ class _AgregarCategoriaState extends State<AgregarCategoria> {
                           hintText: 'Nombre',
                           hintStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xfff503a27),
+                            color: Color(0xff503a27),
                             fontSize: 20,
                           ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 10),
@@ -149,7 +149,7 @@ class _AgregarCategoriaState extends State<AgregarCategoria> {
                           hintText: 'Descripción',
                           hintStyle: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xfff503a27),
+                            color: Color(0xff503a27),
                             fontSize: 16,
                           ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 10),

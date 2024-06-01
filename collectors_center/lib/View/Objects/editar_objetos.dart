@@ -113,7 +113,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
     }
     descripcion = _descripcionController.text;
     final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
-    if (descripcion.length < 10 && descripcion.length != 0) {
+    if (descripcion.length < 10 && descripcion.isNotEmpty) {
       if (context.mounted) {
         showSnackbar(
             context,
