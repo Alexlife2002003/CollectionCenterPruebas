@@ -120,75 +120,101 @@ Future<int> sendSolicitud(String usuario) async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
 
-    if (user != null) {
-      CollectionReference usersCollection =
-          FirebaseFirestore.instance.collection('Users');
-
-      QuerySnapshot userQuerySnapshot = await usersCollection
-          .where('User', isEqualTo: usuario)
-          .limit(1)
-          .get();
-
-      if (userQuerySnapshot.docs.isNotEmpty) {
-        DocumentReference currentUserDoc =
-            userQuerySnapshot.docs.first.reference;
-
-        CollectionReference requestsCollection =
-            currentUserDoc.collection('Requests');
-
-        String actual = await obtenerUsuarioActual();
-        QuerySnapshot querySnapshotrequest = await requestsCollection
-            .where('user_request', isEqualTo: actual)
-            .get();
-
-        QuerySnapshot myuserQuerySnapshot = await usersCollection
-            .where('User', isEqualTo: actual)
-            .limit(1)
-            .get();
-
-        if (myuserQuerySnapshot.docs.isNotEmpty) {
-          DocumentReference myUserDoc =
-              myuserQuerySnapshot.docs.first.reference;
-
-          CollectionReference myacceptedCollection =
-              myUserDoc.collection("Accepted");
-
-          QuerySnapshot querySnapshotaccepted = await myacceptedCollection
-              .where("user_accepted", isEqualTo: usuario)
-              .get();
-
-          if (querySnapshotaccepted.docs.isNotEmpty) {
-            //ya es tu amigo
-            return 0;
-          }
-        }
-
-        if (querySnapshotrequest.docs.isNotEmpty) {
-          //ya enviaste solicitud
-          return 1;
-        }
-
-        if (actual == usuario) {
-          //no te puedes enviar solicitud tu mismo
-          return 2;
-        }
-
-        await requestsCollection.add({
-          'user_request': actual,
-          'timestamp': FieldValue.serverTimestamp(),
-        });
-      } else {
-        //usuario no existe
-        return 4;
-      }
+    if (user == null) {
+      return 10; // User not authenticated
     }
-    //solicitud enviada
-    return 10;
+
+    String actual = await obtenerUsuarioActual();
+
+    if (actual == usuario) {
+      return 2; // Can't send request to oneself
+    }
+
+    DocumentReference? currentUserDoc = await getUserDocument(usuario);
+    if (currentUserDoc == null) {
+      return 4; // User does not exist
+    }
+
+    bool alreadyFriends = await checkIfAlreadyFriends(actual, usuario);
+    if (alreadyFriends) {
+      return 0; // Already friends
+    }
+
+    bool requestSent = await checkIfRequestSent(currentUserDoc, actual);
+    if (requestSent) {
+      return 1; // Request already sent
+    }
+
+    await sendFriendRequest(currentUserDoc, actual);
+
+    return 10; // Request sent successfully
   } catch (e) {
-    //error al enviar la solicitud
-    return 3;
+    return 3; // Error sending request
   }
 }
+
+Future<DocumentReference?> getUserDocument(String usuario) async {
+  CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('Users');
+
+  QuerySnapshot userQuerySnapshot = await usersCollection
+      .where('User', isEqualTo: usuario)
+      .limit(1)
+      .get();
+
+  if (userQuerySnapshot.docs.isNotEmpty) {
+    return userQuerySnapshot.docs.first.reference;
+  } else {
+    return null;
+  }
+}
+
+Future<bool> checkIfAlreadyFriends(String actual, String usuario) async {
+  CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('Users');
+
+  QuerySnapshot myuserQuerySnapshot = await usersCollection
+      .where('User', isEqualTo: actual)
+      .limit(1)
+      .get();
+
+  if (myuserQuerySnapshot.docs.isEmpty) {
+    return false;
+  }
+
+  DocumentReference myUserDoc = myuserQuerySnapshot.docs.first.reference;
+
+  CollectionReference myacceptedCollection = myUserDoc.collection("Accepted");
+
+  QuerySnapshot querySnapshotaccepted = await myacceptedCollection
+      .where("user_accepted", isEqualTo: usuario)
+      .get();
+
+  return querySnapshotaccepted.docs.isNotEmpty;
+}
+
+Future<bool> checkIfRequestSent(
+    DocumentReference currentUserDoc, String actual) async {
+  CollectionReference requestsCollection =
+      currentUserDoc.collection('Requests');
+
+  QuerySnapshot querySnapshotrequest =
+      await requestsCollection.where('user_request', isEqualTo: actual).get();
+
+  return querySnapshotrequest.docs.isNotEmpty;
+}
+
+Future<void> sendFriendRequest(
+    DocumentReference currentUserDoc, String actual) async {
+  CollectionReference requestsCollection =
+      currentUserDoc.collection('Requests');
+
+  await requestsCollection.add({
+    'user_request': actual,
+    'timestamp': FieldValue.serverTimestamp(),
+  });
+}
+
 
 Future<List<String>> obtenerSolicitudes() async {
   List<String> solicitudes = [];
