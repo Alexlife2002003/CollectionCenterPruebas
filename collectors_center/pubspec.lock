@@ -226,7 +226,7 @@ packages:
     source: hosted
     version: "2.1.0"
   file:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: file
       sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
@@ -298,7 +298,7 @@ packages:
     source: hosted
     version: "2.27.0"
   firebase_core_platform_interface:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core_platform_interface
       sha256: c437ae5d17e6b5cc7981cf6fd458a5db4d12979905f9aafd1fea930428a9fe63

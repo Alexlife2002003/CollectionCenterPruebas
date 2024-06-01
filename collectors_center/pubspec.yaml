@@ -40,13 +40,8 @@ dependencies:
   flutter_dotenv: ^5.1.0
   firebase_core: ^2.3.0
   firebase_auth: ^4.2.0
-  firebase_core_platform_interface: ^5.0.0
+  #firebase_core_platform_interface: ^5.0.0
 
-  
- 
- 
-dependency_overrides:
-  file: 7.0.0
 
 dev_dependencies:
   test:

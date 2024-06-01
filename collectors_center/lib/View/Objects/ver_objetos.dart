@@ -3,7 +3,6 @@
 //   Descripción:                     Ver los objetos                                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Objects/agregar_objetos.dart';
 import 'package:collectors_center/View/Objects/editar_objetos.dart';
@@ -39,7 +38,7 @@ class MyObject {
 class VerObjectsCategoria extends StatefulWidget {
   final String categoria;
 
-  const VerObjectsCategoria({ required this.categoria});
+  const VerObjectsCategoria({required this.categoria});
 
   @override
   _VerObjectsCategoriaState createState() => _VerObjectsCategoriaState();
@@ -55,10 +54,10 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
   String selectedDescription = "";
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    await _fetchObjects();
-    await _fetchCategories();
+    _fetchObjects();
+    _fetchCategories();
   }
 
   Future<void> _fetchCategories() async {
@@ -70,14 +69,14 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
       showSnackbar(context, "Error al buscar categorías", red);
     }
 
-    setState(() async {
+    setState(() {
       categories = fetchedCategories;
       if (categories.isNotEmpty && widget.categoria.isEmpty) {
         selectedCategory = categories[0];
-        await _fetchObjects();
+        _fetchObjects();
       } else if (widget.categoria.isNotEmpty) {
         selectedCategory = widget.categoria;
-        await _fetchObjects();
+        _fetchObjects();
       } else {
         selectedCategory = 'Sin categorias';
       }
@@ -351,6 +350,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                       )
                     else
                       Column(
+                       
                         children: <Widget>[
                           for (int i = 0; i < _objectList.length; i += 2)
                             _buildObjectRow(
@@ -373,102 +373,102 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
   }
 
   Widget _buildObjectRow(
-  MyObject object1,
-  MyObject? object2,
-  Key keyobject1,
-  Key keyobject2,
-) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Row(
-      children: [
-        _buildObjectCard(object1, keyobject1),
-        if (object2 != null) const SizedBox(width: 8),
-        if (object2 != null) _buildObjectCard(object2, keyobject2),
-      ],
-    ),
-  );
-}
+    MyObject object1,
+    MyObject? object2,
+    Key keyobject1,
+    Key keyobject2,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        
+        children: [
+          _buildObjectCard(object1, keyobject1),
+          if (object2 != null) const SizedBox(width: 8),
+          if (object2 != null) _buildObjectCard(object2, keyobject2),
+        ],
+      ),
+    );
+  }
 
-Widget _buildObjectCard(MyObject object, Key key) {
-  final String imageUrl = object.imageUrl;
+  Widget _buildObjectCard(MyObject object, Key key) {
+    final String imageUrl = object.imageUrl;
 
-  return Expanded(
-    child: Container(
-      color: peach,
-      child: Card(
-        elevation: 3,
-        child: Stack(
-          children: [
-            Container(
-              color: peach,
-              child: FutureBuilder(
-                future: storage.ref().child(imageUrl).getDownloadURL(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator(color: peach);
-                  } else if (snapshot.hasError) {
-                    return Text('Error loading image');
-                  } else {
-                    final imageUrl = snapshot.data.toString();
-                    return GestureDetector(
-                      onTap: () {
-                        if (deleteActivated) {
-                          _toggleSelection(object);
-                        } else {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditarObjetos(
-                                url: imageUrl,
-                                firebaseURL: object.imageUrl,
+    return Expanded(
+      child: Container(
+        color: peach,
+        child: Card(
+          elevation: 3,
+          child: Stack(
+            children: [
+              Container(
+                color: peach,
+                child: FutureBuilder(
+                  future: storage.ref().child(imageUrl).getDownloadURL(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(color: peach);
+                    } else if (snapshot.hasError) {
+                      return Text('Error loading image');
+                    } else {
+                      final imageUrl = snapshot.data.toString();
+                      return GestureDetector(
+                        onTap: () {
+                          if (deleteActivated) {
+                            _toggleSelection(object);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditarObjetos(
+                                  url: imageUrl,
+                                  firebaseURL: object.imageUrl,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                             
+                              decoration: const BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 2,
+                                    offset: Offset(2, 2),
+                                  )
+                                ],
+                              ),
+                              child: CachedNetworkImage(
+                                key: key,
+                                imageUrl: imageUrl,
+                                fit: BoxFit.cover,
+                                width: 188,
+                                height: 188,
                               ),
                             ),
-                          );
-                        }
-                      },
-                      child: Stack(
-                        children: [
-                          Container(
-                            color: Colors.blue,
-                            decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 2,
-                                  offset: Offset(2, 2),
-                                )
-                              ],
-                            ),
-                            child: CachedNetworkImage(
-                              key: key,
-                              imageUrl: imageUrl,
-                              fit: BoxFit.cover,
-                              width: 188,
-                              height: 188,
-                            ),
-                          ),
-                          if (object.isSelected)
-                            const Align(
-                              alignment: Alignment.topRight,
-                              child: Icon(
-                                Icons.check_circle,
-                                color: Colors.green,
-                                size: 24,
+                            if (object.isSelected)
+                              const Align(
+                                alignment: Alignment.topRight,
+                                child: Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green,
+                                  size: 24,
+                                ),
                               ),
-                            ),
-                        ],
-                      ),
-                    );
-                  }
-                },
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 }
