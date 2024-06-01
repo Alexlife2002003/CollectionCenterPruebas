@@ -143,9 +143,9 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
       maxWidth: 1000,
     );
 
-    if (context.mounted) {
+
       Navigator.pop(context);
-    }
+
 
     if (pickedFile != null) {
       final File compressedImage = await _compressImage(File(pickedFile.path));
@@ -217,11 +217,11 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
 
       // Close the progress dialog if an error occurs
     } catch (e) {
-      if (context.mounted) {
+     
         showSnackbar(context, "Error al subir la imagen", red);
 
         Navigator.of(context).pop();
-      }
+      
     }
   }
 

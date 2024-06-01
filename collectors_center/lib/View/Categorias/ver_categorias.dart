@@ -188,14 +188,12 @@ class _VerCategoriasState extends State<VerCategorias> {
                                   isEdit = false;
                                 });
                               } else {
-                                if (context.mounted) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => EditarCategoria(
-                                            categoryName: category)),
-                                  );
-                                }
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditarCategoria(
+                                          categoryName: category)),
+                                );
                               }
                             }
                           },

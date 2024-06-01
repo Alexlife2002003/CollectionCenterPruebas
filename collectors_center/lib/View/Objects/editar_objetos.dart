@@ -114,20 +114,20 @@ class _EditarObjetosState extends State<EditarObjetos> {
     descripcion = _descripcionController.text;
     final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
     if (descripcion.length < 10 && descripcion.isNotEmpty) {
-      if (context.mounted) {
+  
         showSnackbar(
             context,
             "Descripción debe contener mínimo 10 caracteres si no es vacia",
             red);
-      }
+      
       return;
     }
 
     if (descripcion.length > 300) {
-      if (context.mounted) {
+   
         showSnackbar(
             context, "No puede exceder la descripción los 300 caracteres", red);
-      }
+      
       return;
     }
 
