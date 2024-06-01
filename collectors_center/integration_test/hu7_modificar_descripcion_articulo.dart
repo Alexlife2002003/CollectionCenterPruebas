@@ -77,7 +77,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Editar
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 4));
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -89,7 +89,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Confirmar edición
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Esperar un breve retraso antes de intentar encontrar el texto
@@ -139,7 +139,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Editar
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 4));
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -151,7 +151,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Confirmar edición
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Esperar un breve retraso antes de intentar encontrar el texto
@@ -201,7 +201,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Editar
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 4));
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -213,7 +213,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Confirmar edición
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Esperar un breve retraso antes de intentar encontrar el texto
@@ -263,7 +263,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Editar
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 4));
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
@@ -275,7 +275,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Confirmar edición
-    await tester.tap(find.byKey(const Key('Editar')));
+    await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Esperar un breve retraso antes de intentar encontrar el texto
