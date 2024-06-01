@@ -39,7 +39,7 @@ class MyObject {
 class VerObjectsCategoria extends StatefulWidget {
   final String categoria;
 
-  const VerObjectsCategoria({super.key, required this.categoria});
+  const VerObjectsCategoria({ required this.categoria});
 
   @override
   _VerObjectsCategoriaState createState() => _VerObjectsCategoriaState();

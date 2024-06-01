@@ -63,7 +63,7 @@ class _VerAmigosState extends State<VerAmigos> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                   ),
                   child: const Text('Cancelar'),
                 ),
@@ -131,7 +131,7 @@ class _VerAmigosState extends State<VerAmigos> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.blue,
+                                    backgroundColor: Colors.blue,
                                   ),
                                   child: const Text('OK'),
                                 ),
@@ -143,7 +143,7 @@ class _VerAmigosState extends State<VerAmigos> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
+                    backgroundColor: Colors.blue,
                   ),
                   child: const Text('Enviar'),
                 ),
