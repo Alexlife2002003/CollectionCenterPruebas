@@ -13,13 +13,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class verObjetosAmigos extends StatefulWidget {
+class VerObjetosAmigos extends StatefulWidget {
   final String url;
   final String name;
   final String category;
   final String description;
 
-  const verObjetosAmigos(
+  const VerObjetosAmigos(
       {super.key,
       required this.url,
       required this.name,
@@ -27,13 +27,13 @@ class verObjetosAmigos extends StatefulWidget {
       required this.description});
 
   @override
-  State<verObjetosAmigos> createState() => _verObjetosAmigosState();
+  State<VerObjetosAmigos> createState() => _VerObjetosAmigosState();
 }
 
 @override
 void dispose() {}
 
-class _verObjetosAmigosState extends State<verObjetosAmigos> {
+class _VerObjetosAmigosState extends State<VerObjetosAmigos> {
   String name = "";
   String descripcion = "";
 

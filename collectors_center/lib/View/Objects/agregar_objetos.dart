@@ -20,19 +20,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart'; // Add this import
 import 'package:path_provider/path_provider.dart'; // Add this import
 
-class agregarObjectsCategoria extends StatefulWidget {
+class AgregarObjectsCategoria extends StatefulWidget {
   final String categoria;
-  const agregarObjectsCategoria({super.key, required this.categoria});
+  const AgregarObjectsCategoria({super.key, required this.categoria});
 
   @override
-  State<agregarObjectsCategoria> createState() =>
-      _agregarObjectsCategoriaState();
+  State<AgregarObjectsCategoria> createState() =>
+      _AgregarObjectsCategoriaState();
 }
 
 @override
 void dispose() {}
 
-class _agregarObjectsCategoriaState extends State<agregarObjectsCategoria> {
+class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
   PickedFile? _selectedImage;
   String filepath = "";
   File? uploadImage;

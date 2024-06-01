@@ -256,7 +256,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) =>
-                                        agregarObjectsCategoria(
+                                        AgregarObjectsCategoria(
                                             categoria: selectedCategory))));
                           },
                           icon: const Icon(

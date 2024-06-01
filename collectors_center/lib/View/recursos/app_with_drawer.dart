@@ -247,7 +247,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => const verSolicitudes())));
+                          builder: ((context) => const VerSolicitudes())));
                 }),
             const Spacer(),
             Padding(

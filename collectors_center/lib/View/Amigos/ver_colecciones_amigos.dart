@@ -282,7 +282,7 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => verObjetosAmigos(
+                                        builder: (context) => VerObjetosAmigos(
                                               url: imageUrl,
                                               name: object1.name,
                                               category: selectedCategory,
@@ -357,7 +357,7 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              verObjetosAmigos(
+                                              VerObjetosAmigos(
                                                 url: imageUrl,
                                                 name: object2!.name,
                                                 category: selectedCategory,

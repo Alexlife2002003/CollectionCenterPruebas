@@ -13,14 +13,14 @@ import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 
-class verSolicitudes extends StatefulWidget {
-  const verSolicitudes({Key? key}) : super(key: key);
+class VerSolicitudes extends StatefulWidget {
+  const VerSolicitudes({Key? key}) : super(key: key);
 
   @override
-  _verSolicitudesState createState() => _verSolicitudesState();
+  _VerSolicitudesState createState() => _VerSolicitudesState();
 }
 
-class _verSolicitudesState extends State<verSolicitudes> {
+class _VerSolicitudesState extends State<VerSolicitudes> {
   List<String> solicitudes = [];
 
   @override
@@ -87,7 +87,7 @@ class _verSolicitudesState extends State<verSolicitudes> {
         return true;
       },
       child: AppWithDrawer(
-        currentPage: "verSolicitudes",
+        currentPage: "VerSolicitudes",
         content: Scaffold(
           backgroundColor: peach,
           body: Center(
