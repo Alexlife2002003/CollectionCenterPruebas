@@ -323,7 +323,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                           width: screenWidth - 50,
                           decoration: BoxDecoration(
                             color: myColor,
-                            border: Border.all(color: Colors.white, width: .2),
+                            border: Border.all(color: peach, width: .2),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Padding(
@@ -430,6 +430,7 @@ Widget _buildObjectCard(MyObject object, Key key) {
                       child: Stack(
                         children: [
                           Container(
+                            color: Colors.blue,
                             decoration: const BoxDecoration(
                               boxShadow: [
                                 BoxShadow(

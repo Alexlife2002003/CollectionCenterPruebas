@@ -8,6 +8,7 @@ import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:collectors_center/View/recursos/app_with_drawer.dart';
 
 class Bienvenido extends StatelessWidget {
   const Bienvenido({super.key});
@@ -29,27 +30,30 @@ class Bienvenido extends StatelessWidget {
       onWillPop: () async {
         return false;
       },
-      child: Container(
-        color: peach,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: Text(
-                'Bienvenido',
-                key: const Key('Bienvenido'),
-                style: TextStyle(
-                    fontSize: 60, color: brown, fontWeight: FontWeight.bold),
+      child: AppWithDrawer(
+        currentPage: "Bienvenido",
+        content: Container(
+          color: peach,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  'Bienvenido',
+                  key: const Key('Bienvenido'),
+                  style: TextStyle(
+                      fontSize: 60, color: brown, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            Center(
-              child: Image.asset(
-                'lib/assets/images/logo.png',
-                width: screenWidth - 50,
-              ),
-            )
-          ],
+              Center(
+                child: Image.asset(
+                  'lib/assets/images/logo.png',
+                  width: screenWidth - 50,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
