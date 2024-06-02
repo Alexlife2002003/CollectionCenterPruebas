@@ -104,6 +104,11 @@ Future<void> eliminarDescripcion(
   if (internet == false) {
     return;
   }
+  eliminarDescripcionLogic(context, imageUrl, description);
+}
+
+Future<void> eliminarDescripcionLogic(
+    BuildContext context, String imageUrl, String description) async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
