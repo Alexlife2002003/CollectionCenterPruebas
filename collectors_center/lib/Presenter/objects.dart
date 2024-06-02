@@ -402,11 +402,17 @@ Future<void> eliminarVariosObjetos(
 Future<void> deleteImageByImageUrl(
     BuildContext context, String imageUrl) async {
   bool internet = await conexionInternt(context);
-  final storageRef = FirebaseStorage.instance.ref();
+
   if (internet == false) {
     return;
   }
+  deleteImageByImageUrlLogic(context, imageUrl);
+}
+
+Future<void> deleteImageByImageUrlLogic(
+    BuildContext context, String imageUrl) async {
   try {
+    final storageRef = FirebaseStorage.instance.ref();
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       // Reference to the user's "Users" collection
@@ -463,11 +469,16 @@ Future<void> deleteImageByImageUrl(
 Future<void> deleteImageByImageUrlNoMessage(
     BuildContext context, String imageUrl) async {
   bool internet = await conexionInternt(context);
-  final storageRef = FirebaseStorage.instance.ref();
+
   if (internet == false) {
     return;
   }
+}
+
+Future<void> deleteImageByImageUrlNoMessageLogic(
+    BuildContext context, String imageUrl) async {
   try {
+    final storageRef = FirebaseStorage.instance.ref();
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       // Reference to the user's "Users" collection
