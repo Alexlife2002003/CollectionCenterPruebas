@@ -7,3 +7,4 @@ dart_code_metrics:
     cyclomatic-complexity: 7  # Set the threshold to 7
   metrics-exclude:
     - test/**
+    - lib/firebase_options.dart

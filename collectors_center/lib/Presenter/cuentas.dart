@@ -222,7 +222,11 @@ Future<void> ingresarUsuario(
     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);
     Navigator.pop(context);
   }
+  ingresarUsuarioLogic(context, correo, password);
+}
 
+Future<void> ingresarUsuarioLogic(
+    BuildContext context, String correo, String password) async {
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: correo,
