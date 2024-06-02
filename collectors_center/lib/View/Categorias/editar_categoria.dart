@@ -1,8 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//   Nombre:                          Equipo Tacos de asada                                                 //
-//   Descripción:                     Interfaz para editar categorias                                       //
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/ver_categorias.dart';
 import 'package:collectors_center/View/recursos/app_with_drawer.dart';
@@ -92,42 +87,72 @@ class _EditarCategoriaState extends State<EditarCategoria> {
   }
 
   void editDescription() async {
-    bool internet = await conexionInternt(context);
-    if (internet == false) {
-      return;
-    }
+    if (!await checkInternetConnection()) return;
+
     description = _descripcionCategoriaController.text;
-    final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(description);
 
-    if (description.length < 15 && description.isNotEmpty) {
-      showSnackbar(
-          context,
-          "La descripción debe tener al menos 15 caracteres si no está vacía",
-          red);
-      return;
-    }
-
-    if (description.length > 300) {
-      showSnackbar(
-          context, "La descripción no puede exceder los 300 caracteres", red);
-      return;
-    }
-
-    if (!containsLetter && description.isNotEmpty) {
-      showSnackbar(context, "La descripción debe contener letras", red);
-      return;
-    }
-    if (description == widget.categoryName) {
-      showSnackbar(context,
-          "La descripción no puede ser igual al nombre de la categoría", red);
-      return;
-    }
+    if (!validateDescription()) return;
 
     if (isEditing) {
       editarDescripcion(
           context, widget.categoryName, _descripcionCategoriaController.text);
     }
-    isEditing = !isEditing;
+    setState(() {
+      isEditing = !isEditing;
+    });
+  }
+
+  Future<bool> checkInternetConnection() async {
+    bool internet = await conexionInternt(context);
+    if (!internet) {
+      return false;
+    }
+    return true;
+  }
+
+  bool validateDescription() {
+    if (!validateDescriptionLength() ||
+        !validateDescriptionContainsLetter() ||
+        !validateDescriptionNotEqualCategoryName()) {
+      return false;
+    }
+    return true;
+  }
+
+  bool validateDescriptionLength() {
+    if (description.length < 15 && description.isNotEmpty) {
+      showSnackbar(
+          context,
+          "La descripción debe tener al menos 15 caracteres si no está vacía",
+          red);
+      return false;
+    }
+
+    if (description.length > 300) {
+      showSnackbar(
+          context, "La descripción no puede exceder los 300 caracteres", red);
+      return false;
+    }
+
+    return true;
+  }
+
+  bool validateDescriptionContainsLetter() {
+    final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(description);
+    if (!containsLetter && description.isNotEmpty) {
+      showSnackbar(context, "La descripción debe contener letras", red);
+      return false;
+    }
+    return true;
+  }
+
+  bool validateDescriptionNotEqualCategoryName() {
+    if (description == widget.categoryName) {
+      showSnackbar(context,
+          "La descripción no puede ser igual al nombre de la categoría", red);
+      return false;
+    }
+    return true;
   }
 
   void editNombre() async {
@@ -152,7 +177,9 @@ class _EditarCategoriaState extends State<EditarCategoria> {
         widget.categoryName = _nombreCategoriaController.text;
       });
     }
-    isEditingNombre = !isEditingNombre;
+    setState(() {
+      isEditingNombre = !isEditingNombre;
+    });
   }
 
   void borrarDescripcion() async {
@@ -231,6 +258,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
       // If the user is not authenticated, redirect them to the login screen
       return const Inicio();
     }
+
     return WillPopScope(
       onWillPop: () async {
         Navigator.push(
@@ -251,199 +279,201 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Text(
-                      'Editar\nCategoría',
-                      style: TextStyle(
-                        fontSize: 42,
-                        color: brown,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  _buildEditCategoryHeader(),
                   const SizedBox(height: 25),
-                  Text(
-                    "       Nombre:",
-                    style: TextStyle(color: brown, fontSize: 22),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Container(
-                      width: screenWidth - 50,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: myColor,
-                        border: Border.all(color: Colors.white, width: .2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: isEditingNombre
-                                    ? TextFormField(
-                                        keyboardType: TextInputType.text,
-                                        maxLength: 20,
-                                        controller: _nombreCategoriaController,
-                                        style: TextStyle(
-                                            color: brown, fontSize: 16),
-                                        textAlign: TextAlign.center,
-                                      )
-                                    : Text(
-                                        widget.categoryName,
-                                        style: TextStyle(
-                                          color: brown,
-                                          fontSize: 26,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    IconButton(
-                                      icon: Icon(
-                                        isEditingNombre
-                                            ? Icons.check
-                                            : Icons.edit,
-                                        color: Colors.green,
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          editNombre();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "       Descripción:",
-                    style: TextStyle(color: brown, fontSize: 22),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: screenWidth - 50,
-                            decoration: BoxDecoration(
-                              color: myColor,
-                              border:
-                                  Border.all(color: Colors.white, width: .2),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: isEditing
-                                        ? TextFormField(
-                                            keyboardType:
-                                                TextInputType.multiline,
-                                            maxLines: null,
-                                            maxLength: 300,
-                                            controller:
-                                                _descripcionCategoriaController,
-                                            style: TextStyle(
-                                                color: brown, fontSize: 16),
-                                            textAlign: TextAlign.center,
-                                          )
-                                        : Text(
-                                            description,
-                                            style: TextStyle(
-                                                color: brown, fontSize: 16),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      IconButton(
-                                        icon: Icon(
-                                          isEditing ? Icons.check : Icons.edit,
-                                          color: Colors.green,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            editDescription();
-                                          });
-                                        },
-                                      ),
-                                      IconButton(
-                                        key: const Key('delete'),
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            borrarDescripcion();
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: (screenHeight / 33),
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: screenWidth - 200,
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.red),
-                        ),
-                        onPressed: () {
-                          borrarCategoria();
-                        },
-                        child: const Text('Eliminar'),
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: screenWidth - 200,
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue),
-                        ),
-                        onPressed: cancelar,
-                        child: const Text('Regresar'),
-                      ),
-                    ),
-                  ),
+                  _buildCategoryNameField(screenWidth),
+                  const SizedBox(height: 10),
+                  _buildDescriptionField(screenWidth),
+                  SizedBox(height: (screenHeight / 33)),
+                  _buildDeleteButton(screenWidth),
+                  _buildReturnButton(screenWidth),
                 ],
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEditCategoryHeader() {
+    return Center(
+      child: Text(
+        'Editar\nCategoría',
+        style: TextStyle(
+          fontSize: 42,
+          color: brown,
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Widget _buildCategoryNameField(double screenWidth) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Container(
+        width: screenWidth - 50,
+        height: 70,
+        decoration: BoxDecoration(
+          color: myColor,
+          border: Border.all(color: Colors.white, width: .2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: isEditingNombre
+                      ? TextFormField(
+                          keyboardType: TextInputType.text,
+                          maxLength: 20,
+                          controller: _nombreCategoriaController,
+                          style: TextStyle(color: brown, fontSize: 16),
+                          textAlign: TextAlign.center,
+                        )
+                      : Text(
+                          widget.categoryName,
+                          style: TextStyle(
+                            color: brown,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          isEditingNombre ? Icons.check : Icons.edit,
+                          color: Colors.green,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            if (isEditingNombre) {
+                              editNombre();
+                            } else {
+                              isEditingNombre = true;
+                            }
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDescriptionField(double screenWidth) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              width: screenWidth - 50,
+              decoration: BoxDecoration(
+                color: myColor,
+                border: Border.all(color: Colors.white, width: .2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: isEditing
+                          ? TextFormField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                              maxLength: 300,
+                              controller: _descripcionCategoriaController,
+                              style: TextStyle(color: brown, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            )
+                          : Text(
+                              description,
+                              style: TextStyle(color: brown, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            isEditing ? Icons.check : Icons.edit,
+                            color: Colors.green,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (isEditing) {
+                                editDescription();
+                              } else {
+                                isEditing = true;
+                              }
+                            });
+                          },
+                        ),
+                        IconButton(
+                          key: const Key('delete'),
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              borrarDescripcion();
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDeleteButton(double screenWidth) {
+    return Center(
+      child: SizedBox(
+        width: screenWidth - 200,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.red),
+          ),
+          onPressed: borrarCategoria,
+          child: const Text('Eliminar'),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildReturnButton(double screenWidth) {
+    return Center(
+      child: SizedBox(
+        width: screenWidth - 200,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.blue),
+          ),
+          onPressed: cancelar,
+          child: const Text('Regresar'),
         ),
       ),
     );
