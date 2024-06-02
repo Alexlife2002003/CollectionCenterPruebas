@@ -38,67 +38,62 @@ Future<void> editarDescripcion(
 Future<void> editarDescripcionLogic(
     BuildContext context, String imageUrl, String description) async {
   try {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      // Reference to the user's "Users" collection
-      CollectionReference usersCollection =
-          FirebaseFirestore.instance.collection('Users');
-
-      // Query for the user's document
-      DocumentSnapshot userDocSnapshot =
-          await usersCollection.doc(user.uid).get();
-
-      if (userDocSnapshot.exists) {
-        // Reference to the "Categories" subcollection within the user's document
-        CollectionReference categoriesCollection =
-            userDocSnapshot.reference.collection('Categories');
-
-        // Query all category documents
-        QuerySnapshot categoriesQuerySnapshot =
-            await categoriesCollection.get();
-
-        // Loop through the category documents
-        for (final categoryDoc in categoriesQuerySnapshot.docs) {
-          // Reference to the "Objects" subcollection within the category document
-          CollectionReference objectsCollection =
-              categoryDoc.reference.collection('Objects');
-
-          // Query all documents within the "Objects" subcollection
-          QuerySnapshot objectsQuerySnapshot = await objectsCollection.get();
-
-          // Loop through the objects in the category
-          for (final objectDoc in objectsQuerySnapshot.docs) {
-            // Check if the image URL matches the desired URL
-            if (objectDoc['Image_url'] == imageUrl) {
-              // Update the "Description" field to be blank ("")
-              if (categoryDoc['Name'] == description) {
-                showSnackbar(
-                    context,
-                    "Descripción no puede ser igual al nombre de la categoría",
-                    red);
-                return;
-              }
-              if (objectDoc['Name'] == description) {
-                showSnackbar(
-                    context,
-                    "Descripción no puede ser igual al nombre del artículo",
-                    red);
-                return;
-              }
-              await objectDoc.reference.update({'Description': description});
-
-              // You can show a success message here if needed
-              showSnackbar(context, "Se han guardado los cambios", green);
-
-              // Exit the function after successfully clearing the description
-              return;
-            }
-          }
-        }
-      }
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return;
     }
+
+    final userDocSnapshot = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(user.uid)
+        .get();
+
+    if (!userDocSnapshot.exists) {
+      return;
+    }
+
+    final categoriesQuerySnapshot =
+        await userDocSnapshot.reference.collection('Categories').get();
+
+    await _updateDescription(
+        context, imageUrl, description, categoriesQuerySnapshot.docs);
   } catch (e) {
     showSnackbar(context, "No es posible guardar los cambios", red);
+  }
+}
+
+Future<void> _updateDescription(
+  BuildContext context,
+  String imageUrl,
+  String description,
+  List<DocumentSnapshot> categoriesDocs,
+) async {
+  for (final categoryDoc in categoriesDocs) {
+    final objectsQuerySnapshot = await categoryDoc.reference
+        .collection('Objects')
+        .where('Image_url', isEqualTo: imageUrl)
+        .get();
+
+    for (final objectDoc in objectsQuerySnapshot.docs) {
+      final category = categoryDoc['Name'];
+      final objectName = objectDoc['Name'];
+
+      if (category == description) {
+        showSnackbar(context,
+            "Descripción no puede ser igual al nombre de la categoría", red);
+        return;
+      }
+      if (objectName == description) {
+        showSnackbar(context,
+            "Descripción no puede ser igual al nombre del artículo", red);
+        return;
+      }
+
+      await objectDoc.reference.update({'Description': description});
+
+      showSnackbar(context, "Se han guardado los cambios", green);
+      return;
+    }
   }
 }
 
@@ -176,7 +171,8 @@ void agregarObjeto(
   if (!validarNombre(context, name)) return;
   if (!validarDescripcion(context, descripcion, name, categoria)) return;
 
-  agregarObjetoLogic(context, url, name, descripcion, categoria, mensajeExito, mensajeError);
+  agregarObjetoLogic(
+      context, url, name, descripcion, categoria, mensajeExito, mensajeError);
 }
 
 bool validarNombre(BuildContext context, String name) {
@@ -187,17 +183,19 @@ bool validarNombre(BuildContext context, String name) {
   return true;
 }
 
-bool validarDescripcion(BuildContext context, String descripcion, String name, String categoria) {
+bool validarDescripcion(
+    BuildContext context, String descripcion, String name, String categoria) {
   final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
 
   if (descripcion == name || descripcion == categoria) {
-    showSnackbar(
-        context, "La descripción no puede ser igual al nombre o la categoría", red);
+    showSnackbar(context,
+        "La descripción no puede ser igual al nombre o la categoría", red);
     return false;
   }
 
   if (descripcion.isEmpty || descripcion.length < 10) {
-    showSnackbar(context, "La descripción debe contener al menos 10 caracteres", red);
+    showSnackbar(
+        context, "La descripción debe contener al menos 10 caracteres", red);
     return false;
   }
 

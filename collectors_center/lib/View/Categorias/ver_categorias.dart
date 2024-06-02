@@ -197,7 +197,8 @@ class _VerCategoriasState extends State<VerCategorias> {
         return AlertDialog(
           backgroundColor: peach,
           title: const Text('Confirmar eliminación'),
-          content: Text('¿Está seguro de que desea borrar la categoría "$categoria"?'),
+          content: Text(
+              '¿Está seguro de que desea borrar la categoría "$categoria"?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {

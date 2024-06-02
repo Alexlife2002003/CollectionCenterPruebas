@@ -101,13 +101,14 @@ Future<void> eliminarCuenta(BuildContext context) async {
 }
 
 Future<void> eliminarRequestsCuenta(QuerySnapshot<Object?> finalquery) async {
-   for (QueryDocumentSnapshot document in finalquery.docs) {
+  for (QueryDocumentSnapshot document in finalquery.docs) {
     await document.reference.delete();
   }
 }
 
-Future<void> eliminarCategoriasCuenta(QuerySnapshot<Object?> categorySnapshot, BuildContext context) async {
-   for (QueryDocumentSnapshot document in categorySnapshot.docs) {
+Future<void> eliminarCategoriasCuenta(
+    QuerySnapshot<Object?> categorySnapshot, BuildContext context) async {
+  for (QueryDocumentSnapshot document in categorySnapshot.docs) {
     String categoryName = document['Name'] as String;
     await eliminarCategoria(context, categoryName, false);
   }
@@ -154,12 +155,11 @@ Future<void> registrarUsuario(BuildContext context, String usuario,
     return;
   }
   registrarUsuarioLogic(context, usuario, correo, password, confirmPassword);
-
 }
 
 Future<void> registrarUsuarioLogic(BuildContext context, String usuario,
-    String correo, String password, String confirmPassword) async{
-   try {
+    String correo, String password, String confirmPassword) async {
+  try {
     // Check if the username is already taken in Firestore
     final QuerySnapshot usernameCheck = await FirebaseFirestore.instance
         .collection('Users')
@@ -221,7 +221,6 @@ Future<void> ingresarUsuario(
   if (correo.isEmpty || password.isEmpty) {
     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);
     Navigator.pop(context);
-    
   }
 
   try {
@@ -249,7 +248,6 @@ Future<void> ingresarUsuario(
     }
   }
 }
-
 
 // Método encargado de cerrar la sesión del usuario
 Future<void> cerrarSesion(BuildContext context) async {

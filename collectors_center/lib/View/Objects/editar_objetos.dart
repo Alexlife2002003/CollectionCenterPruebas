@@ -102,59 +102,56 @@ class _EditarObjetosState extends State<EditarObjetos> {
     });
   }
 
- void saveDescription() async {
-  bool internet = await conexionInternt(context);
-  if (!internet) {
-    return;
+  void saveDescription() async {
+    bool internet = await conexionInternt(context);
+    if (!internet) {
+      return;
+    }
+
+    descripcion = _descripcionController.text;
+    if (!isDescripcionValid(context, descripcion)) {
+      return;
+    }
+    if (descripcion.length < 10 && descripcion.isNotEmpty) {
+      showSnackbar(context,
+          "Descripción debe contener mínimo 10 caracteres si no es vacia", red);
+      return;
+    }
+
+    editarDescripcion(context, widget.firebaseURL, _descripcionController.text);
+
+    setState(() {
+      isEditing = false;
+    });
   }
 
-  descripcion = _descripcionController.text;
-  if (!isDescripcionValid(context, descripcion)) {
-    return;
+  bool isDescripcionValid(BuildContext context, String descripcion) {
+    if (descripcion.length > 300) {
+      showSnackbar(
+          context, "No puede exceder la descripción los 300 caracteres", red);
+      return false;
+    }
+
+    final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
+    if (!containsLetter && descripcion.isNotEmpty) {
+      showSnackbar(context, "Descripción debe contener letras", red);
+      return false;
+    }
+
+    if (descripcion.trim() == category) {
+      showSnackbar(context,
+          "La descripción no puede ser igual al nombre de la categoría", red);
+      return false;
+    }
+
+    if (descripcion.trim() == name) {
+      showSnackbar(context,
+          "La descripción no puede ser igual al nombre del artículo", red);
+      return false;
+    }
+
+    return true;
   }
-   if (descripcion.length < 10 && descripcion.isNotEmpty) {
-    showSnackbar(context,
-        "Descripción debe contener mínimo 10 caracteres si no es vacia", red);
-    return ;
-  }
-
-  editarDescripcion(context, widget.firebaseURL, _descripcionController.text);
-
-  setState(() {
-    isEditing = false;
-  });
-}
-
-bool isDescripcionValid(BuildContext context, String descripcion) {
- 
-
-  if (descripcion.length > 300) {
-    showSnackbar(
-        context, "No puede exceder la descripción los 300 caracteres", red);
-    return false;
-  }
-
-  final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
-  if (!containsLetter && descripcion.isNotEmpty) {
-    showSnackbar(context, "Descripción debe contener letras", red);
-    return false;
-  }
-
-  if (descripcion.trim() == category) {
-    showSnackbar(context,
-        "La descripción no puede ser igual al nombre de la categoría", red);
-    return false;
-  }
-
-  if (descripcion.trim() == name) {
-    showSnackbar(context,
-        "La descripción no puede ser igual al nombre del artículo", red);
-    return false;
-  }
-
-  return true;
-}
-
 
   void borrarDescripcion() async {
     if (_descripcionController.text.isEmpty) {

@@ -57,8 +57,8 @@ void main() {
     // Ingresar datos de categoría
     await tester.enterText(find.byKey(const Key('nombreCategoria')), "Gatos");
     await tester.pumpAndSettle(const Duration(seconds: 2));
-    await tester.enterText(find.byKey(const Key('descripcionCategoria')),
-        "Gatitos.");
+    await tester.enterText(
+        find.byKey(const Key('descripcionCategoria')), "Gatitos.");
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Guardar categorpia nueva
@@ -68,11 +68,15 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Comprobar mensaje
-    expect(find.text('La descripción debe contener letras y tener al menos 15 caracteres'), findsOneWidget, reason: "'La descripción debe contener letras y tener al menos 15 caracteres' text not found");
+    expect(
+        find.text(
+            'La descripción debe contener letras y tener al menos 15 caracteres'),
+        findsOneWidget,
+        reason:
+            "'La descripción debe contener letras y tener al menos 15 caracteres' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 60));
-
   });
 
   testWidgets(
@@ -110,10 +114,11 @@ void main() {
     await tester.pumpAndSettle();
 
     // Ingresar datos de categoría
-    await tester.enterText(find.byKey(const Key('nombreCategoria')), "hiperblanduzcos");
+    await tester.enterText(
+        find.byKey(const Key('nombreCategoria')), "hiperblanduzcos");
     await tester.pumpAndSettle(const Duration(seconds: 2));
-    await tester.enterText(find.byKey(const Key('descripcionCategoria')),
-        "hiperblanduzcos");
+    await tester.enterText(
+        find.byKey(const Key('descripcionCategoria')), "hiperblanduzcos");
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Guardar categorpia nueva
@@ -123,14 +128,18 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Comprobar mensaje
-    expect(find.text('La descripción no puede ser igual al nombre de la categoría.'), findsOneWidget, reason: "'La descripción no puede ser igual al nombre de la categoría.' text not found");
+    expect(
+        find.text(
+            'La descripción no puede ser igual al nombre de la categoría.'),
+        findsOneWidget,
+        reason:
+            "'La descripción no puede ser igual al nombre de la categoría.' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
   });
 
-  testWidgets(
-      'Agregar descripción a categoría cuando es creada',
+  testWidgets('Agregar descripción a categoría cuando es creada',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
@@ -177,7 +186,8 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Comprobar mensaje
-    expect(find.text('Categoría agregada exitosamente'), findsOneWidget, reason: "'Categoría agregada exitosamente' text not found");
+    expect(find.text('Categoría agregada exitosamente'), findsOneWidget,
+        reason: "'Categoría agregada exitosamente' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
