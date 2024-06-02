@@ -35,6 +35,11 @@ Future<void> editarDescripcion(
     showSnackbar(context, "Descripción debe contener letras", red);
     return;
   }
+  editarDescripcionLogic(context, imageUrl, description);
+}
+
+Future<void> editarDescripcionLogic(
+    BuildContext context, String imageUrl, String description) async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {

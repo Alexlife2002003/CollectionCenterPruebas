@@ -19,10 +19,11 @@ void main() {
     );
   });
 
-
   // PRUEBAS //
-  testWidgets('Modificar descripción de un artículo con mismo nombre del artículo.', (WidgetTester tester) async {
-        await tester.pumpWidget(const MyApp(
+  testWidgets(
+      'Modificar descripción de un artículo con mismo nombre del artículo.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
     await tester.pumpAndSettle();
@@ -52,7 +53,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('El super mundo').last);
     await tester.pumpAndSettle(Duration(seconds: 10));
-    
+
     // Agregar articulo
     await tester.tap(find.byKey(const Key('AddIcon')));
     await tester.pumpAndSettle();
@@ -64,9 +65,11 @@ void main() {
         reason: "nombreARticulo field not found");
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
-    await tester.enterText(find.byKey(const Key('nombreArticulo')), "Gato Bomba");
+    await tester.enterText(
+        find.byKey(const Key('nombreArticulo')), "Gato Bomba");
     await tester.pumpAndSettle(Duration(seconds: 1));
-    await tester.enterText(find.byKey(const Key('Descripcion')), "Descripcion que puse en esta parte.");
+    await tester.enterText(find.byKey(const Key('Descripcion')),
+        "Descripcion que puse en esta parte.");
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(Duration(seconds: 1));
     await tester.tap(find.byKey(const Key('Guardar')));
@@ -82,7 +85,7 @@ void main() {
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
-    
+
     await tester.enterText(find.byKey(const Key('Descripcion')), "Gato Bomba");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
@@ -96,14 +99,18 @@ void main() {
     await Future.delayed(const Duration(seconds: 1));
 
     // Mensaje
-    expect(find.text('Descripción no puede ser igual al nombre del artículo'), findsOneWidget,
-        reason: "'Descripción no puede ser igual al nombre del artículo' text not found");
+    expect(find.text('Descripción no puede ser igual al nombre del artículo'),
+        findsOneWidget,
+        reason:
+            "'Descripción no puede ser igual al nombre del artículo' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
 
-    testWidgets('Modificar descripción de un artículo con el nombre igual a la categoría.', (WidgetTester tester) async {
-        await tester.pumpWidget(const MyApp(
+  testWidgets(
+      'Modificar descripción de un artículo con el nombre igual a la categoría.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
     await tester.pumpAndSettle();
@@ -144,8 +151,9 @@ void main() {
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
-    
-    await tester.enterText(find.byKey(const Key('Descripcion')), "El super mundo");
+
+    await tester.enterText(
+        find.byKey(const Key('Descripcion')), "El super mundo");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
@@ -158,14 +166,19 @@ void main() {
     await Future.delayed(const Duration(seconds: 1));
 
     // Mensaje
-    expect(find.text('Descripción no puede ser igual al nombre de la categoría'), findsOneWidget,
-    reason: "'Descripción no puede ser igual al nombre de la categoría' text not found");
+    expect(
+        find.text('Descripción no puede ser igual al nombre de la categoría'),
+        findsOneWidget,
+        reason:
+            "'Descripción no puede ser igual al nombre de la categoría' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
 
-      testWidgets('Modificar descripción de un artículo con menos de 10 caracteres.', (WidgetTester tester) async {
-        await tester.pumpWidget(const MyApp(
+  testWidgets(
+      'Modificar descripción de un artículo con menos de 10 caracteres.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
     await tester.pumpAndSettle();
@@ -206,7 +219,7 @@ void main() {
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
-    
+
     await tester.enterText(find.byKey(const Key('Descripcion')), "Si");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
@@ -220,14 +233,19 @@ void main() {
     await Future.delayed(const Duration(seconds: 1));
 
     // Mensaje
-    expect(find.text('Descripción debe contener mínimo 10 caracteres si no es vacia'), findsOneWidget,
-    reason: "'Descripción debe contener mínimo 10 caracteres si no es vacia' text not found");
+    expect(
+        find.text(
+            'Descripción debe contener mínimo 10 caracteres si no es vacia'),
+        findsOneWidget,
+        reason:
+            "'Descripción debe contener mínimo 10 caracteres si no es vacia' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
 
-  testWidgets('Modificar descripción de un artículo exitosamente.', (WidgetTester tester) async {
-        await tester.pumpWidget(const MyApp(
+  testWidgets('Modificar descripción de un artículo exitosamente.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
     await tester.pumpAndSettle();
@@ -268,8 +286,9 @@ void main() {
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
-    
-    await tester.enterText(find.byKey(const Key('Descripcion')), "El gato saltó en el agua e hizo SPLASH");
+
+    await tester.enterText(find.byKey(const Key('Descripcion')),
+        "El gato saltó en el agua e hizo SPLASH");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
@@ -283,7 +302,7 @@ void main() {
 
     // Mensaje
     expect(find.text('Se han guardado los cambios'), findsOneWidget,
-    reason: "'Se han guardado los cambios' text not found");
+        reason: "'Se han guardado los cambios' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });

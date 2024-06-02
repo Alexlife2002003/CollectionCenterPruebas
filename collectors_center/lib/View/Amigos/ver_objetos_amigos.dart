@@ -4,7 +4,6 @@
 //   Descripción:                     View de los objetos de amigos dentro de la aplicación                 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'package:collectors_center/View/recursos/app_with_drawer.dart';
 import 'package:collectors_center/View/recursos/inicio.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
@@ -19,8 +18,7 @@ class VerObjetosAmigos extends StatefulWidget {
   final String description;
 
   const VerObjetosAmigos(
-      {
-      required this.url,
+      {required this.url,
       required this.name,
       required this.category,
       required this.description});

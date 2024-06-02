@@ -1,4 +1,3 @@
-
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/Presenter/cuentas.dart';

@@ -4,8 +4,6 @@
 //   Descripción:                     Lógica de la aplicacion (Cuenta, navegacion, apartado primario)       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 import 'package:collectors_center/Presenter/amigos.dart';
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/recursos/bienvenido.dart';
@@ -35,10 +33,7 @@ Future<void> eliminarCuenta(BuildContext context) async {
           .collection('Categories')
           .get();
 
-      for (QueryDocumentSnapshot document in categorySnapshot.docs) {
-        String categoryName = document['Name'] as String;
-        await eliminarCategoria(context, categoryName, false);
-      }
+      await eliminarCategoriasCuenta(categorySnapshot, context);
 
       // Delete data from other users
       String usuarioActual = await obtenerUsuarioActual();
@@ -76,9 +71,7 @@ Future<void> eliminarCuenta(BuildContext context) async {
           .collection('Requests')
           .get();
 
-      for (QueryDocumentSnapshot document in finalquery.docs) {
-        await document.reference.delete();
-      }
+      await eliminarRequestsCuenta(finalquery);
 
       finalquery = await FirebaseFirestore.instance
           .collection('Users')
@@ -107,6 +100,19 @@ Future<void> eliminarCuenta(BuildContext context) async {
   }
 }
 
+Future<void> eliminarRequestsCuenta(QuerySnapshot<Object?> finalquery) async {
+   for (QueryDocumentSnapshot document in finalquery.docs) {
+    await document.reference.delete();
+  }
+}
+
+Future<void> eliminarCategoriasCuenta(QuerySnapshot<Object?> categorySnapshot, BuildContext context) async {
+   for (QueryDocumentSnapshot document in categorySnapshot.docs) {
+    String categoryName = document['Name'] as String;
+    await eliminarCategoria(context, categoryName, false);
+  }
+}
+
 // Function to delete documents from a collection based on a field and value
 Future<void> deleteDocumentsInCollection(
     CollectionReference collection, String field, String value) async {
@@ -124,84 +130,82 @@ Future<void> deleteDocumentsInCollection(
 
 // Función encargada de realizar el registro del usuario para su acceso en la aplicación
 
-Future<String> registrarUsuarioLogic(
-  String usuario,
-  String correo,
-  String password,
-  String confirmPassword,
-) async {
-  if (correo.isEmpty ||
-      usuario.isEmpty ||
-      password.isEmpty ||
-      confirmPassword.isEmpty) {
-    return 'Ingresa los datos faltantes.';
-  }
-
-  if (!isValidEmail(correo)) {
-    return 'Ingresa un correo válido';
-  }
-
-  final QuerySnapshot usernameCheck = await FirebaseFirestore.instance
-      .collection('Users')
-      .where('User', isEqualTo: usuario)
-      .get();
-
-  if (usernameCheck.docs.isNotEmpty) {
-    return 'Usuario ya se encuentra en uso';
-  }
-
-  if (password != confirmPassword) {
-    return 'Las contraseñas no son iguales';
-  }
-
-  if (password.length < 6) {
-    return 'Contraseña debe tener 6 caracteres o más';
-  }
-
-  if (!isStrongPassword(password)) {
-    return 'La contraseña debe contener al menos una letra, una mayúscula y un símbolo especial.';
-  }
-
-  try {
-    final userCredential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: correo,
-      password: password,
-    );
-    createUserDatabase(userCredential.user!.uid, usuario, correo);
-    return 'ok';
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'email-already-in-use') {
-      return 'Correo ya se encuentra en uso';
-    }
-    return 'Error desconocido';
-  }
-}
-
-Future<void> registrarUsuario(
-  BuildContext context,
-  String usuario,
-  String correo,
-  String password,
-  String confirmPassword,
-) async {
+// Función encargada de realizar el registro del usuario para su acceso en la aplicación
+Future<void> registrarUsuario(BuildContext context, String usuario,
+    String correo, String password, String confirmPassword) async {
   bool internet = await conexionInternt(context);
-  if (!internet) {
+  if (internet == false) {
     Navigator.pop(context);
     return;
   }
 
-  final result =
-      await registrarUsuarioLogic(usuario, correo, password, confirmPassword);
-
-  if (result == 'ok') {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const Bienvenido()),
-    );
-  } else {
-    showSnackbar(context, result, red);
+  if (correo.isEmpty ||
+      usuario.isEmpty ||
+      password.isEmpty ||
+      confirmPassword.isEmpty) {
     Navigator.pop(context);
+    showSnackbar(context, 'Ingresa los datos faltantes.', red);
+    return;
+  }
+
+  if (!isValidEmail(correo)) {
+    showSnackbar(context, 'Ingresa un correo válido', red);
+    Navigator.pop(context);
+    return;
+  }
+  registrarUsuarioLogic(context, usuario, correo, password, confirmPassword);
+
+}
+
+Future<void> registrarUsuarioLogic(BuildContext context, String usuario,
+    String correo, String password, String confirmPassword) async{
+   try {
+    // Check if the username is already taken in Firestore
+    final QuerySnapshot usernameCheck = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('User', isEqualTo: usuario)
+        .get();
+
+    if (usernameCheck.docs.isNotEmpty) {
+      // Username is already taken
+      showSnackbar(context, 'Usuario ya se encuentra en uso ', red);
+      Navigator.pop(context);
+      return;
+    }
+
+    if (password == confirmPassword) {
+      if (password.length < 6) {
+        showSnackbar(context, 'Contraseña debe tener 6 caracteres o más', red);
+        Navigator.pop(context);
+      } else if (!isStrongPassword(password)) {
+        showSnackbar(
+            context,
+            'La contraseña debe contener al menos una letra, una mayúscula y un símbolo especial.',
+            red);
+        Navigator.pop(context);
+      } else {
+        final userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: correo,
+          password: password,
+        );
+
+        // Create the user in Firestore
+        createUserDatabase(userCredential.user!.uid, usuario, correo);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Bienvenido()),
+        );
+      }
+    } else {
+      showSnackbar(context, 'Las contraseñas no son iguales', red);
+      Navigator.pop(context);
+    }
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'email-already-in-use') {
+      showSnackbar(context, 'Correo ya se encuentra en uso', red);
+      Navigator.pop(context);
+    }
   }
 }
 
@@ -217,7 +221,7 @@ Future<void> ingresarUsuario(
   if (correo.isEmpty || password.isEmpty) {
     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);
     Navigator.pop(context);
-    return;
+    
   }
 
   try {
@@ -232,7 +236,7 @@ Future<void> ingresarUsuario(
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const Bienvenido()),
+      MaterialPageRoute(builder: (context) => Bienvenido()),
     );
   } on FirebaseAuthException catch (e) {
     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||
@@ -245,6 +249,7 @@ Future<void> ingresarUsuario(
     }
   }
 }
+
 
 // Método encargado de cerrar la sesión del usuario
 Future<void> cerrarSesion(BuildContext context) async {

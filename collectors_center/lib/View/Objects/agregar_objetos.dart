@@ -3,7 +3,6 @@
 //   Descripción:                     Agregar objetos a categoria                                         //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'dart:io';
 import 'package:collectors_center/Presenter/objects.dart';
 import 'package:collectors_center/View/recursos/app_with_drawer.dart';
@@ -142,9 +141,7 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
       maxWidth: 1000,
     );
 
-
-      Navigator.pop(context);
-
+    Navigator.pop(context);
 
     if (pickedFile != null) {
       final File compressedImage = await _compressImage(File(pickedFile.path));
@@ -216,11 +213,9 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
 
       // Close the progress dialog if an error occurs
     } catch (e) {
-     
-        showSnackbar(context, "Error al subir la imagen", red);
+      showSnackbar(context, "Error al subir la imagen", red);
 
-        Navigator.of(context).pop();
-      
+      Navigator.of(context).pop();
     }
   }
 

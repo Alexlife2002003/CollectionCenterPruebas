@@ -3,7 +3,6 @@
 //   Descripción:                     Ver categorias                                                        //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/agregar_categorias.dart';
 import 'package:collectors_center/View/Categorias/editar_categoria.dart';

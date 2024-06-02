@@ -4,7 +4,6 @@
 //   Descripción:                     Lógica detras de los procesos encargados de las categorías.           //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'package:collectors_center/View/Categorias/ver_categorias.dart';
 import 'package:collectors_center/View/recursos/colors.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
@@ -136,32 +135,55 @@ void agregarCategoria(
     return;
   }
 
-  if (categoria.trim() == "") {
-    showSnackbar(context, "Ingrese un nombre", red);
-    return;
-  }
+  if (!isCategoriaValid(context, categoria)) return;
+  if (!isDescripcionValid(context, descripcion, categoria)) return;
 
-  if ((descripcion.length < 15 && descripcion.isNotEmpty) ||
-      (!descripcion.contains(RegExp(r'[a-zA-Z]')) && descripcion.isNotEmpty)) {
+  agregarCategoriaLogic(context, categoria, descripcion);
+}
+
+bool isCategoriaValid(BuildContext context, String categoria) {
+  if (categoria.trim().isEmpty) {
+    showSnackbar(context, "Ingrese un nombre", red);
+    return false;
+  }
+  return true;
+}
+
+bool isDescripcionValid(
+    BuildContext context, String descripcion, String categoria) {
+  if (descripcion.length < 15 && descripcion.isNotEmpty) {
     showSnackbar(
         context,
         "La descripción debe contener letras y tener al menos 15 caracteres",
         red);
-    return;
+    return false;
+  }
+
+  if (!descripcion.contains(RegExp(r'[a-zA-Z]')) && descripcion.isNotEmpty) {
+    showSnackbar(
+        context,
+        "La descripción debe contener letras y tener al menos 15 caracteres",
+        red);
+    return false;
   }
 
   if (descripcion == categoria) {
     showSnackbar(context,
         "La descripción no puede ser igual al nombre de la categoría.", red);
-    return;
+    return false;
   }
 
   if (descripcion.length > 300) {
     showSnackbar(
         context, "La descripción no puede exceder los 300 caracteres", red);
-    return;
+    return false;
   }
 
+  return true;
+}
+
+Future<void> agregarCategoriaLogic(
+    BuildContext context, String categoria, String descripcion) async {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -301,7 +323,11 @@ Future<void> editarDescripcion(
     showSnackbar(context, "La descripción debe contener letras", red);
     return;
   }
+  editarDescripcionLogic(context, categoryName, description);
+}
 
+Future<void> editarDescripcionLogic(
+    BuildContext context, String categoryName, String description) async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {

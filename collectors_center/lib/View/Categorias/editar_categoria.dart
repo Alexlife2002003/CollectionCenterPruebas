@@ -3,7 +3,6 @@
 //   Descripción:                     Interfaz para editar categorias                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 import 'package:collectors_center/Presenter/categorias.dart';
 import 'package:collectors_center/View/Categorias/ver_categorias.dart';
 import 'package:collectors_center/View/recursos/app_with_drawer.dart';

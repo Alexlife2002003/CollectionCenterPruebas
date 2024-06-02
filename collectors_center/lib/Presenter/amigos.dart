@@ -4,8 +4,6 @@
 //   Descripción:                     Lógica detras del apartado de amigos como solicitudes y ver categorías//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -157,10 +155,8 @@ Future<DocumentReference?> getUserDocument(String usuario) async {
   CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('Users');
 
-  QuerySnapshot userQuerySnapshot = await usersCollection
-      .where('User', isEqualTo: usuario)
-      .limit(1)
-      .get();
+  QuerySnapshot userQuerySnapshot =
+      await usersCollection.where('User', isEqualTo: usuario).limit(1).get();
 
   if (userQuerySnapshot.docs.isNotEmpty) {
     return userQuerySnapshot.docs.first.reference;
@@ -173,10 +169,8 @@ Future<bool> checkIfAlreadyFriends(String actual, String usuario) async {
   CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('Users');
 
-  QuerySnapshot myuserQuerySnapshot = await usersCollection
-      .where('User', isEqualTo: actual)
-      .limit(1)
-      .get();
+  QuerySnapshot myuserQuerySnapshot =
+      await usersCollection.where('User', isEqualTo: actual).limit(1).get();
 
   if (myuserQuerySnapshot.docs.isEmpty) {
     return false;
@@ -214,7 +208,6 @@ Future<void> sendFriendRequest(
     'timestamp': FieldValue.serverTimestamp(),
   });
 }
-
 
 Future<List<String>> obtenerSolicitudes() async {
   List<String> solicitudes = [];
