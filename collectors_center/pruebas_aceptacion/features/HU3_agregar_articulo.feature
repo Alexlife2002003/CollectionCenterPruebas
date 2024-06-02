@@ -18,8 +18,6 @@ Característica: Agregar articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y le asigno un nombre "Mercurio"
             Y presiono Guardar
             Entonces puedo ver el mensaje "Artículo agregado exitosamente"
@@ -41,8 +39,6 @@ Característica: Agregar articulo
             Y no tengo internet
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y le asigno un nombre "Mercurio"
             Y presiono Guardar
             Entonces puedo ver el mensaje "Sin conexión a Internet"
@@ -63,8 +59,6 @@ Característica: Agregar articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y le asigno un nombre "sapos"
             Y presiono Guardar
             Entonces puedo ver el mensaje "No puede llevar el nombre de la categoría"
@@ -84,8 +78,6 @@ Característica: Agregar articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y presiono Guardar
             Entonces puedo ver el mensaje "El nombre del artículo no puede ir vacío"
 

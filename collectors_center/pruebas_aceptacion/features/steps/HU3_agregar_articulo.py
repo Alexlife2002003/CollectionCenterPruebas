@@ -67,7 +67,7 @@ def step_impl(context):
 @given(u'selecciono la opcion de camara')
 def step_impl(context):
     WebDriverWait(context.driver, 30).until(
-        EC.element_to_be_clickable((AppiumBy.XPATH, '//android.view.View[@content-desc="Camera"]'))
+        EC.element_to_be_clickable((AppiumBy.XPATH, '//android.view.View[@content-desc="App Asset"]'))
     ).click()
 
 

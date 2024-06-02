@@ -18,8 +18,6 @@ Característica: Agregar descripcion articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y le asigno un nombre "Gato Burbuja"
             Y le doy la descripcion "El gato burbuja que burbujea"
             Y presiono Guardar
@@ -60,8 +58,6 @@ Característica: Agregar descripcion articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y le asigno un nombre "lena luthor"
             Y le doy la descripcion "si"
             Y presiono Guardar
@@ -85,7 +81,6 @@ Característica: Agregar descripcion articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
             Y acepto la foto
             Y le asigno un nombre "aaaaaaaaaa"
             Y le doy la descripcion "aaaaaaaaaa"
@@ -108,8 +103,6 @@ Característica: Agregar descripcion articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y tomo la foto
-            Y acepto la foto
             Y le asigno un nombre "aaaaaaaaaa"
             Y le doy la descripcion "El super mundo"
             Y presiono Guardar

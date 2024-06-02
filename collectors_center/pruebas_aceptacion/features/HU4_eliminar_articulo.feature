@@ -18,8 +18,6 @@ Característica: Eliminar artículo
     Y le doy click en el boton de mas
     Y selecciono el icono de imagen
     Y selecciono la opcion de camara
-    Y tomo la foto
-    Y acepto la foto
     Y le asigno un nombre "Sapolote"
     Y presiono Guardar
     Y espero un rato

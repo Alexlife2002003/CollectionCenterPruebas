@@ -20,8 +20,6 @@ Característica: Modificar descripción de artículo
     Y le doy click en el boton de mas
     Y selecciono el icono de imagen
     Y selecciono la opcion de camara
-    Y tomo la foto
-    Y acepto la foto
     Y le asigno un nombre "Gato Bomba"
     Y le doy la descripcion "El gato hizo BOOM"
     Y presiono Guardar
