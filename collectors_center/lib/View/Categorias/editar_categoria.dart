@@ -329,6 +329,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                 Expanded(
                   child: isEditingNombre
                       ? TextFormField(
+                          key: const Key('Nombre'),
                           keyboardType: TextInputType.text,
                           maxLength: 20,
                           controller: _nombreCategoriaController,
@@ -350,6 +351,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                   child: Column(
                     children: [
                       IconButton(
+                        key: const Key('edit_name'),
                         icon: Icon(
                           isEditingNombre ? Icons.check : Icons.edit,
                           color: Colors.green,
