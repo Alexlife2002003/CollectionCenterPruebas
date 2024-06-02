@@ -92,54 +92,7 @@ class _VerAmigosState extends State<VerAmigos> {
                           message = userInput;
                           break;
                       }
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            icon: cumplido == 10
-                                ? Icon(
-                                    Icons.check_circle_outline,
-                                    color: green,
-                                    size: 40,
-                                  )
-                                : Icon(
-                                    Icons.error,
-                                    color: red,
-                                    size: 40,
-                                  ),
-                            backgroundColor: brown,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            title: Text(
-                              cumplido == 10 ? 'Solicitud enviada a' : message,
-                              style: TextStyle(
-                                color: cumplido == 10 ? myColor : red,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            content: Text(
-                              cumplido == 10 ? userInput : '',
-                              style: TextStyle(color: peach),
-                              textAlign: TextAlign.center,
-                            ),
-                            actions: <Widget>[
-                              Center(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    userInput = "";
-                                    Navigator.of(context).pop();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
-                                  ),
-                                  child: const Text('OK'),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      showDialogSendSolicitud(context, cumplido, message);
                     });
                   },
                   style: ElevatedButton.styleFrom(
@@ -148,6 +101,58 @@ class _VerAmigosState extends State<VerAmigos> {
                   child: const Text('Enviar'),
                 ),
               ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<dynamic> showDialogSendSolicitud(
+      BuildContext context, int cumplido, String message) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon: cumplido == 10
+              ? Icon(
+                  Icons.check_circle_outline,
+                  color: green,
+                  size: 40,
+                )
+              : Icon(
+                  Icons.error,
+                  color: red,
+                  size: 40,
+                ),
+          backgroundColor: brown,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          title: Text(
+            cumplido == 10 ? 'Solicitud enviada a' : message,
+            style: TextStyle(
+              color: cumplido == 10 ? myColor : red,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          content: Text(
+            cumplido == 10 ? userInput : '',
+            style: TextStyle(color: peach),
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  userInput = "";
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text('OK'),
+              ),
             ),
           ],
         );
@@ -202,7 +207,7 @@ class _VerAmigosState extends State<VerAmigos> {
                       height: 20,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
                           onPressed: () {
@@ -235,9 +240,6 @@ class _VerAmigosState extends State<VerAmigos> {
                             Icons.delete,
                             size: 60,
                           ),
-                        ),
-                        SizedBox(
-                          width: screenWidth - 160,
                         ),
                         IconButton(
                           onPressed: () async {
