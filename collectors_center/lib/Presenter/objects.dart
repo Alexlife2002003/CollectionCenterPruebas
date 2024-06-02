@@ -21,9 +21,6 @@ Future<void> editarDescripcion(
     return;
   }
   final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(description);
-  if (internet == false) {
-    return;
-  }
 
   if (description.length < 10 && description.isNotEmpty) {
     showSnackbar(context,
@@ -165,6 +162,60 @@ Future<void> eliminarDescripcion(
 
 //Funcionalidad de agregar objeto a categoría
 void agregarObjeto(
+  BuildContext context,
+  String url,
+  String name,
+  String descripcion,
+  String categoria,
+  String mensajeExito,
+  String mensajeError,
+) async {
+  bool internet = await conexionInternt(context);
+  if (!internet) return;
+
+  if (!validarNombre(context, name)) return;
+  if (!validarDescripcion(context, descripcion, name, categoria)) return;
+
+  agregarObjetoLogic(context, url, name, descripcion, categoria, mensajeExito, mensajeError);
+}
+
+bool validarNombre(BuildContext context, String name) {
+  if (name.trim().isEmpty) {
+    showSnackbar(context, "El nombre del artículo no puede ir vacío", red);
+    return false;
+  }
+  return true;
+}
+
+bool validarDescripcion(BuildContext context, String descripcion, String name, String categoria) {
+  final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
+
+  if (descripcion == name || descripcion == categoria) {
+    showSnackbar(
+        context, "La descripción no puede ser igual al nombre o la categoría", red);
+    return false;
+  }
+
+  if (descripcion.isEmpty || descripcion.length < 10) {
+    showSnackbar(context, "La descripción debe contener al menos 10 caracteres", red);
+    return false;
+  }
+
+  if (descripcion.length > 300) {
+    showSnackbar(
+        context, "La descripción no puede exceder los 300 caracteres", red);
+    return false;
+  }
+
+  if (!containsLetter) {
+    showSnackbar(context, "La descripción debe contener letras", red);
+    return false;
+  }
+
+  return true;
+}
+
+Future<void> agregarObjetoLogic(
     BuildContext context,
     String url,
     String name,
@@ -172,46 +223,6 @@ void agregarObjeto(
     String categoria,
     String mensajeExito,
     String mensajeError) async {
-  bool internet = await conexionInternt(context);
-  final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
-  if (internet == false) {
-    return;
-  }
-  if (name.trim() == "") {
-    showSnackbar(context, "El nombre del artículo no puede ir vacío", red);
-    return;
-  }
-  if (name == categoria) {
-    showSnackbar(context, "No puede llevar el nombre de la categoría", red);
-    return;
-  }
-  if (descripcion == name) {
-    showSnackbar(
-        context, "Descripción no puede ser igual al nombre del artículo", red);
-    return;
-  }
-  if (descripcion == categoria) {
-    showSnackbar(context,
-        "Descripción no puede ser igual al nombre de la categoría", red);
-    return;
-  }
-  if (descripcion.length < 10 && descripcion.isNotEmpty) {
-    showSnackbar(context,
-        "Descripción debe contener mínimo 10 caracteres si no es vacia", red);
-    return;
-  }
-
-  if (descripcion.length > 300) {
-    showSnackbar(
-        context, "No puede exceder la descripción los 300 caracteres", red);
-    return;
-  }
-
-  if (!containsLetter && descripcion.isNotEmpty) {
-    showSnackbar(context, "Descripción debe contener letras", red);
-    return;
-  }
-
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
