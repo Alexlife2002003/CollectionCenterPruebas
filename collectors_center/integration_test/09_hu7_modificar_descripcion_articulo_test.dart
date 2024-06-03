@@ -51,7 +51,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('El super mundo').last);
+    await tester.tap(find.text('Categoria 1.1231421').last);
     await tester.pumpAndSettle(Duration(seconds: 10));
 
     // Agregar articulo
@@ -93,13 +93,12 @@ void main() {
 
     // Confirmar edición
     await tester.tap(find.byKey(const Key('edit')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    // Esperar un breve retraso antes de intentar encontrar el texto
-    await Future.delayed(const Duration(seconds: 1));
-
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
     // Mensaje
-    expect(find.text('La descripción no puede ser igual al nombre del artículo'),
+    expect(
+        find.text(
+            'La descripción no puede ser igual al nombre del artículo'),
         findsOneWidget,
         reason:
             "'La descripción no puede ser igual al nombre del artículo' text not found");
@@ -160,10 +159,8 @@ void main() {
 
     // Confirmar edición
     await tester.tap(find.byKey(const Key('edit')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    // Esperar un breve retraso antes de intentar encontrar el texto
-    await Future.delayed(const Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
 
     // Mensaje
     expect(
@@ -211,31 +208,29 @@ void main() {
 
     // Seleccionar articulo
     await tester.tap(find.byKey(const Key('0')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
 
     // Editar
     await tester.tap(find.byKey(const Key('edit')));
-    await tester.pumpAndSettle(Duration(seconds: 4));
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
 
     expect(find.byKey(const Key('Descripcion')), findsOneWidget,
         reason: "Descripcion field not found");
-
     await tester.enterText(find.byKey(const Key('Descripcion')), "Si");
+    await tester.pumpAndSettle();
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
 
     // Confirmar edición
     await tester.tap(find.byKey(const Key('edit')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    // Esperar un breve retraso antes de intentar encontrar el texto
-    await Future.delayed(const Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
 
     // Mensaje
-    expect(
-        find.text(
-            'Descripción debe contener mínimo 10 caracteres si no es vacia'),
+    expect(find.text('Descripción debe contener mínimo 10 caracteres si no es vacia'),
         findsOneWidget,
         reason:
             "'Descripción debe contener mínimo 10 caracteres si no es vacia' text not found");
@@ -295,12 +290,9 @@ void main() {
 
     // Confirmar edición
     await tester.tap(find.byKey(const Key('edit')));
-    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
 
-    // Esperar un breve retraso antes de intentar encontrar el texto
-    await Future.delayed(const Duration(seconds: 1));
-
-    // Mensaje
     expect(find.text('Se han guardado los cambios'), findsOneWidget,
         reason: "'Se han guardado los cambios' text not found");
 
