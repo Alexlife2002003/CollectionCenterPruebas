@@ -35,4 +35,4 @@ Característica: Agregar articulo
             Y presiono la categoria "ranas"
             Y selecciono el icono de eliminar
             Y presiono el boton eliminar
-            Entonces puedo ver el mensaje "Descripción de la categoría eliminada exitosamente"
+            Entonces puedo ver el mensaje "La descripción de la categoría eliminada exitosamente"

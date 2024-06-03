@@ -189,13 +189,14 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
       return const Inicio();
     }
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) async {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const Bienvenido()),
         );
-        return true;
+      
       },
       child: AppWithDrawer(
         currentPage: "Objetos",
@@ -283,9 +284,9 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                               child: DropdownButton<String>(
                                 value: selectedCategory,
                                 onChanged: (String? newValue) {
-                                  setState(() async {
+                                  setState(()  {
                                     selectedCategory = newValue!;
-                                    await _fetchObjects();
+                                    _fetchObjects();
                                   });
                                 },
                                 items: categories.map<DropdownMenuItem<String>>(

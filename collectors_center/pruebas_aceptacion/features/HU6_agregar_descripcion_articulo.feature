@@ -81,11 +81,10 @@ Característica: Agregar descripcion articulo
             Y le doy click en el boton de mas
             Y selecciono el icono de imagen
             Y selecciono la opcion de camara
-            Y acepto la foto
             Y le asigno un nombre "aaaaaaaaaa"
             Y le doy la descripcion "aaaaaaaaaa"
             Y presiono Guardar
-            Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre del artículo"
+            Entonces puedo ver el mensaje "La descripción no puede ser igual al nombre del artículo"
 
     
     Escenario: Agregar articulo Descripcion igual a su nombre de categoria
@@ -106,6 +105,6 @@ Característica: Agregar descripcion articulo
             Y le asigno un nombre "aaaaaaaaaa"
             Y le doy la descripcion "El super mundo"
             Y presiono Guardar
-            Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre de la categoría"
+            Entonces puedo ver el mensaje "La descripción no puede ser igual al nombre de la categoría"
 
     

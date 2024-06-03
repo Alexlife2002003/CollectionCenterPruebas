@@ -37,7 +37,6 @@ Característica: Agregar articulo
             Y selecciono la categoria "sapos"
             Y le doy click en el articulo "0"
             Y selecciono a la imagen
-            Y selecciono la primera imagen
             Entonces puedo ver el mensaje "Imagen modificada correctamente"
 
             

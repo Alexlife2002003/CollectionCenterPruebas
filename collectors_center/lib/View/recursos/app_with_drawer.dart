@@ -13,6 +13,7 @@ import 'package:collectors_center/View/recursos/custom_badge.dart';
 import 'package:collectors_center/View/recursos/utils.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppWithDrawer extends StatefulWidget {
   final Widget content;
   String currentPage;

@@ -51,7 +51,7 @@ Característica: Modificar descripción de artículo
     Y le doy click al boton de editar descripcion
     Y edito la descripcion "El gato hizo BOOM" a "Gato Bomba"
     Cuando le doy click a la palomita
-    Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre del artículo"
+    Entonces puedo ver el mensaje "La descripción no puede ser igual al nombre del artículo"
   
   Escenario: Modificar descripción de un artículo con el nombre igual a la categoría
     Dado que abro la aplicación
@@ -71,7 +71,7 @@ Característica: Modificar descripción de artículo
     Y le doy click al boton de editar descripcion
     Y edito la descripcion "El gato hizo BOOM" a "El super mundo"
     Cuando le doy click a la palomita
-    Entonces puedo ver el mensaje "Descripción no puede ser igual al nombre de la categoría"
+    Entonces puedo ver el mensaje "La descripción no puede ser igual al nombre de la categoría"
   
   Escenario: Modificar descripción de un artículo con menos de 10 caracteres
     Dado que abro la aplicación
@@ -91,7 +91,7 @@ Característica: Modificar descripción de artículo
     Y le doy click al boton de editar descripcion
     Y edito la descripcion "El gato hizo BOOM" a "BOOM"
     Cuando le doy click a la palomita
-    Entonces puedo ver el mensaje "Descripción debe contener mínimo 10 caracteres si no es vacia"
+    Entonces puedo ver el mensaje "La descripción debe contener mínimo 10 caracteres si no es vacia"
 
   Escenario: Modificar descripción de un artículo exitosamente
     Dado que abro la aplicación

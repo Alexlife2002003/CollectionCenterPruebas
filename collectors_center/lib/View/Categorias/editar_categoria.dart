@@ -8,6 +8,7 @@ import 'package:collectors_center/View/recursos/validaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// ignore: must_be_immutable
 class EditarCategoria extends StatefulWidget {
   String categoryName;
   EditarCategoria({Key? key, required this.categoryName}) : super(key: key);
@@ -259,13 +260,13 @@ class _EditarCategoriaState extends State<EditarCategoria> {
       return const Inicio();
     }
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) async {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const VerCategorias()),
         );
-        return true;
       },
       child: AppWithDrawer(
         currentPage: "editarCategorias",
@@ -457,7 +458,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
         width: screenWidth - 200,
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.red),
+            backgroundColor: WidgetStateProperty.all(Colors.red),
           ),
           onPressed: borrarCategoria,
           child: const Text('Eliminar'),
@@ -472,7 +473,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
         width: screenWidth - 200,
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blue),
+            backgroundColor: WidgetStateProperty.all(Colors.blue),
           ),
           onPressed: cancelar,
           child: const Text('Regresar'),

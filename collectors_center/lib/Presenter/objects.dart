@@ -198,7 +198,7 @@ bool validarDescripcion(
     return false;
   }
 
-  if (descripcion.isEmpty || descripcion.length < 10) {
+  if (descripcion.isNotEmpty && descripcion.length < 10) {
     showSnackbar(
         context, "La descripción debe contener al menos 10 caracteres", red);
     return false;
@@ -210,7 +210,7 @@ bool validarDescripcion(
     return false;
   }
 
-  if (!containsLetter) {
+  if (!containsLetter && descripcion.isNotEmpty) {
     showSnackbar(context, "La descripción debe contener letras", red);
     return false;
   }

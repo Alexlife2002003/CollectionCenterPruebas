@@ -168,7 +168,7 @@ class _AgregarCategoriaState extends State<AgregarCategoria> {
                     child: ElevatedButton(
                       key: const Key('Guardar'),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        backgroundColor: WidgetStateProperty.all(Colors.blue),
                       ),
                       onPressed: agregar,
                       child: const Text('Guardar'),
@@ -180,7 +180,7 @@ class _AgregarCategoriaState extends State<AgregarCategoria> {
                     width: screenWidth - 200,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.red),
+                        backgroundColor: WidgetStateProperty.all(Colors.red),
                       ),
                       onPressed: () {
                         Navigator.pop(context);

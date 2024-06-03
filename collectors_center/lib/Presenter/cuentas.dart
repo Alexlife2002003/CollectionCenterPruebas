@@ -221,12 +221,9 @@ Future<void> ingresarUsuario(
   if (correo.isEmpty || password.isEmpty) {
     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);
     Navigator.pop(context);
+    return;
   }
-  ingresarUsuarioLogic(context, correo, password);
-}
 
-Future<void> ingresarUsuarioLogic(
-    BuildContext context, String correo, String password) async {
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: correo,
@@ -245,9 +242,14 @@ Future<void> ingresarUsuarioLogic(
     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||
         e.code == 'user-not-found' ||
         e.code == 'wrong-password' ||
-        e.code == 'invalid-email') {
+        e.code == 'invalid-email' ||
+        e.code == 'invalid-credential') {
       showSnackbar(context,
           'La contraseña o el correo electrónico son incorrectos', red);
+      Navigator.pop(context);
+    }else{
+      showSnackbar(context,
+          "${e.code}", red);
       Navigator.pop(context);
     }
   }

@@ -42,6 +42,7 @@ dependencies:
   firebase_core: ^2.3.0
   firebase_auth: ^4.2.0
   dart_code_metrics: ^4.19.2
+  coverage: ^1.8.0
   #firebase_core_platform_interface: ^5.0.0
 
   
@@ -51,9 +52,9 @@ dependency_overrides:
   file: 7.0.0
 
 dev_dependencies:
-  integration_test:
-    sdk: flutter
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
   cloud_firestore:
   firebase_messaging:

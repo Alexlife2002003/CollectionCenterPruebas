@@ -347,10 +347,10 @@ class _EditarObjetosState extends State<EditarObjetos> {
       return const Inicio();
     }
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) async {
         cancelar();
-        return true;
       },
       child: AppWithDrawer(
         currentPage: "editarObjetos",
@@ -538,7 +538,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                       width: screenWidth - 200,
                       child: ElevatedButton(
                         style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.red),
+                          backgroundColor: WidgetStatePropertyAll(Colors.red),
                         ),
                         onPressed: () {
                           borrarObjeto();
@@ -553,7 +553,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                       child: ElevatedButton(
                         style: const ButtonStyle(
                           backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue),
+                              WidgetStatePropertyAll(Colors.blue),
                         ),
                         onPressed: cancelar,
                         child: const Text('Regresar'),

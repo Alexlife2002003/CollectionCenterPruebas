@@ -175,12 +175,11 @@ class _VerAmigosState extends State<VerAmigos> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) async {
         Navigator.push(context,
             MaterialPageRoute(builder: ((context) => const Bienvenido())));
-        return true;
       },
       child: AppWithDrawer(
         currentPage: "verAmigos",

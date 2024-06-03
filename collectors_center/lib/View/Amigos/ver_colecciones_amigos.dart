@@ -107,13 +107,13 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
       return const Inicio();
     }
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) async {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const VerAmigos()),
         );
-        return true;
       },
       child: AppWithDrawer(
         currentPage: "VerColeccionesAmigos",

@@ -50,10 +50,10 @@ class _VerObjetosAmigosState extends State<VerObjetosAmigos> {
       return const Inicio();
     }
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) async {
         Navigator.pop(context);
-        return false;
       },
       child: AppWithDrawer(
         currentPage: "objetosIndividuales",
