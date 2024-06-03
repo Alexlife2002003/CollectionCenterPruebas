@@ -202,6 +202,12 @@ bool validarDescripcion(
     return false;
   }
 
+  if (descripcion == categoria) {
+    showSnackbar(context,
+        "Descripción no puede ser igual al nombre de la categoría", red);
+    return false;
+  }
+
   if (descripcion.isNotEmpty && descripcion.length < 10) {
     showSnackbar(
         context, "La descripción debe contener al menos 10 caracteres", red);

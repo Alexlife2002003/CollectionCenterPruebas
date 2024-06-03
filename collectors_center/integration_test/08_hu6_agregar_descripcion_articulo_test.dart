@@ -69,7 +69,8 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 3));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
     expect(find.text('Artículo agregado exitosamente'), findsOneWidget,
         reason: "'Artículo agregado exitosamente' text not found");
 
@@ -175,13 +176,14 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
     expect(
         find.text(
-            'Descripción debe contener mínimo 10 caracteres si no es vacia'),
+            'La descripción debe contener al menos 10 caracteres'),
         findsOneWidget,
         reason:
-            "'Descripción debe contener mínimo 10 caracteres si no es vacia' text not found");
+            "'La descripción debe contener al menos 10 caracteres' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
@@ -235,11 +237,13 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-    expect(find.text('La descripción no puede ser igual al nombre del artículo'),
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    expect(
+        find.text('Descripción no puede ser igual al nombre del artículo'),
         findsOneWidget,
         reason:
-            "'La descripción no puede ser igual al nombre del artículo' text not found");
+            "'Descripción no puede ser igual al nombre del artículo' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
@@ -294,12 +298,14 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.pumpAndSettle(Duration(seconds: 1));
+    await tester.pumpAndSettle(Duration(seconds: 1));
     expect(
-        find.text('La descripción no puede ser igual al nombre de la categoría'),
+        find.text(
+            'Descripción no puede ser igual al nombre de la categoría'),
         findsOneWidget,
         reason:
-            "'La descripción no puede ser igual al nombre de la categoría' text not found");
+            "'Descripción no puede ser igual al nombre de la categoría' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
