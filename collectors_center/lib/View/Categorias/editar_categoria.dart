@@ -52,6 +52,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
               child: const Text('Cancelar'),
             ),
             TextButton(
+              key: const Key('confirm'),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
@@ -456,6 +457,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
       child: SizedBox(
         width: screenWidth - 200,
         child: ElevatedButton(
+          key: const Key('Eliminar'),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.red),
           ),
