@@ -51,39 +51,18 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('El super mundo').last);
     await tester.pumpAndSettle();
-
-    // Agregar articulo
-    await tester.tap(find.byKey(const Key('AddIcon')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('Image')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-    await tester.tap(find.byKey(const Key('AppAsset')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-    expect(find.byKey(const Key('nombreArticulo')), findsOneWidget,
-        reason: "nombreARticulo field not found");
-    expect(find.byKey(const Key('Descripcion')), findsOneWidget,
-        reason: "Descripcion field not found");
-    await tester.enterText(find.byKey(const Key('nombreArticulo')), "Sapolote");
-    await tester.pumpAndSettle(const Duration(seconds: 3));
-    await tester.enterText(find.byKey(const Key('Descripcion')),
-        "Descripcion que puse en esta parte.");
-    FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(const Duration(seconds: 3));
-    await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-
     // Seleccionar articulo
     await tester.tap(find.byKey(const Key('0')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
 
-    // Eliminar
-    await tester.tap(find
-        .byKey(const Key('Guardar'))); // Es eliminar pero la Key dice guardar
-    await tester.pumpAndSettle(const Duration(seconds: 4));
+    // Eliminars
+    await tester.tap(find.byKey(
+        const Key('delete_object'))); // Es eliminar pero la Key dice guardar
+    await tester.pumpAndSettle(const Duration(seconds: 1));
 
     // Confirmar eliminación
-    await tester.tap(find.byKey(const Key('Eliminar')));
-    await tester.pumpAndSettle(const Duration(seconds: 4));
+    await tester.tap(find.text('Eliminar').last);
+    await tester.pumpAndSettle(const Duration(seconds: 1));
 
     // Mensaje
     expect(find.text('El artículo ha sido eliminado correctamente'),

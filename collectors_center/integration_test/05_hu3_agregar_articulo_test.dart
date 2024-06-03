@@ -60,7 +60,8 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(find.text('Artículo agregado exitosamente'), findsOneWidget,
         reason: "'Artículo agregado exitosamente' text not found");
 
@@ -106,6 +107,7 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
+    await tester.pumpAndSettle();
     await tester.pumpAndSettle();
     expect(find.text('Error al subir la imagen'), findsOneWidget,
         reason: "'Error al subir la imagen' text not found");
@@ -157,7 +159,8 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(
         find.text('No puede llevar el nombre de la categoría'), findsOneWidget,
         reason: "'No puede llevar el nombre de la categoría' text not found");
@@ -204,6 +207,7 @@ void main() {
     await tester.tap(find.byKey(const Key('AppAsset')));
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Guardar')));
+    await tester.pumpAndSettle();
     await tester.pumpAndSettle();
     expect(
         find.text('El nombre del artículo no puede ir vacío'), findsOneWidget,

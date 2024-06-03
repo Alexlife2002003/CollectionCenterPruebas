@@ -192,9 +192,13 @@ bool validarDescripcion(
     BuildContext context, String descripcion, String name, String categoria) {
   final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
 
-  if (descripcion == name || descripcion == categoria) {
-    showSnackbar(context,
-        "La descripción no puede ser igual al nombre o la categoría", red);
+   if (name == categoria) {
+    showSnackbar(context, "No puede llevar el nombre de la categoría", red);
+    return false;
+  }
+  if (descripcion == name) {
+    showSnackbar(
+        context, "Descripción no puede ser igual al nombre del artículo", red);
     return false;
   }
 

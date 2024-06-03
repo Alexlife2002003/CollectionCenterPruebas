@@ -539,6 +539,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                     child: SizedBox(
                       width: screenWidth - 200,
                       child: ElevatedButton(
+                        key:Key("delete_object"),
                         style: const ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(Colors.red),
                         ),
