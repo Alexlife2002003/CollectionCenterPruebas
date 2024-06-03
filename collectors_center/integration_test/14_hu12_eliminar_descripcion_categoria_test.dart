@@ -43,8 +43,8 @@ void main() {
     await tester.tap(find.byTooltip('Open navigation menu'));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Categorias')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Pez').last);
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.tap(find.text('Gatos').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('delete')));
     await tester.pumpAndSettle(const Duration(seconds: 2));
