@@ -52,24 +52,6 @@ void main() {
     await tester.tap(find.byKey(const Key('Categorias')));
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
-    // Añadir nueva categoría
-    await tester.tap(find.byKey(const Key('AddIcon')));
-    await tester.pumpAndSettle();
-
-    // Ingresar datos de categoría
-    await tester.enterText(
-        find.byKey(const Key('nombreCategoria')), "Categoria 1.1231421");
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-    await tester.enterText(find.byKey(const Key('descripcionCategoria')),
-        "Esta es a descripcion de la categoria Categoria 1.1231421");
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-
-    // Guardar categorpia nueva
-    FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-    await tester.tap(find.byKey(const Key('Guardar')));
-    await tester.pumpAndSettle(const Duration(seconds: 2));
-
     // Seleccionar categoría
     await tester.tap(find.text('Categoria 1.1231421').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
