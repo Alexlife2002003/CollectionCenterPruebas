@@ -21,7 +21,7 @@ void main() {
 
   // PRUEBAS //
   testWidgets(
-      'Eliminar descrición de artículo.',
+      'Eliminar descripción de artículo.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
