@@ -146,6 +146,7 @@ class _VerAmigosState extends State<VerAmigos> {
           actions: <Widget>[
             Center(
               child: ElevatedButton(
+                key: const Key('ok'),
                 onPressed: () {
                   userInput = "";
                   Navigator.of(context).pop();
