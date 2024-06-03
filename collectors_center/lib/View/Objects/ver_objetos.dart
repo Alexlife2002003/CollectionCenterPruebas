@@ -132,6 +132,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
               child: const Text('Cancelar'),
             ),
             TextButton(
+              key: const Key('confirm'),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
@@ -226,6 +227,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
+                          key: const Key('DeleteIcon'),
                           onPressed: () {
                             if (deleteActivated) {
                               setState(() {
@@ -351,6 +353,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                       )
                     else
                       Column(
+                       
                         children: <Widget>[
                           for (int i = 0; i < _objectList.length; i += 2)
                             _buildObjectRow(
@@ -373,29 +376,32 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
   }
 
   Widget _buildObjectRow(
-    MyObject object1,
-    MyObject? object2,
-    Key keyobject1,
-    Key keyobject2,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          _buildObjectCard(object1, keyobject1),
-          if (object2 != null) const SizedBox(width: 8),
-          if (object2 != null) _buildObjectCard(object2, keyobject2),
-          if (object2 == null)
-            Expanded(
-              child: Container(
-                color: peach,
-                height: 188, // Adjust the height as per the object card height
-              ),
+  MyObject object1,
+  MyObject? object2,
+  Key keyobject1,
+  Key keyobject2,
+) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        _buildObjectCard(object1, keyobject1),
+        if (object2 != null)
+          const SizedBox(width: 8),
+        if (object2 != null)
+          _buildObjectCard(object2, keyobject2),
+        if (object2 == null)
+          Expanded(
+            child: Container(
+              color: peach,
+              height: 188,  // Adjust the height as per the object card height
             ),
-        ],
-      ),
-    );
-  }
+          ),
+      ],
+    ),
+  );
+}
+
 
   Widget _buildObjectCard(MyObject object, Key key) {
     final String imageUrl = object.imageUrl;
@@ -437,6 +443,7 @@ class _VerObjectsCategoriaState extends State<VerObjectsCategoria> {
                         child: Stack(
                           children: [
                             Container(
+                             
                               decoration: const BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
