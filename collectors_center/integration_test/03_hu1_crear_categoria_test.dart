@@ -76,7 +76,7 @@ void main() {
   });
 
   testWidgets(
-      'Creación Creación de categoría con nombre mayor a 20 caracteres.',
+    'Creación de categoría con nombre mayor a 20 caracteres.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
