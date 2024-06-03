@@ -180,6 +180,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
               child: const Text('Cancelar'),
             ),
             TextButton(
+              key: const Key('delete_confirm'),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
@@ -514,6 +515,7 @@ class _EditarObjetosState extends State<EditarObjetos> {
                                       ),
                                       if (isEditing) // Only show delete icon when editing
                                         IconButton(
+                                          key: const Key('delete'),
                                           icon: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
