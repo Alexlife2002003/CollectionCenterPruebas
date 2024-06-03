@@ -87,7 +87,8 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     // Comprobar mensaje
-    expect(find.text('El nombre de la categoría ya existe'), findsOneWidget, reason: "'El nombre de la categoría ya existe' text not found");
+    expect(find.text('El nombre de la categoría ya existe'), findsOneWidget,
+        reason: "'El nombre de la categoría ya existe' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
@@ -133,7 +134,7 @@ void main() {
     // Click a editar
     await tester.tap(find.byKey(const Key('edit_name')));
     await tester.pumpAndSettle(Duration(seconds: 2));
-
+    await tester.pumpAndSettle();
     expect(find.byKey(const Key('Nombre')), findsOneWidget,
         reason: "Descripcion field not found");
     await tester.enterText(find.byKey(const Key('Nombre')), "GATOOOOOOOOOOO");
@@ -143,9 +144,11 @@ void main() {
 
     await tester.tap(find.byKey(const Key('edit_name')));
     await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.pumpAndSettle(Duration(seconds: 1));
 
     // Comprobar mensaje
-    expect(find.text('Se han guardado los cambios'), findsOneWidget, reason: "'Se han guardado los cambios' text not found");
+    expect(find.text('Se han guardado los cambios'), findsOneWidget,
+        reason: "'Se han guardado los cambios' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
