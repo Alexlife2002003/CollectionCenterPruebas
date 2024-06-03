@@ -20,7 +20,7 @@ void main() {
   });
 
   // PRUEBAS //
-  testWidgets('Eliminar categoría correctamente.', (WidgetTester tester) async {
+  testWidgets('Eliminar artículos correctamente.', (WidgetTester tester) async {
      await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
