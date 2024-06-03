@@ -162,7 +162,7 @@ void main() {
     await Future.delayed(const Duration(seconds: 5));
   });
   
-  testWidgets('Enviar solicitud de amistad a un amigo.',
+  testWidgets('Aceptar solicitud de amistad a un amigo.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,

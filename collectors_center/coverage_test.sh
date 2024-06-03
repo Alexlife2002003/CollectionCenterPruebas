@@ -4,15 +4,20 @@
 flutter test integration_test/01_hu0_0_login_registro_test.dart \
   integration_test/02_hu0_1_login_registro_test.dart \
   integration_test/03_hu1_crear_categoria_test.dart \
-  integration_test/04_hu3_agregar_articulo_test.dart \
-  integration_test/05_hu4_eliminar_articulo_test.dart \
-  integration_test/06_hu6_agregar_descripcion_articulo_test.dart \
-  integration_test/07_hu7_modificar_descripcion_articulo_test.dart \
-  integration_test/08_hu9_modificar_imagen_test.dart \
-  integration_test/09_hu10_agregar_descripcion_categoria_test.dart \
-  integration_test/10_hu12_eliminar_descripcion_categoria_test.dart \
-  integration_test/11_hu13_modificar_nombre_categoria_test.dart \
+  integration_test/04_hu2_eliminar_categoria_test.dart \
+  integration_test/05_hu3_agregar_articulo_test.dart \
+  integration_test/06_hu4_eliminar_articulo_test.dart \
+  integration_test/07_hu5_eliminar_varios_artiuculos_test.dart \
+  integration_test/08_hu6_agregar_descripcion_articulo_test.dart \
+  integration_test/09_hu7_modificar_descripcion_articulo_test.dart \
+  integration_test/10_hu8_eliminar_descripcion_articulo_test.dart \
+  integration_test/11_hu9_modificar_imagen_test.dart \
+  integration_test/12_hu10_agregar_descripcion_categoria_test.dart \
+  integration_test/13_hu11_modificar_descripcion_categoria_test.dart \
+  integration_test/14_hu12_eliminar_descripcion_categoria_test.dart \
+  integration_test/15_hu13_modificar_nombre_categoria_test.dart \
   --coverage
+
 
 # Check if coverage report is generated
 if [ ! -f coverage/lcov.info ]; then
