@@ -399,6 +399,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                     Expanded(
                       child: isEditing
                           ? TextFormField(
+                              key: const Key('Descripcion'),
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               maxLength: 300,
@@ -415,6 +416,7 @@ class _EditarCategoriaState extends State<EditarCategoria> {
                     Column(
                       children: [
                         IconButton(
+                          key: const Key('edit_description'),
                           icon: Icon(
                             isEditing ? Icons.check : Icons.edit,
                             color: Colors.green,
