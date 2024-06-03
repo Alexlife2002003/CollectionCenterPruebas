@@ -37,6 +37,7 @@ class _VerAmigosState extends State<VerAmigos> {
             style: TextStyle(color: myColor),
           ),
           content: TextField(
+            key: const Key('friend_name'),
             onChanged: (value) {
               setState(() {
                 userInput = value;
@@ -67,6 +68,7 @@ class _VerAmigosState extends State<VerAmigos> {
                   child: const Text('Cancelar'),
                 ),
                 ElevatedButton(
+                  key: const Key('confirm'),
                   onPressed: () {
                     sendSolicitud(userInput.trim()).then((int cumplido) {
                       Navigator.of(context).pop();
@@ -241,6 +243,7 @@ class _VerAmigosState extends State<VerAmigos> {
                           ),
                         ),
                         IconButton(
+                          key: const Key('add_friend'),
                           onPressed: () async {
                             bool internet = await conexionInternt(context);
                             if (internet) {

@@ -36,6 +36,7 @@ class _VerSolicitudesState extends State<VerSolicitudes> {
 
   @override
   Widget build(BuildContext context) {
+    
     void aceptar(String solicitud) async {
       bool internet = await conexionInternt(context);
       if (internet) {
@@ -153,6 +154,7 @@ class _VerSolicitudesState extends State<VerSolicitudes> {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         ElevatedButton(
+                                          key: const Key('confirm'),
                                           onPressed: () {
                                             aceptar(solicitud);
                                           },
@@ -169,6 +171,7 @@ class _VerSolicitudesState extends State<VerSolicitudes> {
                                           width: 25,
                                         ),
                                         ElevatedButton(
+                                          key: const Key('reject'),
                                           onPressed: () {
                                             rechazar(solicitud);
                                           },
