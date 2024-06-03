@@ -203,6 +203,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
               },
             ),
             ListTile(
+                key: const Key('Amigos'),
                 title: const Row(
                   children: [
                     Icon(Icons.person_add_alt_outlined,
@@ -223,6 +224,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                           builder: ((context) => const VerAmigos())));
                 }),
             ListTile(
+                key: const Key('Notificaciones'),
                 title: Row(
                   children: [
                     CustomBadge(
@@ -267,6 +269,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
                       border: Border.all(width: 2),
                     ),
                     child: const Center(
+                      key: const Key('logout'),
                       child: Text(
                         'Cerrar sesión',
                         style: TextStyle(
