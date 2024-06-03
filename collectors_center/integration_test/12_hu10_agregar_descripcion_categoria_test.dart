@@ -76,7 +76,7 @@ void main() {
             "'La descripción debe contener letras y tener al menos 15 caracteres' text not found");
 
     // Espera
-    await Future.delayed(const Duration(seconds: 60));
+    await Future.delayed(const Duration(seconds: 5));
   });
 
   testWidgets(
