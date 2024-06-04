@@ -224,9 +224,11 @@ Future<void> ingresarUsuario(
     Navigator.pop(context);
     return;
   }
+  ingresarUsuarioLogic(context, correo, password);
 }
 
-Future<void> ingresarUsuarioLogic(BuildContext context, String correo, String password)async{
+Future<void> ingresarUsuarioLogic(
+    BuildContext context, String correo, String password) async {
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: correo,

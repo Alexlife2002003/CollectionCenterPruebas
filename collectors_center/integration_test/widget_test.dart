@@ -43,7 +43,19 @@ void main() {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('Ingresar')));
-
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(Key('Articulos')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(Key('Categorias')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Collectors Center'));
+    await tester.pumpAndSettle(Duration(seconds: 20));
     // Ir a Categorias y añadir nueva categoría
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('Perfil')));

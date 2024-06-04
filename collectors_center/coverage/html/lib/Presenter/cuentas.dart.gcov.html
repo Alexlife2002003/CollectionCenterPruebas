@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-04 14:31:02</td>
+            <td class="headerValue">2024-06-04 16:15:16</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -277,75 +277,78 @@
 <a name="215"><span class="lineNum">     215 </span>            :     BuildContext context, String correo, String password) async {</a>
 <a name="216"><span class="lineNum">     216 </span><span class="lineCov">         15 :   bool internet = await conexionInternt(context);</span></a>
 <a name="217"><span class="lineNum">     217 </span><span class="lineCov">         15 :   if (internet == false) {</span></a>
-<a name="218"><span class="lineNum">     218 </span>            :     // coverage:ignore-line</a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineNoCov">          0 :     Navigator.pop(context);</span></a>
-<a name="220"><span class="lineNum">     220 </span>            :     return;</a>
-<a name="221"><span class="lineNum">     221 </span>            :   }</a>
-<a name="222"><span class="lineNum">     222 </span>            : </a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">         30 :   if (correo.isEmpty || password.isEmpty) {</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">          2 :     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">          1 :     Navigator.pop(context);</span></a>
-<a name="226"><span class="lineNum">     226 </span>            :     return;</a>
-<a name="227"><span class="lineNum">     227 </span>            :   }</a>
-<a name="228"><span class="lineNum">     228 </span>            : </a>
-<a name="229"><span class="lineNum">     229 </span>            :   try {</a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">         30 :     await FirebaseAuth.instance.signInWithEmailAndPassword(</span></a>
-<a name="231"><span class="lineNum">     231 </span>            :       email: correo,</a>
-<a name="232"><span class="lineNum">     232 </span>            :       password: password,</a>
-<a name="233"><span class="lineNum">     233 </span>            :     );</a>
-<a name="234"><span class="lineNum">     234 </span>            : </a>
-<a name="235"><span class="lineNum">     235 </span>            :     // Guardar el estado de autenticación en Shared Preferences</a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineCov">         15 :     final prefs = await SharedPreferences.getInstance();</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         15 :     prefs.setBool('isLoggedIn', true);</span></a>
-<a name="238"><span class="lineNum">     238 </span>            : </a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         15 :     Navigator.push(</span></a>
-<a name="240"><span class="lineNum">     240 </span>            :       context,</a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineCov">         45 :       MaterialPageRoute(builder: (context) =&gt; Bienvenido()),</span></a>
-<a name="242"><span class="lineNum">     242 </span>            :     );</a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineCov">          1 :   } on FirebaseAuthException catch (e) {</span></a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineCov">          2 :     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||</span></a>
-<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          2 :         e.code == 'user-not-found' ||</span></a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          2 :         e.code == 'wrong-password' ||</span></a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">          2 :         e.code == 'invalid-email' ||</span></a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineCov">          2 :         e.code == 'invalid-credential') {</span></a>
-<a name="249"><span class="lineNum">     249 </span><span class="lineCov">          1 :       showSnackbar(context,</span></a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineCov">          1 :           'La contraseña o el correo electrónico son incorrectos', red);</span></a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineCov">          1 :       Navigator.pop(context);</span></a>
-<a name="252"><span class="lineNum">     252 </span>            :     }else{</a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :       Navigator.pop(context);</span></a>
-<a name="254"><span class="lineNum">     254 </span>            :     }</a>
-<a name="255"><span class="lineNum">     255 </span>            :   }</a>
-<a name="256"><span class="lineNum">     256 </span>            : }</a>
-<a name="257"><span class="lineNum">     257 </span>            : </a>
-<a name="258"><span class="lineNum">     258 </span>            : // Método encargado de cerrar la sesión del usuario</a>
-<a name="259"><span class="lineNum">     259 </span><span class="lineCov">          1 : Future&lt;void&gt; cerrarSesion(BuildContext context) async {</span></a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineCov">          1 :   bool internet = await conexionInternt(context);</span></a>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :   if (internet == false) {</span></a>
-<a name="262"><span class="lineNum">     262 </span>            :     return;</a>
-<a name="263"><span class="lineNum">     263 </span>            :   }</a>
-<a name="264"><span class="lineNum">     264 </span>            :   try {</a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">          2 :     await FirebaseAuth.instance.signOut();</span></a>
-<a name="266"><span class="lineNum">     266 </span>            :     // Llama a la función para ir a la pantalla de inicio</a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">          2 :     Navigator.of(context).pushAndRemoveUntil(</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">          2 :       MaterialPageRoute(builder: (context) =&gt; const Inicio()),</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineCov">          1 :       (Route&lt;dynamic&gt; route) =&gt; false,</span></a>
-<a name="270"><span class="lineNum">     270 </span>            :     );</a>
-<a name="271"><span class="lineNum">     271 </span>            :   } catch (e) {</a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineNoCov">          0 :     showSnackbar(context, &quot;Error al cerrar la sesión&quot;, red);</span></a>
-<a name="273"><span class="lineNum">     273 </span>            :   }</a>
-<a name="274"><span class="lineNum">     274 </span>            : }</a>
-<a name="275"><span class="lineNum">     275 </span>            : </a>
-<a name="276"><span class="lineNum">     276 </span>            : //////////////////////////////////////</a>
-<a name="277"><span class="lineNum">     277 </span>            : // Operaciones de la base de datos  //</a>
-<a name="278"><span class="lineNum">     278 </span>            : //////////////////////////////////////</a>
-<a name="279"><span class="lineNum">     279 </span>            : </a>
-<a name="280"><span class="lineNum">     280 </span>            : //Crea la coleccion USERS con los datos del usuario</a>
-<a name="281"><span class="lineNum">     281 </span><span class="lineCov">          1 : void createUserDatabase(String uid, String usuario, String correo) {</span></a>
-<a name="282"><span class="lineNum">     282 </span><span class="lineCov">          1 :   final FirebaseFirestore firestore = FirebaseFirestore.instance;</span></a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineCov">          1 :   final CollectionReference usersDetails = firestore.collection('Users');</span></a>
-<a name="284"><span class="lineNum">     284 </span><span class="lineCov">          3 :   usersDetails.doc(uid).set({'User': usuario, 'Email': correo});</span></a>
-<a name="285"><span class="lineNum">     285 </span><span class="lineCov">          3 :   FirebaseAuth.instance.currentUser?.updateDisplayName(usuario);</span></a>
-<a name="286"><span class="lineNum">     286 </span>            : }</a>
+<a name="218"><span class="lineNum">     218 </span>            :     Navigator.pop(context);</a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineNoCov">          0 :     return;</span></a>
+<a name="220"><span class="lineNum">     220 </span>            :   }</a>
+<a name="221"><span class="lineNum">     221 </span>            : </a>
+<a name="222"><span class="lineNum">     222 </span>            :   if (correo.isEmpty || password.isEmpty) {</a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">         30 :     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">          2 :     Navigator.pop(context);</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">          1 :     return;</span></a>
+<a name="226"><span class="lineNum">     226 </span>            :   }</a>
+<a name="227"><span class="lineNum">     227 </span>            :   ingresarUsuarioLogic(context, correo, password);</a>
+<a name="228"><span class="lineNum">     228 </span>            : }</a>
+<a name="229"><span class="lineNum">     229 </span>            : </a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineCov">         30 : Future&lt;void&gt; ingresarUsuarioLogic(</span></a>
+<a name="231"><span class="lineNum">     231 </span>            :     BuildContext context, String correo, String password) async {</a>
+<a name="232"><span class="lineNum">     232 </span>            :   try {</a>
+<a name="233"><span class="lineNum">     233 </span>            :     await FirebaseAuth.instance.signInWithEmailAndPassword(</a>
+<a name="234"><span class="lineNum">     234 </span>            :       email: correo,</a>
+<a name="235"><span class="lineNum">     235 </span>            :       password: password,</a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">         15 :     );</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         15 : </span></a>
+<a name="238"><span class="lineNum">     238 </span>            :     // Guardar el estado de autenticación en Shared Preferences</a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         15 :     final prefs = await SharedPreferences.getInstance();</span></a>
+<a name="240"><span class="lineNum">     240 </span>            :     prefs.setBool('isLoggedIn', true);</a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">         45 : </span></a>
+<a name="242"><span class="lineNum">     242 </span>            :     Navigator.push(</a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">          1 :       context,</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineCov">          2 :       MaterialPageRoute(builder: (context) =&gt; Bienvenido()),</span></a>
+<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          2 :     );</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          2 :   } on FirebaseAuthException catch (e) {</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">          2 :     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">          2 :         e.code == 'user-not-found' ||</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineCov">          1 :         e.code == 'wrong-password' ||</span></a>
+<a name="250"><span class="lineNum">     250 </span><span class="lineCov">          1 :         e.code == 'invalid-email' ||</span></a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineCov">          1 :         e.code == 'invalid-credential') {</span></a>
+<a name="252"><span class="lineNum">     252 </span>            :       showSnackbar(context,</a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :           'La contraseña o el correo electrónico son incorrectos', red);</span></a>
+<a name="254"><span class="lineNum">     254 </span>            :       Navigator.pop(context);</a>
+<a name="255"><span class="lineNum">     255 </span>            :     } else {</a>
+<a name="256"><span class="lineNum">     256 </span>            :       Navigator.pop(context);</a>
+<a name="257"><span class="lineNum">     257 </span>            :     }</a>
+<a name="258"><span class="lineNum">     258 </span>            :   }</a>
+<a name="259"><span class="lineNum">     259 </span><span class="lineCov">          1 : }</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">          1 : </span></a>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 : // Método encargado de cerrar la sesión del usuario</span></a>
+<a name="262"><span class="lineNum">     262 </span>            : Future&lt;void&gt; cerrarSesion(BuildContext context) async {</a>
+<a name="263"><span class="lineNum">     263 </span>            :   bool internet = await conexionInternt(context);</a>
+<a name="264"><span class="lineNum">     264 </span>            :   if (internet == false) {</a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">          2 :     return;</span></a>
+<a name="266"><span class="lineNum">     266 </span>            :   }</a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">          2 :   try {</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">          2 :     await FirebaseAuth.instance.signOut();</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">          1 :     // Llama a la función para ir a la pantalla de inicio</span></a>
+<a name="270"><span class="lineNum">     270 </span>            :     Navigator.of(context).pushAndRemoveUntil(</a>
+<a name="271"><span class="lineNum">     271 </span>            :       MaterialPageRoute(builder: (context) =&gt; const Inicio()),</a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineNoCov">          0 :       (Route&lt;dynamic&gt; route) =&gt; false,</span></a>
+<a name="273"><span class="lineNum">     273 </span>            :     );</a>
+<a name="274"><span class="lineNum">     274 </span>            :   } catch (e) {</a>
+<a name="275"><span class="lineNum">     275 </span>            :     showSnackbar(context, &quot;Error al cerrar la sesión&quot;, red);</a>
+<a name="276"><span class="lineNum">     276 </span>            :   }</a>
+<a name="277"><span class="lineNum">     277 </span>            : }</a>
+<a name="278"><span class="lineNum">     278 </span>            : </a>
+<a name="279"><span class="lineNum">     279 </span>            : //////////////////////////////////////</a>
+<a name="280"><span class="lineNum">     280 </span>            : // Operaciones de la base de datos  //</a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">          1 : //////////////////////////////////////</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">          1 : </span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">          1 : //Crea la coleccion USERS con los datos del usuario</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">          3 : void createUserDatabase(String uid, String usuario, String correo) {</span></a>
+<a name="285"><span class="lineNum">     285 </span><span class="lineCov">          3 :   final FirebaseFirestore firestore = FirebaseFirestore.instance;</span></a>
+<a name="286"><span class="lineNum">     286 </span>            :   final CollectionReference usersDetails = firestore.collection('Users');</a>
+<a name="287"><span class="lineNum">     287 </span>            :   usersDetails.doc(uid).set({'User': usuario, 'Email': correo});</a>
+<a name="288"><span class="lineNum">     288 </span>            :   FirebaseAuth.instance.currentUser?.updateDisplayName(usuario);</a>
+<a name="289"><span class="lineNum">     289 </span>            : }</a>
 </pre>
       </td>
     </tr>

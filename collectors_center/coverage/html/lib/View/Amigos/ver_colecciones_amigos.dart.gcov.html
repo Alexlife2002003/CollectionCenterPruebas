@@ -31,13 +31,13 @@
             <td class="headerValue">combined_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">124</td>
-            <td class="headerCovTableEntry">169</td>
-            <td class="headerCovTableEntryLo">73.4 %</td>
+            <td class="headerCovTableEntry">125</td>
+            <td class="headerCovTableEntry">196</td>
+            <td class="headerCovTableEntryLo">63.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-04 14:28:01</td>
+            <td class="headerValue">2024-06-04 15:53:52</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -296,172 +296,175 @@
 <a name="234"><span class="lineNum">     234 </span><span class="lineCov">          2 :                                 _objectList[i],</span></a>
 <a name="235"><span class="lineNum">     235 </span><span class="lineCov">          4 :                                 i + 1 &lt; _objectList.length</span></a>
 <a name="236"><span class="lineNum">     236 </span><span class="lineNoCov">          0 :                                     ? _objectList[i + 1]</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">          5 :                                     : null,Key(i.toString()),Key((i+1).toString())),</span></a>
-<a name="238"><span class="lineNum">     238 </span>            :                         ],</a>
-<a name="239"><span class="lineNum">     239 </span>            :                       ),</a>
-<a name="240"><span class="lineNum">     240 </span>            :                   ],</a>
-<a name="241"><span class="lineNum">     241 </span>            :                 ),</a>
-<a name="242"><span class="lineNum">     242 </span>            :               ),</a>
-<a name="243"><span class="lineNum">     243 </span>            :             ],</a>
-<a name="244"><span class="lineNum">     244 </span>            :           ),</a>
-<a name="245"><span class="lineNum">     245 </span>            :         ),</a>
-<a name="246"><span class="lineNum">     246 </span>            :       ),</a>
-<a name="247"><span class="lineNum">     247 </span>            :     );</a>
-<a name="248"><span class="lineNum">     248 </span>            :   }</a>
-<a name="249"><span class="lineNum">     249 </span>            : </a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineCov">          1 :   Widget _buildObjectRow(MyObject object1, MyObject? object2, Key keyimage1, Key keyimage2) {</span></a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineCov">          1 :     final String imageUrl1 = object1.imageUrl;</span></a>
-<a name="252"><span class="lineNum">     252 </span><span class="lineNoCov">          0 :     final String? imageUrl2 = object2?.imageUrl;</span></a>
-<a name="253"><span class="lineNum">     253 </span>            : </a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineCov">          1 :     return Padding(</span></a>
-<a name="255"><span class="lineNum">     255 </span>            :       padding: const EdgeInsets.all(8.0),</a>
-<a name="256"><span class="lineNum">     256 </span><span class="lineCov">          1 :       child: Row(</span></a>
-<a name="257"><span class="lineNum">     257 </span><span class="lineCov">          1 :         children: [</span></a>
-<a name="258"><span class="lineNum">     258 </span><span class="lineCov">          1 :           Expanded(</span></a>
-<a name="259"><span class="lineNum">     259 </span><span class="lineCov">          1 :             child: Container(</span></a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineCov">          1 :               color: peach,</span></a>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :               child: Card(</span></a>
-<a name="262"><span class="lineNum">     262 </span>            :                 elevation: 3,</a>
-<a name="263"><span class="lineNum">     263 </span><span class="lineCov">          1 :                 child: Stack(</span></a>
-<a name="264"><span class="lineNum">     264 </span><span class="lineCov">          1 :                   children: [</span></a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">          1 :                     Container(</span></a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">          1 :                       color: peach,</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">          1 :                       child: FutureBuilder(</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">          4 :                         future: storage.ref().child(imageUrl1).getDownloadURL(),</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineCov">          1 :                         builder: (context, snapshot) {</span></a>
-<a name="270"><span class="lineNum">     270 </span><span class="lineCov">          2 :                           if (snapshot.connectionState ==</span></a>
-<a name="271"><span class="lineNum">     271 </span>            :                               ConnectionState.waiting) {</a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          1 :                             return CircularProgressIndicator(</span></a>
-<a name="273"><span class="lineNum">     273 </span><span class="lineCov">          1 :                               color: peach,</span></a>
-<a name="274"><span class="lineNum">     274 </span>            :                             );</a>
-<a name="275"><span class="lineNum">     275 </span><span class="lineCov">          1 :                           } else if (snapshot.hasError) {</span></a>
-<a name="276"><span class="lineNum">     276 </span>            :                             return const Text('Error loading image');</a>
-<a name="277"><span class="lineNum">     277 </span>            :                           } else {</a>
-<a name="278"><span class="lineNum">     278 </span><span class="lineCov">          2 :                             final imageUrl = snapshot.data.toString();</span></a>
-<a name="279"><span class="lineNum">     279 </span><span class="lineCov">          1 :                             return GestureDetector(</span></a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineCov">          1 :                               onTap: () {</span></a>
-<a name="281"><span class="lineNum">     281 </span><span class="lineCov">          1 :                                 Navigator.push(</span></a>
-<a name="282"><span class="lineNum">     282 </span>            :                                     context,</a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineCov">          1 :                                     MaterialPageRoute(</span></a>
-<a name="284"><span class="lineNum">     284 </span><span class="lineCov">          2 :                                         builder: (context) =&gt; VerObjetosAmigos(</span></a>
-<a name="285"><span class="lineNum">     285 </span>            :                                               url: imageUrl,</a>
-<a name="286"><span class="lineNum">     286 </span><span class="lineCov">          1 :                                               name: object1.name,</span></a>
-<a name="287"><span class="lineNum">     287 </span><span class="lineCov">          1 :                                               category: selectedCategory,</span></a>
-<a name="288"><span class="lineNum">     288 </span><span class="lineCov">          1 :                                               description: object1.description,</span></a>
-<a name="289"><span class="lineNum">     289 </span>            :                                             )));</a>
-<a name="290"><span class="lineNum">     290 </span>            :                               },</a>
-<a name="291"><span class="lineNum">     291 </span><span class="lineCov">          1 :                               child: Stack(</span></a>
-<a name="292"><span class="lineNum">     292 </span><span class="lineCov">          1 :                                 children: [</span></a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineCov">          1 :                                   Container(</span></a>
-<a name="294"><span class="lineNum">     294 </span>            :                                     decoration: const BoxDecoration(boxShadow: [</a>
-<a name="295"><span class="lineNum">     295 </span>            :                                       BoxShadow(</a>
-<a name="296"><span class="lineNum">     296 </span>            :                                           color: Colors.grey,</a>
-<a name="297"><span class="lineNum">     297 </span>            :                                           blurRadius: 2,</a>
-<a name="298"><span class="lineNum">     298 </span>            :                                           offset: Offset(2, 2))</a>
-<a name="299"><span class="lineNum">     299 </span>            :                                     ]),</a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineCov">          1 :                                     child: CachedNetworkImage(</span></a>
-<a name="301"><span class="lineNum">     301 </span>            :                                       key: keyimage1,</a>
-<a name="302"><span class="lineNum">     302 </span>            :                                       imageUrl: imageUrl,</a>
-<a name="303"><span class="lineNum">     303 </span>            :                                       fit: BoxFit.cover,</a>
-<a name="304"><span class="lineNum">     304 </span>            :                                       width: 188,</a>
-<a name="305"><span class="lineNum">     305 </span>            :                                       height: 188,</a>
-<a name="306"><span class="lineNum">     306 </span>            :                                     ),</a>
-<a name="307"><span class="lineNum">     307 </span>            :                                   ),</a>
-<a name="308"><span class="lineNum">     308 </span>            :                                 ],</a>
-<a name="309"><span class="lineNum">     309 </span>            :                               ),</a>
-<a name="310"><span class="lineNum">     310 </span>            :                             );</a>
-<a name="311"><span class="lineNum">     311 </span>            :                           }</a>
-<a name="312"><span class="lineNum">     312 </span>            :                         },</a>
-<a name="313"><span class="lineNum">     313 </span>            :                       ),</a>
-<a name="314"><span class="lineNum">     314 </span>            :                     ),</a>
-<a name="315"><span class="lineNum">     315 </span>            :                   ],</a>
-<a name="316"><span class="lineNum">     316 </span>            :                 ),</a>
-<a name="317"><span class="lineNum">     317 </span>            :               ),</a>
-<a name="318"><span class="lineNum">     318 </span>            :             ),</a>
-<a name="319"><span class="lineNum">     319 </span>            :           ),</a>
-<a name="320"><span class="lineNum">     320 </span>            :           if (imageUrl2 == null)</a>
-<a name="321"><span class="lineNum">     321 </span><span class="lineCov">          1 :             const SizedBox(</span></a>
-<a name="322"><span class="lineNum">     322 </span>            :               width: 8,</a>
-<a name="323"><span class="lineNum">     323 </span>            :             ),</a>
-<a name="324"><span class="lineNum">     324 </span>            :           if (imageUrl2 == null)</a>
-<a name="325"><span class="lineNum">     325 </span><span class="lineCov">          1 :             Container(</span></a>
-<a name="326"><span class="lineNum">     326 </span><span class="lineCov">          1 :               color: peach,</span></a>
-<a name="327"><span class="lineNum">     327 </span>            :               width: 188,</a>
-<a name="328"><span class="lineNum">     328 </span>            :               height: 188,</a>
-<a name="329"><span class="lineNum">     329 </span>            :             ),</a>
-<a name="330"><span class="lineNum">     330 </span><span class="lineNoCov">          0 :           if (imageUrl2 != null) const SizedBox(width: 8),</span></a>
-<a name="331"><span class="lineNum">     331 </span>            :           if (imageUrl2 != null)</a>
-<a name="332"><span class="lineNum">     332 </span><span class="lineNoCov">          0 :             Expanded(</span></a>
-<a name="333"><span class="lineNum">     333 </span><span class="lineNoCov">          0 :               child: Container(</span></a>
-<a name="334"><span class="lineNum">     334 </span><span class="lineNoCov">          0 :                 color: peach,</span></a>
-<a name="335"><span class="lineNum">     335 </span><span class="lineNoCov">          0 :                 child: Card(</span></a>
-<a name="336"><span class="lineNum">     336 </span>            :                   elevation: 3,</a>
-<a name="337"><span class="lineNum">     337 </span><span class="lineNoCov">          0 :                   child: Stack(</span></a>
-<a name="338"><span class="lineNum">     338 </span><span class="lineNoCov">          0 :                     children: [</span></a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineNoCov">          0 :                       Container(</span></a>
-<a name="340"><span class="lineNum">     340 </span><span class="lineNoCov">          0 :                         color: peach,</span></a>
-<a name="341"><span class="lineNum">     341 </span><span class="lineNoCov">          0 :                         child: FutureBuilder(</span></a>
-<a name="342"><span class="lineNum">     342 </span>            :                           future:</a>
-<a name="343"><span class="lineNum">     343 </span><span class="lineNoCov">          0 :                               storage.ref().child(imageUrl2).getDownloadURL(),</span></a>
-<a name="344"><span class="lineNum">     344 </span><span class="lineNoCov">          0 :                           builder: (context, snapshot) {</span></a>
-<a name="345"><span class="lineNum">     345 </span><span class="lineNoCov">          0 :                             if (snapshot.connectionState ==</span></a>
-<a name="346"><span class="lineNum">     346 </span>            :                                 ConnectionState.waiting) {</a>
-<a name="347"><span class="lineNum">     347 </span><span class="lineNoCov">          0 :                               return CircularProgressIndicator(</span></a>
-<a name="348"><span class="lineNum">     348 </span><span class="lineNoCov">          0 :                                 color: peach,</span></a>
-<a name="349"><span class="lineNum">     349 </span>            :                               );</a>
-<a name="350"><span class="lineNum">     350 </span><span class="lineNoCov">          0 :                             } else if (snapshot.hasError) {</span></a>
-<a name="351"><span class="lineNum">     351 </span>            :                               return const Text('Error loading image');</a>
-<a name="352"><span class="lineNum">     352 </span>            :                             } else {</a>
-<a name="353"><span class="lineNum">     353 </span><span class="lineNoCov">          0 :                               final imageUrl = snapshot.data.toString();</span></a>
-<a name="354"><span class="lineNum">     354 </span><span class="lineNoCov">          0 :                               return GestureDetector(</span></a>
-<a name="355"><span class="lineNum">     355 </span><span class="lineNoCov">          0 :                                 onTap: () {</span></a>
-<a name="356"><span class="lineNum">     356 </span><span class="lineNoCov">          0 :                                   Navigator.push(</span></a>
-<a name="357"><span class="lineNum">     357 </span>            :                                       context,</a>
-<a name="358"><span class="lineNum">     358 </span><span class="lineNoCov">          0 :                                       MaterialPageRoute(</span></a>
-<a name="359"><span class="lineNum">     359 </span><span class="lineNoCov">          0 :                                           builder: (context) =&gt;</span></a>
-<a name="360"><span class="lineNum">     360 </span><span class="lineNoCov">          0 :                                               VerObjetosAmigos(</span></a>
-<a name="361"><span class="lineNum">     361 </span>            :                                                 url: imageUrl,</a>
-<a name="362"><span class="lineNum">     362 </span><span class="lineNoCov">          0 :                                                 name: object2!.name,</span></a>
-<a name="363"><span class="lineNum">     363 </span><span class="lineNoCov">          0 :                                                 category: selectedCategory,</span></a>
-<a name="364"><span class="lineNum">     364 </span>            :                                                 description:</a>
-<a name="365"><span class="lineNum">     365 </span><span class="lineNoCov">          0 :                                                     object2.description,</span></a>
-<a name="366"><span class="lineNum">     366 </span>            :                                               )));</a>
-<a name="367"><span class="lineNum">     367 </span>            :                                 },</a>
-<a name="368"><span class="lineNum">     368 </span><span class="lineNoCov">          0 :                                 child: Stack(</span></a>
-<a name="369"><span class="lineNum">     369 </span><span class="lineNoCov">          0 :                                   children: [</span></a>
-<a name="370"><span class="lineNum">     370 </span><span class="lineNoCov">          0 :                                     Container(</span></a>
-<a name="371"><span class="lineNum">     371 </span>            :                                       decoration: const BoxDecoration(</a>
-<a name="372"><span class="lineNum">     372 </span>            :                                           boxShadow: [</a>
-<a name="373"><span class="lineNum">     373 </span>            :                                             BoxShadow(</a>
-<a name="374"><span class="lineNum">     374 </span>            :                                                 color: Colors.grey,</a>
-<a name="375"><span class="lineNum">     375 </span>            :                                                 blurRadius: 2,</a>
-<a name="376"><span class="lineNum">     376 </span>            :                                                 offset: Offset(2, 2))</a>
-<a name="377"><span class="lineNum">     377 </span>            :                                           ]),</a>
-<a name="378"><span class="lineNum">     378 </span><span class="lineNoCov">          0 :                                       child: CachedNetworkImage(</span></a>
-<a name="379"><span class="lineNum">     379 </span>            :                                         key: keyimage2,</a>
-<a name="380"><span class="lineNum">     380 </span>            :                                         imageUrl: imageUrl,</a>
-<a name="381"><span class="lineNum">     381 </span>            :                                         fit: BoxFit.cover,</a>
-<a name="382"><span class="lineNum">     382 </span>            :                                         width: 188,</a>
-<a name="383"><span class="lineNum">     383 </span>            :                                         height: 188,</a>
-<a name="384"><span class="lineNum">     384 </span>            :                                       ),</a>
-<a name="385"><span class="lineNum">     385 </span>            :                                     ),</a>
-<a name="386"><span class="lineNum">     386 </span>            :                                   ],</a>
-<a name="387"><span class="lineNum">     387 </span>            :                                 ),</a>
-<a name="388"><span class="lineNum">     388 </span>            :                               );</a>
-<a name="389"><span class="lineNum">     389 </span>            :                             }</a>
-<a name="390"><span class="lineNum">     390 </span>            :                           },</a>
-<a name="391"><span class="lineNum">     391 </span>            :                         ),</a>
-<a name="392"><span class="lineNum">     392 </span>            :                       ),</a>
-<a name="393"><span class="lineNum">     393 </span>            :                     ],</a>
-<a name="394"><span class="lineNum">     394 </span>            :                   ),</a>
-<a name="395"><span class="lineNum">     395 </span>            :                 ),</a>
-<a name="396"><span class="lineNum">     396 </span>            :               ),</a>
-<a name="397"><span class="lineNum">     397 </span>            :             ),</a>
-<a name="398"><span class="lineNum">     398 </span>            :         ],</a>
-<a name="399"><span class="lineNum">     399 </span>            :       ),</a>
-<a name="400"><span class="lineNum">     400 </span>            :     );</a>
-<a name="401"><span class="lineNum">     401 </span>            :   }</a>
-<a name="402"><span class="lineNum">     402 </span>            : }</a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineNoCov">          0 :                                     : null,</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">          2 :                                 Key(i.toString()),</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">          3 :                                 Key((i + 1).toString())),</span></a>
+<a name="240"><span class="lineNum">     240 </span>            :                         ],</a>
+<a name="241"><span class="lineNum">     241 </span>            :                       ),</a>
+<a name="242"><span class="lineNum">     242 </span>            :                   ],</a>
+<a name="243"><span class="lineNum">     243 </span>            :                 ),</a>
+<a name="244"><span class="lineNum">     244 </span>            :               ),</a>
+<a name="245"><span class="lineNum">     245 </span>            :             ],</a>
+<a name="246"><span class="lineNum">     246 </span>            :           ),</a>
+<a name="247"><span class="lineNum">     247 </span>            :         ),</a>
+<a name="248"><span class="lineNum">     248 </span>            :       ),</a>
+<a name="249"><span class="lineNum">     249 </span>            :     );</a>
+<a name="250"><span class="lineNum">     250 </span><span class="lineNoCov">          0 :   }</span></a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineNoCov">          0 : </span></a>
+<a name="252"><span class="lineNum">     252 </span><span class="lineCov">          1 :   Widget _buildObjectRow(</span></a>
+<a name="253"><span class="lineNum">     253 </span>            :       MyObject object1, MyObject? object2, Key keyimage1, Key keyimage2) {</a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">          1 :     final String imageUrl1 = object1.imageUrl;</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineNoCov">          0 :     final String? imageUrl2 = object2?.imageUrl;</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineNoCov">          0 : </span></a>
+<a name="257"><span class="lineNum">     257 </span><span class="lineCov">          1 :     return Padding(</span></a>
+<a name="258"><span class="lineNum">     258 </span><span class="lineNoCov">          0 :       padding: const EdgeInsets.all(8.0),</span></a>
+<a name="259"><span class="lineNum">     259 </span><span class="lineCov">          1 :       child: Row(</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">          1 :         children: [</span></a>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :           Expanded(</span></a>
+<a name="262"><span class="lineNum">     262 </span><span class="lineCov">          1 :             child: Container(</span></a>
+<a name="263"><span class="lineNum">     263 </span><span class="lineCov">          1 :               color: peach,</span></a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">          1 :               child: Card(</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineNoCov">          0 :                 elevation: 3,</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">          1 :                 child: Stack(</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">          1 :                   children: [</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">          1 :                     Container(</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">          1 :                       color: peach,</span></a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">          1 :                       child: FutureBuilder(</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">          4 :                         future: storage.ref().child(imageUrl1).getDownloadURL(),</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          1 :                         builder: (context, snapshot) {</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">          2 :                           if (snapshot.connectionState ==</span></a>
+<a name="274"><span class="lineNum">     274 </span>            :                               ConnectionState.waiting) {</a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">          1 :                             return CircularProgressIndicator(</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">          1 :                               color: peach,</span></a>
+<a name="277"><span class="lineNum">     277 </span>            :                             );</a>
+<a name="278"><span class="lineNum">     278 </span><span class="lineCov">          1 :                           } else if (snapshot.hasError) {</span></a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineNoCov">          0 :                             return const Text('Error loading image');</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineNoCov">          0 :                           } else {</span></a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">          2 :                             final imageUrl = snapshot.data.toString();</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">          1 :                             return GestureDetector(</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">          1 :                               onTap: () {</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">          1 :                                 Navigator.push(</span></a>
+<a name="285"><span class="lineNum">     285 </span>            :                                     context,</a>
+<a name="286"><span class="lineNum">     286 </span><span class="lineCov">          1 :                                     MaterialPageRoute(</span></a>
+<a name="287"><span class="lineNum">     287 </span><span class="lineCov">          2 :                                         builder: (context) =&gt; VerObjetosAmigos(</span></a>
+<a name="288"><span class="lineNum">     288 </span><span class="lineNoCov">          0 :                                               url: imageUrl,</span></a>
+<a name="289"><span class="lineNum">     289 </span><span class="lineCov">          1 :                                               name: object1.name,</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">          1 :                                               category: selectedCategory,</span></a>
+<a name="291"><span class="lineNum">     291 </span><span class="lineCov">          1 :                                               description: object1.description,</span></a>
+<a name="292"><span class="lineNum">     292 </span><span class="lineNoCov">          0 :                                             )));</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineNoCov">          0 :                               },</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">          1 :                               child: Stack(</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">          1 :                                 children: [</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">          1 :                                   Container(</span></a>
+<a name="297"><span class="lineNum">     297 </span>            :                                     decoration: const BoxDecoration(boxShadow: [</a>
+<a name="298"><span class="lineNum">     298 </span>            :                                       BoxShadow(</a>
+<a name="299"><span class="lineNum">     299 </span>            :                                           color: Colors.grey,</a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineNoCov">          0 :                                           blurRadius: 2,</span></a>
+<a name="301"><span class="lineNum">     301 </span>            :                                           offset: Offset(2, 2))</a>
+<a name="302"><span class="lineNum">     302 </span>            :                                     ]),</a>
+<a name="303"><span class="lineNum">     303 </span><span class="lineCov">          1 :                                     child: CachedNetworkImage(</span></a>
+<a name="304"><span class="lineNum">     304 </span>            :                                       key: keyimage1,</a>
+<a name="305"><span class="lineNum">     305 </span>            :                                       imageUrl: imageUrl,</a>
+<a name="306"><span class="lineNum">     306 </span>            :                                       fit: BoxFit.cover,</a>
+<a name="307"><span class="lineNum">     307 </span>            :                                       width: 188,</a>
+<a name="308"><span class="lineNum">     308 </span>            :                                       height: 188,</a>
+<a name="309"><span class="lineNum">     309 </span>            :                                     ),</a>
+<a name="310"><span class="lineNum">     310 </span>            :                                   ),</a>
+<a name="311"><span class="lineNum">     311 </span>            :                                 ],</a>
+<a name="312"><span class="lineNum">     312 </span>            :                               ),</a>
+<a name="313"><span class="lineNum">     313 </span>            :                             );</a>
+<a name="314"><span class="lineNum">     314 </span>            :                           }</a>
+<a name="315"><span class="lineNum">     315 </span>            :                         },</a>
+<a name="316"><span class="lineNum">     316 </span>            :                       ),</a>
+<a name="317"><span class="lineNum">     317 </span>            :                     ),</a>
+<a name="318"><span class="lineNum">     318 </span>            :                   ],</a>
+<a name="319"><span class="lineNum">     319 </span>            :                 ),</a>
+<a name="320"><span class="lineNum">     320 </span>            :               ),</a>
+<a name="321"><span class="lineNum">     321 </span><span class="lineNoCov">          0 :             ),</span></a>
+<a name="322"><span class="lineNum">     322 </span>            :           ),</a>
+<a name="323"><span class="lineNum">     323 </span>            :           if (imageUrl2 == null)</a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">          1 :             const SizedBox(</span></a>
+<a name="325"><span class="lineNum">     325 </span><span class="lineNoCov">          0 :               width: 8,</span></a>
+<a name="326"><span class="lineNum">     326 </span><span class="lineNoCov">          0 :             ),</span></a>
+<a name="327"><span class="lineNum">     327 </span>            :           if (imageUrl2 == null)</a>
+<a name="328"><span class="lineNum">     328 </span><span class="lineCov">          1 :             Container(</span></a>
+<a name="329"><span class="lineNum">     329 </span><span class="lineCov">          1 :               color: peach,</span></a>
+<a name="330"><span class="lineNum">     330 </span><span class="lineNoCov">          0 :               width: 188,</span></a>
+<a name="331"><span class="lineNum">     331 </span>            :               height: 188,</a>
+<a name="332"><span class="lineNum">     332 </span><span class="lineNoCov">          0 :             ),</span></a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineNoCov">          0 :           if (imageUrl2 != null) const SizedBox(width: 8),</span></a>
+<a name="334"><span class="lineNum">     334 </span><span class="lineNoCov">          0 :           if (imageUrl2 != null)</span></a>
+<a name="335"><span class="lineNum">     335 </span><span class="lineNoCov">          0 :             Expanded(</span></a>
+<a name="336"><span class="lineNum">     336 </span><span class="lineNoCov">          0 :               child: Container(</span></a>
+<a name="337"><span class="lineNum">     337 </span><span class="lineNoCov">          0 :                 color: peach,</span></a>
+<a name="338"><span class="lineNum">     338 </span><span class="lineNoCov">          0 :                 child: Card(</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineNoCov">          0 :                   elevation: 3,</span></a>
+<a name="340"><span class="lineNum">     340 </span><span class="lineNoCov">          0 :                   child: Stack(</span></a>
+<a name="341"><span class="lineNum">     341 </span><span class="lineNoCov">          0 :                     children: [</span></a>
+<a name="342"><span class="lineNum">     342 </span><span class="lineNoCov">          0 :                       Container(</span></a>
+<a name="343"><span class="lineNum">     343 </span><span class="lineNoCov">          0 :                         color: peach,</span></a>
+<a name="344"><span class="lineNum">     344 </span><span class="lineNoCov">          0 :                         child: FutureBuilder(</span></a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineNoCov">          0 :                           future:</span></a>
+<a name="346"><span class="lineNum">     346 </span><span class="lineNoCov">          0 :                               storage.ref().child(imageUrl2).getDownloadURL(),</span></a>
+<a name="347"><span class="lineNum">     347 </span><span class="lineNoCov">          0 :                           builder: (context, snapshot) {</span></a>
+<a name="348"><span class="lineNum">     348 </span><span class="lineNoCov">          0 :                             if (snapshot.connectionState ==</span></a>
+<a name="349"><span class="lineNum">     349 </span>            :                                 ConnectionState.waiting) {</a>
+<a name="350"><span class="lineNum">     350 </span><span class="lineNoCov">          0 :                               return CircularProgressIndicator(</span></a>
+<a name="351"><span class="lineNum">     351 </span><span class="lineNoCov">          0 :                                 color: peach,</span></a>
+<a name="352"><span class="lineNum">     352 </span>            :                               );</a>
+<a name="353"><span class="lineNum">     353 </span><span class="lineNoCov">          0 :                             } else if (snapshot.hasError) {</span></a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineNoCov">          0 :                               return const Text('Error loading image');</span></a>
+<a name="355"><span class="lineNum">     355 </span><span class="lineNoCov">          0 :                             } else {</span></a>
+<a name="356"><span class="lineNum">     356 </span><span class="lineNoCov">          0 :                               final imageUrl = snapshot.data.toString();</span></a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineNoCov">          0 :                               return GestureDetector(</span></a>
+<a name="358"><span class="lineNum">     358 </span><span class="lineNoCov">          0 :                                 onTap: () {</span></a>
+<a name="359"><span class="lineNum">     359 </span><span class="lineNoCov">          0 :                                   Navigator.push(</span></a>
+<a name="360"><span class="lineNum">     360 </span><span class="lineNoCov">          0 :                                       context,</span></a>
+<a name="361"><span class="lineNum">     361 </span><span class="lineNoCov">          0 :                                       MaterialPageRoute(</span></a>
+<a name="362"><span class="lineNum">     362 </span><span class="lineNoCov">          0 :                                           builder: (context) =&gt;</span></a>
+<a name="363"><span class="lineNum">     363 </span><span class="lineNoCov">          0 :                                               VerObjetosAmigos(</span></a>
+<a name="364"><span class="lineNum">     364 </span>            :                                                 url: imageUrl,</a>
+<a name="365"><span class="lineNum">     365 </span><span class="lineNoCov">          0 :                                                 name: object2!.name,</span></a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineNoCov">          0 :                                                 category: selectedCategory,</span></a>
+<a name="367"><span class="lineNum">     367 </span>            :                                                 description:</a>
+<a name="368"><span class="lineNum">     368 </span><span class="lineNoCov">          0 :                                                     object2.description,</span></a>
+<a name="369"><span class="lineNum">     369 </span><span class="lineNoCov">          0 :                                               )));</span></a>
+<a name="370"><span class="lineNum">     370 </span><span class="lineNoCov">          0 :                                 },</span></a>
+<a name="371"><span class="lineNum">     371 </span><span class="lineNoCov">          0 :                                 child: Stack(</span></a>
+<a name="372"><span class="lineNum">     372 </span><span class="lineNoCov">          0 :                                   children: [</span></a>
+<a name="373"><span class="lineNum">     373 </span><span class="lineNoCov">          0 :                                     Container(</span></a>
+<a name="374"><span class="lineNum">     374 </span>            :                                       decoration: const BoxDecoration(</a>
+<a name="375"><span class="lineNum">     375 </span>            :                                           boxShadow: [</a>
+<a name="376"><span class="lineNum">     376 </span>            :                                             BoxShadow(</a>
+<a name="377"><span class="lineNum">     377 </span>            :                                                 color: Colors.grey,</a>
+<a name="378"><span class="lineNum">     378 </span><span class="lineNoCov">          0 :                                                 blurRadius: 2,</span></a>
+<a name="379"><span class="lineNum">     379 </span>            :                                                 offset: Offset(2, 2))</a>
+<a name="380"><span class="lineNum">     380 </span>            :                                           ]),</a>
+<a name="381"><span class="lineNum">     381 </span><span class="lineNoCov">          0 :                                       child: CachedNetworkImage(</span></a>
+<a name="382"><span class="lineNum">     382 </span>            :                                         key: keyimage2,</a>
+<a name="383"><span class="lineNum">     383 </span>            :                                         imageUrl: imageUrl,</a>
+<a name="384"><span class="lineNum">     384 </span>            :                                         fit: BoxFit.cover,</a>
+<a name="385"><span class="lineNum">     385 </span>            :                                         width: 188,</a>
+<a name="386"><span class="lineNum">     386 </span>            :                                         height: 188,</a>
+<a name="387"><span class="lineNum">     387 </span>            :                                       ),</a>
+<a name="388"><span class="lineNum">     388 </span>            :                                     ),</a>
+<a name="389"><span class="lineNum">     389 </span>            :                                   ],</a>
+<a name="390"><span class="lineNum">     390 </span>            :                                 ),</a>
+<a name="391"><span class="lineNum">     391 </span>            :                               );</a>
+<a name="392"><span class="lineNum">     392 </span>            :                             }</a>
+<a name="393"><span class="lineNum">     393 </span>            :                           },</a>
+<a name="394"><span class="lineNum">     394 </span>            :                         ),</a>
+<a name="395"><span class="lineNum">     395 </span>            :                       ),</a>
+<a name="396"><span class="lineNum">     396 </span>            :                     ],</a>
+<a name="397"><span class="lineNum">     397 </span>            :                   ),</a>
+<a name="398"><span class="lineNum">     398 </span>            :                 ),</a>
+<a name="399"><span class="lineNum">     399 </span>            :               ),</a>
+<a name="400"><span class="lineNum">     400 </span>            :             ),</a>
+<a name="401"><span class="lineNum">     401 </span>            :         ],</a>
+<a name="402"><span class="lineNum">     402 </span>            :       ),</a>
+<a name="403"><span class="lineNum">     403 </span>            :     );</a>
+<a name="404"><span class="lineNum">     404 </span>            :   }</a>
+<a name="405"><span class="lineNum">     405 </span>            : }</a>
 </pre>
       </td>
     </tr>

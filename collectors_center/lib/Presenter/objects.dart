@@ -214,8 +214,6 @@ bool validarDescripcionDos(
 
 bool validarDescripcionUna(
     BuildContext context, String descripcion, String name, String categoria) {
-  final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
-
   if (name == categoria) {
     showSnackbar(context, "No puede llevar el nombre de la categoría", red);
     return false;
