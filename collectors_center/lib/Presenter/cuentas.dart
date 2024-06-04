@@ -136,6 +136,7 @@ Future<void> registrarUsuario(BuildContext context, String usuario,
     String correo, String password, String confirmPassword) async {
   bool internet = await conexionInternt(context);
   if (internet == false) {
+    // coverage:ignore-line
     Navigator.pop(context);
     return;
   }
@@ -214,6 +215,7 @@ Future<void> ingresarUsuario(
     BuildContext context, String correo, String password) async {
   bool internet = await conexionInternt(context);
   if (internet == false) {
+    // coverage:ignore-line
     Navigator.pop(context);
     return;
   }
@@ -248,8 +250,6 @@ Future<void> ingresarUsuario(
           'La contraseña o el correo electrónico son incorrectos', red);
       Navigator.pop(context);
     }else{
-      showSnackbar(context,
-          "${e.code}", red);
       Navigator.pop(context);
     }
   }

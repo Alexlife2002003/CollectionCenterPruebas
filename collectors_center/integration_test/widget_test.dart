@@ -19,7 +19,7 @@ void main() {
     );
   });
 
-  testWidgets('Registro duplicado correo', (WidgetTester tester) async {
+  testWidgets('Revisar widgets', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
@@ -29,38 +29,73 @@ void main() {
     expect(find.byKey(const Key('Acceder')), findsOneWidget);
 
     // Tap the 'Acceder' button
-    await tester.tap(find.byKey(const Key('Registrarse')));
+    await tester.tap(find.byKey(const Key('Acceder')));
     await tester.pumpAndSettle();
 
     // Verify the email and password fields are present
-    expect(find.byKey(const Key('NombreUsuario')), findsOneWidget,
+    expect(find.byKey(const Key('email')), findsOneWidget,
         reason: "Email field not found");
-    expect(find.byKey(const Key('CorreoRegistro')), findsOneWidget,
-        reason: "Email field not found");
-    expect(find.byKey(const Key('pass')), findsOneWidget,
+    expect(find.byKey(const Key('password')), findsOneWidget,
         reason: "Password field not found");
-    expect(find.byKey(const Key('confPass')), findsOneWidget,
-        reason: "Email field not found");
 
     // Enter email and password
-    await tester.enterText(find.byKey(const Key('NombreUsuario')), "ximena");
-    await tester.enterText(
-        find.byKey(const Key('CorreoRegistro')), "korra@gmail.com");
-    await tester.enterText(find.byKey(const Key('pass')), "Test123!");
+    await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
+    await tester.enterText(find.byKey(const Key('password')), "Test123!");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('confPass')), "Test123!");
-    await tester.pumpAndSettle();
-    FocusManager.instance.primaryFocus?.unfocus();
-    await tester.pumpAndSettle(const Duration(seconds: 1));
-    await tester.tap(find.byKey(const Key('Registrar')));
+    await tester.tap(find.byKey(const Key('Ingresar')));
     await tester.pumpAndSettle();
     // Verify 'Bienvenido' text is displayed
-    expect(find.text('Correo ya se encuentra en uso'), findsOneWidget,
-        reason: "'Correo ya se encuentra en uso' text not found");
-
+    expect(find.text('Bienvenido'), findsOneWidget,
+        reason: "'Bienvenido' text not found");
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    expect(find.text('Collectors Center'), findsOneWidget,
+        reason: "Inicio field not found");
+    expect(find.text('Inicio'), findsOneWidget,
+        reason: "Inicio field not found");
+    expect(find.byKey(const Key('Articulos')), findsOneWidget,
+        reason: 'Articulos field not found');
+    expect(find.byKey(const Key('Categorias')), findsOneWidget,
+        reason: 'Categorias field not found');
+    expect(find.text('Amigos'), findsOneWidget,
+        reason: "Amigos field not found");
+    expect(find.text('Notificaciones'), findsOneWidget,
+        reason: "Notificaciones field not found");
+    expect(find.byKey(const Key('logout')), findsOneWidget,
+        reason: 'Cerrar sesion field not found');
+    await tester.tap(find.byKey(const Key('Articulos')));
+    await tester.pumpAndSettle();
+    expect(find.text('Artículos'), findsOneWidget,
+        reason: "Artiuclos field not found");
+    expect(find.byKey(const Key('DeleteIcon')), findsOneWidget,
+        reason: "DeleteIcon field not found");
+    expect(find.byKey(const Key('AddIcon')), findsOneWidget,
+        reason: "AddIcon field not found");
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('Categorias')));
+    await tester.pumpAndSettle();
+    expect(find.text('Categorías'), findsOneWidget,
+        reason: "Categorias field not found");
+    expect(find.byKey(const Key('AddIcon')), findsOneWidget,
+        reason: "AddIcon field not found");
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Amigos'));
+    await tester.pumpAndSettle();
+    expect(find.text('Amigos'), findsOneWidget,
+        reason: "Amigos field not found");
+    expect(find.byKey(const Key('add_friend')), findsOneWidget,
+        reason: "addFriend field not found");
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Notificaciones'));
+    await tester.pumpAndSettle();
+    expect(find.text('Notificaciones'), findsOneWidget,
+        reason: "Notificaciones field not found");
     await Future.delayed(const Duration(seconds: 5));
   });
-
 }

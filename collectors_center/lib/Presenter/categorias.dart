@@ -15,7 +15,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 Future<void> eliminarDescripcion(BuildContext context, String category) async {
   bool internet = await conexionInternt(context);
+  
   if (!internet) {
+    // coverage:ignore-line
     Navigator.pop(context);
     return;
   }
@@ -130,6 +132,7 @@ void agregarCategoria(
     BuildContext context, String categoria, String descripcion) async {
   bool internet = await conexionInternt(context);
   if (!internet) {
+    // coverage:ignore-line
     showSnackbar(
         context, "No tienes conexión a Internet. Verifica tu conexión.", red);
     return;

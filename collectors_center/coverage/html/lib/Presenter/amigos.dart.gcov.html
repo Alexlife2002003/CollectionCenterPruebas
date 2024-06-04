@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">20</td>
             <td class="headerCovTableEntry">137</td>
-            <td class="headerCovTableEntryLo">7.3 %</td>
+            <td class="headerCovTableEntryLo">14.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-02 23:47:20</td>
+            <td class="headerValue">2024-06-03 19:21:41</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -271,19 +271,19 @@
 <a name="209"><span class="lineNum">     209 </span>            :   });</a>
 <a name="210"><span class="lineNum">     210 </span>            : }</a>
 <a name="211"><span class="lineNum">     211 </span>            : </a>
-<a name="212"><span class="lineNum">     212 </span><span class="lineCov">         10 : Future&lt;List&lt;String&gt;&gt; obtenerSolicitudes() async {</span></a>
-<a name="213"><span class="lineNum">     213 </span><span class="lineCov">         10 :   List&lt;String&gt; solicitudes = [];</span></a>
+<a name="212"><span class="lineNum">     212 </span><span class="lineCov">         15 : Future&lt;List&lt;String&gt;&gt; obtenerSolicitudes() async {</span></a>
+<a name="213"><span class="lineNum">     213 </span><span class="lineCov">         15 :   List&lt;String&gt; solicitudes = [];</span></a>
 <a name="214"><span class="lineNum">     214 </span>            :   try {</a>
-<a name="215"><span class="lineNum">     215 </span><span class="lineCov">         20 :     User? user = FirebaseAuth.instance.currentUser;</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineCov">         30 :     User? user = FirebaseAuth.instance.currentUser;</span></a>
 <a name="216"><span class="lineNum">     216 </span>            :     if (user != null) {</a>
-<a name="217"><span class="lineNum">     217 </span><span class="lineCov">         10 :       QuerySnapshot querySnapshot = await FirebaseFirestore.instance</span></a>
-<a name="218"><span class="lineNum">     218 </span><span class="lineCov">         10 :           .collection('Users')</span></a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">         20 :           .doc(user.uid)</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">         10 :           .collection('Requests')</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">         10 :           .orderBy('timestamp', descending: false)</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">         10 :           .get();</span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineCov">         15 :       QuerySnapshot querySnapshot = await FirebaseFirestore.instance</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">         15 :           .collection('Users')</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">         30 :           .doc(user.uid)</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">         15 :           .collection('Requests')</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">         15 :           .orderBy('timestamp', descending: false)</span></a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">         15 :           .get();</span></a>
 <a name="223"><span class="lineNum">     223 </span>            : </a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">         10 :       for (QueryDocumentSnapshot document in querySnapshot.docs) {</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">         15 :       for (QueryDocumentSnapshot document in querySnapshot.docs) {</span></a>
 <a name="225"><span class="lineNum">     225 </span><span class="lineNoCov">          0 :         String userRequest = document['user_request'] as String;</span></a>
 <a name="226"><span class="lineNum">     226 </span>            : </a>
 <a name="227"><span class="lineNum">     227 </span><span class="lineNoCov">          0 :         solicitudes.add(userRequest);</span></a>
@@ -295,19 +295,19 @@
 <a name="233"><span class="lineNum">     233 </span>            :   return solicitudes;</a>
 <a name="234"><span class="lineNum">     234 </span>            : }</a>
 <a name="235"><span class="lineNum">     235 </span>            : </a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineNoCov">          0 : Future&lt;List&lt;String&gt;&gt; obtenerAceptados() async {</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineNoCov">          0 :   List&lt;String&gt; solicitudes = [];</span></a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">          1 : Future&lt;List&lt;String&gt;&gt; obtenerAceptados() async {</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">          1 :   List&lt;String&gt; solicitudes = [];</span></a>
 <a name="238"><span class="lineNum">     238 </span>            :   try {</a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineNoCov">          0 :     User? user = FirebaseAuth.instance.currentUser;</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">          2 :     User? user = FirebaseAuth.instance.currentUser;</span></a>
 <a name="240"><span class="lineNum">     240 </span>            :     if (user != null) {</a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineNoCov">          0 :       QuerySnapshot querySnapshot = await FirebaseFirestore.instance</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineNoCov">          0 :           .collection('Users')</span></a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineNoCov">          0 :           .doc(user.uid)</span></a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineNoCov">          0 :           .collection('Accepted')</span></a>
-<a name="245"><span class="lineNum">     245 </span><span class="lineNoCov">          0 :           .orderBy('timestamp', descending: false)</span></a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineNoCov">          0 :           .get();</span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">          1 :       QuerySnapshot querySnapshot = await FirebaseFirestore.instance</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">          1 :           .collection('Users')</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">          2 :           .doc(user.uid)</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineCov">          1 :           .collection('Accepted')</span></a>
+<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          1 :           .orderBy('timestamp', descending: false)</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          1 :           .get();</span></a>
 <a name="247"><span class="lineNum">     247 </span>            : </a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineNoCov">          0 :       for (QueryDocumentSnapshot document in querySnapshot.docs) {</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">          1 :       for (QueryDocumentSnapshot document in querySnapshot.docs) {</span></a>
 <a name="249"><span class="lineNum">     249 </span><span class="lineNoCov">          0 :         String userRequest = document['user_accepted'] as String;</span></a>
 <a name="250"><span class="lineNum">     250 </span>            : </a>
 <a name="251"><span class="lineNum">     251 </span><span class="lineNoCov">          0 :         solicitudes.add(userRequest);</span></a>

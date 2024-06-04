@@ -16,6 +16,7 @@ flutter test integration_test/01_hu0_0_login_registro_test.dart \
   integration_test/13_hu11_modificar_descripcion_categoria_test.dart \
   integration_test/14_hu12_eliminar_descripcion_categoria_test.dart \
   integration_test/15_hu13_modificar_nombre_categoria_test.dart \
+  integration_test/widget_test.dart \
   --coverage
 
 

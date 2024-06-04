@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-02 23:47:20</td>
+            <td class="headerValue">2024-06-03 19:21:41</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -272,33 +272,33 @@
 <a name="210"><span class="lineNum">     210 </span>            : }</a>
 <a name="211"><span class="lineNum">     211 </span>            : </a>
 <a name="212"><span class="lineNum">     212 </span>            : // Funcion encargada de ingresar a la sesión del usuario que ya creó anteriormente</a>
-<a name="213"><span class="lineNum">     213 </span><span class="lineCov">         10 : Future&lt;void&gt; ingresarUsuario(</span></a>
+<a name="213"><span class="lineNum">     213 </span><span class="lineCov">         15 : Future&lt;void&gt; ingresarUsuario(</span></a>
 <a name="214"><span class="lineNum">     214 </span>            :     BuildContext context, String correo, String password) async {</a>
-<a name="215"><span class="lineNum">     215 </span><span class="lineCov">         10 :   bool internet = await conexionInternt(context);</span></a>
-<a name="216"><span class="lineNum">     216 </span><span class="lineCov">         10 :   if (internet == false) {</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineCov">         15 :   bool internet = await conexionInternt(context);</span></a>
+<a name="216"><span class="lineNum">     216 </span><span class="lineCov">         15 :   if (internet == false) {</span></a>
 <a name="217"><span class="lineNum">     217 </span><span class="lineNoCov">          0 :     Navigator.pop(context);</span></a>
 <a name="218"><span class="lineNum">     218 </span>            :     return;</a>
 <a name="219"><span class="lineNum">     219 </span>            :   }</a>
 <a name="220"><span class="lineNum">     220 </span>            : </a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">         20 :   if (correo.isEmpty || password.isEmpty) {</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">         30 :   if (correo.isEmpty || password.isEmpty) {</span></a>
 <a name="222"><span class="lineNum">     222 </span><span class="lineCov">          2 :     showSnackbar(context, 'Ingresa tu correo electrónico y contraseña.', red);</span></a>
 <a name="223"><span class="lineNum">     223 </span><span class="lineCov">          1 :     Navigator.pop(context);</span></a>
 <a name="224"><span class="lineNum">     224 </span>            :     return;</a>
 <a name="225"><span class="lineNum">     225 </span>            :   }</a>
 <a name="226"><span class="lineNum">     226 </span>            : </a>
 <a name="227"><span class="lineNum">     227 </span>            :   try {</a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">         20 :     await FirebaseAuth.instance.signInWithEmailAndPassword(</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineCov">         30 :     await FirebaseAuth.instance.signInWithEmailAndPassword(</span></a>
 <a name="229"><span class="lineNum">     229 </span>            :       email: correo,</a>
 <a name="230"><span class="lineNum">     230 </span>            :       password: password,</a>
 <a name="231"><span class="lineNum">     231 </span>            :     );</a>
 <a name="232"><span class="lineNum">     232 </span>            : </a>
 <a name="233"><span class="lineNum">     233 </span>            :     // Guardar el estado de autenticación en Shared Preferences</a>
-<a name="234"><span class="lineNum">     234 </span><span class="lineCov">         10 :     final prefs = await SharedPreferences.getInstance();</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">         10 :     prefs.setBool('isLoggedIn', true);</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineCov">         15 :     final prefs = await SharedPreferences.getInstance();</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">         15 :     prefs.setBool('isLoggedIn', true);</span></a>
 <a name="236"><span class="lineNum">     236 </span>            : </a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         10 :     Navigator.push(</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         15 :     Navigator.push(</span></a>
 <a name="238"><span class="lineNum">     238 </span>            :       context,</a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         30 :       MaterialPageRoute(builder: (context) =&gt; Bienvenido()),</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         45 :       MaterialPageRoute(builder: (context) =&gt; Bienvenido()),</span></a>
 <a name="240"><span class="lineNum">     240 </span>            :     );</a>
 <a name="241"><span class="lineNum">     241 </span><span class="lineCov">          1 :   } on FirebaseAuthException catch (e) {</span></a>
 <a name="242"><span class="lineNum">     242 </span><span class="lineCov">          2 :     if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||</span></a>

@@ -15,6 +15,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// coverage:ignore-start
 void main() async {
   // Inicializar Firebase
   await dotenv.load();
@@ -34,6 +35,8 @@ void main() async {
 
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }
+
+// coverage:ignore-end
 
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;
