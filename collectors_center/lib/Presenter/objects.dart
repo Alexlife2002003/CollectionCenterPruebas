@@ -174,7 +174,8 @@ void agregarObjeto(
   if (!internet) return;
 
   if (!validarNombre(context, name)) return;
-  if (!validarDescripcion(context, descripcion, name, categoria)) return;
+  if (!validarDescripcionUna(context, descripcion, name, categoria)) return;
+  if (!validarDescripcionDos(context, descripcion, name, categoria)) return;
 
   agregarObjetoLogic(
       context, url, name, descripcion, categoria, mensajeExito, mensajeError);
@@ -188,7 +189,30 @@ bool validarNombre(BuildContext context, String name) {
   return true;
 }
 
-bool validarDescripcion(
+bool validarDescripcionDos(
+    BuildContext context, String descripcion, String name, String categoria) {
+  final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
+  if (descripcion.isNotEmpty && descripcion.length < 10) {
+    showSnackbar(
+        context, "La descripción debe contener al menos 10 caracteres", red);
+    return false;
+  }
+
+  if (descripcion.length > 300) {
+    showSnackbar(
+        context, "La descripción no puede exceder los 300 caracteres", red);
+    return false;
+  }
+
+  if (!containsLetter && descripcion.isNotEmpty) {
+    showSnackbar(context, "La descripción debe contener letras", red);
+    return false;
+  }
+
+  return true;
+}
+
+bool validarDescripcionUna(
     BuildContext context, String descripcion, String name, String categoria) {
   final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
 
@@ -205,23 +229,6 @@ bool validarDescripcion(
   if (descripcion == categoria) {
     showSnackbar(context,
         "Descripción no puede ser igual al nombre de la categoría", red);
-    return false;
-  }
-
-  if (descripcion.isNotEmpty && descripcion.length < 10) {
-    showSnackbar(
-        context, "La descripción debe contener al menos 10 caracteres", red);
-    return false;
-  }
-
-  if (descripcion.length > 300) {
-    showSnackbar(
-        context, "La descripción no puede exceder los 300 caracteres", red);
-    return false;
-  }
-
-  if (!containsLetter && descripcion.isNotEmpty) {
-    showSnackbar(context, "La descripción debe contener letras", red);
     return false;
   }
 

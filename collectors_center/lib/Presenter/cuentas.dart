@@ -215,7 +215,6 @@ Future<void> ingresarUsuario(
     BuildContext context, String correo, String password) async {
   bool internet = await conexionInternt(context);
   if (internet == false) {
-    // coverage:ignore-line
     Navigator.pop(context);
     return;
   }
@@ -225,7 +224,9 @@ Future<void> ingresarUsuario(
     Navigator.pop(context);
     return;
   }
+}
 
+Future<void> ingresarUsuarioLogic(BuildContext context, String correo, String password)async{
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: correo,
