@@ -20,8 +20,7 @@ void main() {
   });
 
   // PRUEBAS
-  testWidgets('Rechazar solicitud de amistad.',
-      (WidgetTester tester) async {
+  testWidgets('Rechazar solicitud de amistad.', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
@@ -72,14 +71,14 @@ void main() {
     // Confirmar envio de solicitud
     await tester.tap(find.byKey(const Key('confirm')));
     await tester.pumpAndSettle();
-    
+
     // Esperar a que la pantalla cambie
     for (int i = 0; i < 10; i++) {
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pumpAndSettle();
     }
 
-    // Confirmar mensaje de envio    
+    // Confirmar mensaje de envio
     await tester.tap(find.byKey(const Key('ok')));
     await tester.pumpAndSettle();
 
@@ -93,13 +92,13 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('logout')));
     await tester.pumpAndSettle();
-    
+
     // Esperar a que la pantalla cambie
     for (int i = 0; i < 10; i++) {
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pumpAndSettle();
     }
-    
+
     // Acceder
     expect(find.byKey(const Key('Acceder')), findsOneWidget);
     await tester.tap(find.byKey(const Key('Acceder')));
@@ -136,14 +135,14 @@ void main() {
 
     await tester.pump(Duration(seconds: 5));
     expect(find.text('Amigo2'), findsNothing,
-    reason: "'No se puede enviar solicitud porque ya es tu amigo' text found, but it should not be");
+        reason:
+            "'No se puede enviar solicitud porque ya es tu amigo' text found, but it should not be");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
   });
 
-  testWidgets('Aceptar solicitud de amistad.',
-      (WidgetTester tester) async {
+  testWidgets('Aceptar solicitud de amistad.', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
@@ -194,14 +193,14 @@ void main() {
     // Confirmar envio de solicitud
     await tester.tap(find.byKey(const Key('confirm')));
     await tester.pumpAndSettle();
-    
+
     // Esperar a que la pantalla cambie
     for (int i = 0; i < 10; i++) {
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pumpAndSettle();
     }
 
-    // Confirmar mensaje de envio    
+    // Confirmar mensaje de envio
     await tester.tap(find.byKey(const Key('ok')));
     await tester.pumpAndSettle();
 
@@ -215,13 +214,13 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('logout')));
     await tester.pumpAndSettle();
-    
+
     // Esperar a que la pantalla cambie
     for (int i = 0; i < 10; i++) {
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pumpAndSettle();
     }
-    
+
     // Acceder
     expect(find.byKey(const Key('Acceder')), findsOneWidget);
     await tester.tap(find.byKey(const Key('Acceder')));
@@ -258,7 +257,8 @@ void main() {
 
     await tester.pump(Duration(seconds: 5));
     expect(find.text('Amigo2'), findsNothing,
-    reason: "'No se puede enviar solicitud porque ya es tu amigo' text found, but it should not be");
+        reason:
+            "'No se puede enviar solicitud porque ya es tu amigo' text found, but it should not be");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));

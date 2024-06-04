@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - lib/View/Objects/editar_objetos.dart</title>
+  <title>LCOV - filtered_coverage.info - lib/View/Objects/editar_objetos.dart</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">filtered_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">217</td>
+            <td class="headerCovTableEntry">222</td>
             <td class="headerCovTableEntry">241</td>
-            <td class="headerCovTableEntryHi">90.0 %</td>
+            <td class="headerCovTableEntryHi">92.1 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-03 19:21:41</td>
+            <td class="headerValue">2024-06-04 14:31:02</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -174,9 +174,9 @@
 <a name="112"><span class="lineNum">     112 </span><span class="lineCov">          6 :     if (!isDescripcionValid(context, descripcion)) {</span></a>
 <a name="113"><span class="lineNum">     113 </span>            :       return;</a>
 <a name="114"><span class="lineNum">     114 </span>            :     }</a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">          6 :     if (descripcion.length &lt; 10 &amp;&amp; descripcion.isNotEmpty) {</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineNoCov">          0 :       showSnackbar(context,</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineNoCov">          0 :           &quot;Descripción debe contener mínimo 10 caracteres si no es vacia&quot;, red);</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">          8 :     if (descripcion.length &lt; 10 &amp;&amp; descripcion.isNotEmpty) {</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">          2 :       showSnackbar(context,</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">          1 :           &quot;Descripción debe contener mínimo 10 caracteres si no es vacia&quot;, red);</span></a>
 <a name="118"><span class="lineNum">     118 </span>            :       return;</a>
 <a name="119"><span class="lineNum">     119 </span>            :     }</a>
 <a name="120"><span class="lineNum">     120 </span>            : </a>
@@ -207,8 +207,8 @@
 <a name="145"><span class="lineNum">     145 </span>            :     }</a>
 <a name="146"><span class="lineNum">     146 </span>            : </a>
 <a name="147"><span class="lineNum">     147 </span><span class="lineCov">          6 :     if (descripcion.trim() == name) {</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineNoCov">          0 :       showSnackbar(context,</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineNoCov">          0 :           &quot;La descripción no puede ser igual al nombre del artículo&quot;, red);</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">          1 :       showSnackbar(context,</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">          1 :           &quot;La descripción no puede ser igual al nombre del artículo&quot;, red);</span></a>
 <a name="150"><span class="lineNum">     150 </span>            :       return false;</a>
 <a name="151"><span class="lineNum">     151 </span>            :     }</a>
 <a name="152"><span class="lineNum">     152 </span>            : </a>
@@ -359,7 +359,7 @@
 <a name="297"><span class="lineNum">     297 </span><span class="lineCov">          1 :       showDialog(</span></a>
 <a name="298"><span class="lineNum">     298 </span><span class="lineCov">          1 :         context: context,</span></a>
 <a name="299"><span class="lineNum">     299 </span>            :         barrierDismissible: false,</a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineNoCov">          0 :         builder: (BuildContext context) {</span></a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">          1 :         builder: (BuildContext context) {</span></a>
 <a name="301"><span class="lineNum">     301 </span>            :           return const Center(</a>
 <a name="302"><span class="lineNum">     302 </span>            :             child: CircularProgressIndicator(),</a>
 <a name="303"><span class="lineNum">     303 </span>            :           );</a>

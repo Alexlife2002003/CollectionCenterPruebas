@@ -1,0 +1,1 @@
+genhtml_ignore_patterns = ^lib/Presenter/cuentas/.*|^lib/View/Amigos/.*

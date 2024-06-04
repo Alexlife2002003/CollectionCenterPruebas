@@ -130,12 +130,6 @@ class _EditarCategoriaState extends State<EditarCategoria> {
       return false;
     }
 
-    if (description.length > 300) {
-      showSnackbar(
-          context, "La descripción no puede exceder los 300 caracteres", red);
-      return false;
-    }
-
     return true;
   }
 

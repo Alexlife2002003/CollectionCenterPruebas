@@ -60,6 +60,7 @@ class _AppWithDrawerState extends State<AppWithDrawer> {
         iconTheme: IconThemeData(color: brown),
         actions: [
           IconButton(
+            key: Key('Perfil'),
             onPressed: () {
               if (widget.currentPage != "Perfil") {
                 Navigator.of(context).push(

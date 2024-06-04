@@ -36,7 +36,6 @@ class _VerSolicitudesState extends State<VerSolicitudes> {
 
   @override
   Widget build(BuildContext context) {
-    
     void aceptar(String solicitud) async {
       bool internet = await conexionInternt(context);
       if (internet) {

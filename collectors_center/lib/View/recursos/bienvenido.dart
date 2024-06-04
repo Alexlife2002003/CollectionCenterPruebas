@@ -28,9 +28,7 @@ class Bienvenido extends StatelessWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (result) {
-     
-      },
+      onPopInvoked: (result) {},
       child: AppWithDrawer(
         currentPage: "Bienvenido",
         content: Container(

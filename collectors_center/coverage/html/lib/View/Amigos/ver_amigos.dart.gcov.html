@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - lib/View/Amigos/ver_amigos.dart</title>
+  <title>LCOV - combined_coverage.info - lib/View/Amigos/ver_amigos.dart</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">combined_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">28</td>
-            <td class="headerCovTableEntry">125</td>
-            <td class="headerCovTableEntryLo">22.4 %</td>
+            <td class="headerCovTableEntry">47</td>
+            <td class="headerCovTableEntry">126</td>
+            <td class="headerCovTableEntryLo">37.3 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-03 19:21:41</td>
+            <td class="headerValue">2024-06-04 14:28:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -329,85 +329,86 @@
 <a name="267"><span class="lineNum">     267 </span><span class="lineCov">          1 :               Expanded(</span></a>
 <a name="268"><span class="lineNum">     268 </span><span class="lineCov">          1 :                 child: ListView.builder(</span></a>
 <a name="269"><span class="lineNum">     269 </span><span class="lineCov">          2 :                   itemCount: amigos.length,</span></a>
-<a name="270"><span class="lineNum">     270 </span><span class="lineNoCov">          0 :                   itemBuilder: (context, index) {</span></a>
-<a name="271"><span class="lineNum">     271 </span><span class="lineNoCov">          0 :                     final solicitud = amigos[index];</span></a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineNoCov">          0 :                     return GestureDetector(</span></a>
-<a name="273"><span class="lineNum">     273 </span><span class="lineNoCov">          0 :                       onTap: () async {</span></a>
-<a name="274"><span class="lineNum">     274 </span><span class="lineNoCov">          0 :                         bool internet = await conexionInternt(context);</span></a>
-<a name="275"><span class="lineNum">     275 </span>            :                         if (internet) {</a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineNoCov">          0 :                           Navigator.push(</span></a>
-<a name="277"><span class="lineNum">     277 </span>            :                               context,</a>
-<a name="278"><span class="lineNum">     278 </span><span class="lineNoCov">          0 :                               MaterialPageRoute(</span></a>
-<a name="279"><span class="lineNum">     279 </span><span class="lineNoCov">          0 :                                   builder: ((context) =&gt;</span></a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineNoCov">          0 :                                       VerColeccionesAmigos(amigo: solicitud))));</span></a>
-<a name="281"><span class="lineNum">     281 </span>            :                         }</a>
-<a name="282"><span class="lineNum">     282 </span>            :                       },</a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineNoCov">          0 :                       child: Container(</span></a>
-<a name="284"><span class="lineNum">     284 </span>            :                         margin: const EdgeInsets.all(12),</a>
-<a name="285"><span class="lineNum">     285 </span><span class="lineNoCov">          0 :                         decoration: BoxDecoration(</span></a>
-<a name="286"><span class="lineNum">     286 </span>            :                           boxShadow: const [</a>
-<a name="287"><span class="lineNum">     287 </span>            :                             BoxShadow(</a>
-<a name="288"><span class="lineNum">     288 </span>            :                               color: Colors.grey,</a>
-<a name="289"><span class="lineNum">     289 </span>            :                               blurRadius: 2,</a>
-<a name="290"><span class="lineNum">     290 </span>            :                               offset: Offset(2, 2),</a>
-<a name="291"><span class="lineNum">     291 </span>            :                             ),</a>
-<a name="292"><span class="lineNum">     292 </span>            :                           ],</a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineNoCov">          0 :                           color: myColor,</span></a>
-<a name="294"><span class="lineNum">     294 </span><span class="lineNoCov">          0 :                           borderRadius: BorderRadius.circular(16),</span></a>
-<a name="295"><span class="lineNum">     295 </span>            :                         ),</a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineNoCov">          0 :                         child: Row(</span></a>
-<a name="297"><span class="lineNum">     297 </span>            :                           crossAxisAlignment: CrossAxisAlignment.center,</a>
-<a name="298"><span class="lineNum">     298 </span><span class="lineNoCov">          0 :                           children: [</span></a>
-<a name="299"><span class="lineNum">     299 </span>            :                             const SizedBox(width: 20),</a>
-<a name="300"><span class="lineNum">     300 </span>            :                             const Icon(</a>
-<a name="301"><span class="lineNum">     301 </span>            :                               Icons.person,</a>
-<a name="302"><span class="lineNum">     302 </span>            :                               size: 50,</a>
-<a name="303"><span class="lineNum">     303 </span>            :                             ),</a>
-<a name="304"><span class="lineNum">     304 </span>            :                             const SizedBox(width: 20),</a>
-<a name="305"><span class="lineNum">     305 </span><span class="lineNoCov">          0 :                             Column(</span></a>
-<a name="306"><span class="lineNum">     306 </span>            :                               crossAxisAlignment: CrossAxisAlignment.start,</a>
-<a name="307"><span class="lineNum">     307 </span><span class="lineNoCov">          0 :                               children: [</span></a>
-<a name="308"><span class="lineNum">     308 </span>            :                                 const SizedBox(</a>
-<a name="309"><span class="lineNum">     309 </span>            :                                   height: 10,</a>
-<a name="310"><span class="lineNum">     310 </span>            :                                 ),</a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineNoCov">          0 :                                 Text(</span></a>
-<a name="312"><span class="lineNum">     312 </span>            :                                   solicitud,</a>
-<a name="313"><span class="lineNum">     313 </span>            :                                   style: const TextStyle(</a>
-<a name="314"><span class="lineNum">     314 </span>            :                                     fontSize: 22,</a>
-<a name="315"><span class="lineNum">     315 </span>            :                                     fontWeight: FontWeight.bold,</a>
-<a name="316"><span class="lineNum">     316 </span>            :                                   ),</a>
-<a name="317"><span class="lineNum">     317 </span>            :                                   textAlign: TextAlign.left,</a>
-<a name="318"><span class="lineNum">     318 </span>            :                                 ),</a>
-<a name="319"><span class="lineNum">     319 </span>            :                                 const Text(&quot;\nColecciones&quot;),</a>
-<a name="320"><span class="lineNum">     320 </span>            :                                 const SizedBox(</a>
-<a name="321"><span class="lineNum">     321 </span>            :                                   height: 30,</a>
-<a name="322"><span class="lineNum">     322 </span>            :                                 ),</a>
-<a name="323"><span class="lineNum">     323 </span>            :                               ],</a>
-<a name="324"><span class="lineNum">     324 </span>            :                             ),</a>
-<a name="325"><span class="lineNum">     325 </span>            :                             const Expanded(</a>
-<a name="326"><span class="lineNum">     326 </span>            :                               child: SizedBox(),</a>
-<a name="327"><span class="lineNum">     327 </span>            :                             ),</a>
-<a name="328"><span class="lineNum">     328 </span>            :                             const Icon(</a>
-<a name="329"><span class="lineNum">     329 </span>            :                               Icons.visibility_outlined,</a>
-<a name="330"><span class="lineNum">     330 </span>            :                               size: 40,</a>
-<a name="331"><span class="lineNum">     331 </span>            :                             ),</a>
-<a name="332"><span class="lineNum">     332 </span>            :                             const SizedBox(</a>
-<a name="333"><span class="lineNum">     333 </span>            :                               width: 20,</a>
-<a name="334"><span class="lineNum">     334 </span>            :                             )</a>
-<a name="335"><span class="lineNum">     335 </span>            :                           ],</a>
-<a name="336"><span class="lineNum">     336 </span>            :                         ),</a>
-<a name="337"><span class="lineNum">     337 </span>            :                       ),</a>
-<a name="338"><span class="lineNum">     338 </span>            :                     );</a>
-<a name="339"><span class="lineNum">     339 </span>            :                   },</a>
-<a name="340"><span class="lineNum">     340 </span>            :                 ),</a>
-<a name="341"><span class="lineNum">     341 </span>            :               ),</a>
-<a name="342"><span class="lineNum">     342 </span>            :             ],</a>
-<a name="343"><span class="lineNum">     343 </span>            :           ),</a>
-<a name="344"><span class="lineNum">     344 </span>            :         ),</a>
-<a name="345"><span class="lineNum">     345 </span>            :       ),</a>
-<a name="346"><span class="lineNum">     346 </span>            :     );</a>
-<a name="347"><span class="lineNum">     347 </span>            :   }</a>
-<a name="348"><span class="lineNum">     348 </span>            : }</a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">          1 :                   itemBuilder: (context, index) {</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">          2 :                     final solicitud = amigos[index];</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          1 :                     return GestureDetector(</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">          2 :                       key: Key('$index'),</span></a>
+<a name="274"><span class="lineNum">     274 </span><span class="lineCov">          1 :                       onTap: () async {</span></a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">          1 :                         bool internet = await conexionInternt(context);</span></a>
+<a name="276"><span class="lineNum">     276 </span>            :                         if (internet) {</a>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">          1 :                           Navigator.push(</span></a>
+<a name="278"><span class="lineNum">     278 </span>            :                               context,</a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineCov">          1 :                               MaterialPageRoute(</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">          1 :                                   builder: ((context) =&gt;</span></a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">          1 :                                       VerColeccionesAmigos(amigo: solicitud))));</span></a>
+<a name="282"><span class="lineNum">     282 </span>            :                         }</a>
+<a name="283"><span class="lineNum">     283 </span>            :                       },</a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">          1 :                       child: Container(</span></a>
+<a name="285"><span class="lineNum">     285 </span>            :                         margin: const EdgeInsets.all(12),</a>
+<a name="286"><span class="lineNum">     286 </span><span class="lineCov">          1 :                         decoration: BoxDecoration(</span></a>
+<a name="287"><span class="lineNum">     287 </span>            :                           boxShadow: const [</a>
+<a name="288"><span class="lineNum">     288 </span>            :                             BoxShadow(</a>
+<a name="289"><span class="lineNum">     289 </span>            :                               color: Colors.grey,</a>
+<a name="290"><span class="lineNum">     290 </span>            :                               blurRadius: 2,</a>
+<a name="291"><span class="lineNum">     291 </span>            :                               offset: Offset(2, 2),</a>
+<a name="292"><span class="lineNum">     292 </span>            :                             ),</a>
+<a name="293"><span class="lineNum">     293 </span>            :                           ],</a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">          1 :                           color: myColor,</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">          1 :                           borderRadius: BorderRadius.circular(16),</span></a>
+<a name="296"><span class="lineNum">     296 </span>            :                         ),</a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">          1 :                         child: Row(</span></a>
+<a name="298"><span class="lineNum">     298 </span>            :                           crossAxisAlignment: CrossAxisAlignment.center,</a>
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">          1 :                           children: [</span></a>
+<a name="300"><span class="lineNum">     300 </span>            :                             const SizedBox(width: 20),</a>
+<a name="301"><span class="lineNum">     301 </span>            :                             const Icon(</a>
+<a name="302"><span class="lineNum">     302 </span>            :                               Icons.person,</a>
+<a name="303"><span class="lineNum">     303 </span>            :                               size: 50,</a>
+<a name="304"><span class="lineNum">     304 </span>            :                             ),</a>
+<a name="305"><span class="lineNum">     305 </span>            :                             const SizedBox(width: 20),</a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">          1 :                             Column(</span></a>
+<a name="307"><span class="lineNum">     307 </span>            :                               crossAxisAlignment: CrossAxisAlignment.start,</a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">          1 :                               children: [</span></a>
+<a name="309"><span class="lineNum">     309 </span>            :                                 const SizedBox(</a>
+<a name="310"><span class="lineNum">     310 </span>            :                                   height: 10,</a>
+<a name="311"><span class="lineNum">     311 </span>            :                                 ),</a>
+<a name="312"><span class="lineNum">     312 </span><span class="lineCov">          1 :                                 Text(</span></a>
+<a name="313"><span class="lineNum">     313 </span>            :                                   solicitud,</a>
+<a name="314"><span class="lineNum">     314 </span>            :                                   style: const TextStyle(</a>
+<a name="315"><span class="lineNum">     315 </span>            :                                     fontSize: 22,</a>
+<a name="316"><span class="lineNum">     316 </span>            :                                     fontWeight: FontWeight.bold,</a>
+<a name="317"><span class="lineNum">     317 </span>            :                                   ),</a>
+<a name="318"><span class="lineNum">     318 </span>            :                                   textAlign: TextAlign.left,</a>
+<a name="319"><span class="lineNum">     319 </span>            :                                 ),</a>
+<a name="320"><span class="lineNum">     320 </span>            :                                 const Text(&quot;\nColecciones&quot;),</a>
+<a name="321"><span class="lineNum">     321 </span>            :                                 const SizedBox(</a>
+<a name="322"><span class="lineNum">     322 </span>            :                                   height: 30,</a>
+<a name="323"><span class="lineNum">     323 </span>            :                                 ),</a>
+<a name="324"><span class="lineNum">     324 </span>            :                               ],</a>
+<a name="325"><span class="lineNum">     325 </span>            :                             ),</a>
+<a name="326"><span class="lineNum">     326 </span>            :                             const Expanded(</a>
+<a name="327"><span class="lineNum">     327 </span>            :                               child: SizedBox(),</a>
+<a name="328"><span class="lineNum">     328 </span>            :                             ),</a>
+<a name="329"><span class="lineNum">     329 </span>            :                             const Icon(</a>
+<a name="330"><span class="lineNum">     330 </span>            :                               Icons.visibility_outlined,</a>
+<a name="331"><span class="lineNum">     331 </span>            :                               size: 40,</a>
+<a name="332"><span class="lineNum">     332 </span>            :                             ),</a>
+<a name="333"><span class="lineNum">     333 </span>            :                             const SizedBox(</a>
+<a name="334"><span class="lineNum">     334 </span>            :                               width: 20,</a>
+<a name="335"><span class="lineNum">     335 </span>            :                             )</a>
+<a name="336"><span class="lineNum">     336 </span>            :                           ],</a>
+<a name="337"><span class="lineNum">     337 </span>            :                         ),</a>
+<a name="338"><span class="lineNum">     338 </span>            :                       ),</a>
+<a name="339"><span class="lineNum">     339 </span>            :                     );</a>
+<a name="340"><span class="lineNum">     340 </span>            :                   },</a>
+<a name="341"><span class="lineNum">     341 </span>            :                 ),</a>
+<a name="342"><span class="lineNum">     342 </span>            :               ),</a>
+<a name="343"><span class="lineNum">     343 </span>            :             ],</a>
+<a name="344"><span class="lineNum">     344 </span>            :           ),</a>
+<a name="345"><span class="lineNum">     345 </span>            :         ),</a>
+<a name="346"><span class="lineNum">     346 </span>            :       ),</a>
+<a name="347"><span class="lineNum">     347 </span>            :     );</a>
+<a name="348"><span class="lineNum">     348 </span>            :   }</a>
+<a name="349"><span class="lineNum">     349 </span>            : }</a>
 </pre>
       </td>
     </tr>

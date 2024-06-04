@@ -21,7 +21,7 @@ void main() {
 
   // PRUEBAS //
   testWidgets('Eliminar categoría correctamente.', (WidgetTester tester) async {
-     await tester.pumpWidget(const MyApp(
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
     await tester.pumpAndSettle();
@@ -64,7 +64,64 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Comprobar mensaje
-    expect(find.text('La categoría ha sido eliminada correctamente'), findsOneWidget, reason: "'La categoría ha sido eliminada correctamente' text not found");
+    expect(find.text('La categoría ha sido eliminada correctamente'),
+        findsOneWidget,
+        reason:
+            "'La categoría ha sido eliminada correctamente' text not found");
+
+    // Espera
+    await Future.delayed(const Duration(seconds: 5));
+  });
+
+  testWidgets('Eliminar categoría correctamente forma 2.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp(
+      isLoggedIn: false,
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('Acceder')), findsOneWidget);
+
+    // Acceder
+    await tester.tap(find.byKey(const Key('Acceder')));
+    await tester.pumpAndSettle();
+
+    // Verificar campos Email y Password
+    expect(find.byKey(const Key('email')), findsOneWidget,
+        reason: "Email field not found");
+    expect(find.byKey(const Key('password')), findsOneWidget,
+        reason: "Password field not found");
+
+    // Ingresar Email y Password
+    await tester.enterText(find.byKey(const Key('email')), "test123@gmail.com");
+    await tester.enterText(find.byKey(const Key('password')), "Test123!");
+    await tester.pumpAndSettle();
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.tap(find.byKey(const Key('Ingresar')));
+
+    // Ir a Categorias y añadir nueva categoría
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('Categorias')));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    // Seleccionar categoría
+    await tester.tap(find.text('Pez').last);
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+
+    // Click en eliminar categoría
+    await tester.tap(find.byKey(const Key('Eliminar')));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+
+    // Confirmar eliminación
+    await tester.tap(find.byKey(const Key('confirm')));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+
+    // Comprobar mensaje
+    expect(find.text('La categoría ha sido eliminada correctamente'),
+        findsOneWidget,
+        reason:
+            "'La categoría ha sido eliminada correctamente' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));

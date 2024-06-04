@@ -51,7 +51,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 2));
     await tester.tap(find.byType(DropdownButton<String>));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Categoria 1.1231421').last);
+    await tester.tap(find.text('ranas').last);
     await tester.pumpAndSettle(Duration(seconds: 10));
 
     // Agregar articulo
@@ -97,8 +97,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 1));
     // Mensaje
     expect(
-        find.text(
-            'La descripción no puede ser igual al nombre del artículo'),
+        find.text('La descripción no puede ser igual al nombre del artículo'),
         findsOneWidget,
         reason:
             "'La descripción no puede ser igual al nombre del artículo' text not found");
@@ -164,7 +163,8 @@ void main() {
 
     // Mensaje
     expect(
-        find.text('La descripción no puede ser igual al nombre de la categoría'),
+        find.text(
+            'La descripción no puede ser igual al nombre de la categoría'),
         findsOneWidget,
         reason:
             "'La descripción no puede ser igual al nombre de la categoría' text not found");
@@ -230,7 +230,9 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 1));
 
     // Mensaje
-    expect(find.text('Descripción debe contener mínimo 10 caracteres si no es vacia'),
+    expect(
+        find.text(
+            'Descripción debe contener mínimo 10 caracteres si no es vacia'),
         findsOneWidget,
         reason:
             "'Descripción debe contener mínimo 10 caracteres si no es vacia' text not found");

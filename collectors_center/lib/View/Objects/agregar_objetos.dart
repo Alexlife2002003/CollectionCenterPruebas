@@ -27,9 +27,6 @@ class AgregarObjectsCategoria extends StatefulWidget {
       _AgregarObjectsCategoriaState();
 }
 
-@override
-void dispose() {}
-
 class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
   PickedFile? _selectedImage;
   String filepath = "";
@@ -120,6 +117,7 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
     });
   }
 
+// coverage:ignore-start
   Future<void> _pickImageFromSource(ImageSource source) async {
     showDialog(
       context: context,
@@ -152,6 +150,8 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
       });
     }
   }
+
+  // coverage:ignore-end
 
   Future<File> _compressImage(File originalImage) async {
     final img.Image image = img.decodeImage(await originalImage.readAsBytes())!;
@@ -390,8 +390,7 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
                     child: ElevatedButton(
                       key: const Key('Guardar'),
                       style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(Colors.blue)),
+                          backgroundColor: WidgetStatePropertyAll(Colors.blue)),
                       onPressed: agregar,
                       child: const Text('Guardar'),
                     ),
@@ -402,8 +401,7 @@ class _AgregarObjectsCategoriaState extends State<AgregarObjectsCategoria> {
                     width: screenWidth - 200,
                     child: ElevatedButton(
                       style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(Colors.red)),
+                          backgroundColor: WidgetStatePropertyAll(Colors.red)),
                       onPressed: () {
                         Navigator.pop(context);
                       },

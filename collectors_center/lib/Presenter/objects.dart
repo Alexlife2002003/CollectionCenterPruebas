@@ -192,7 +192,7 @@ bool validarDescripcion(
     BuildContext context, String descripcion, String name, String categoria) {
   final containsLetter = RegExp(r'[a-zA-Z]').hasMatch(descripcion);
 
-   if (name == categoria) {
+  if (name == categoria) {
     showSnackbar(context, "No puede llevar el nombre de la categoría", red);
     return false;
   }
@@ -483,6 +483,7 @@ Future<void> deleteImageByImageUrlNoMessage(
   if (internet == false) {
     return;
   }
+  deleteImageByImageUrlNoMessageLogic(context, imageUrl);
 }
 
 Future<void> deleteImageByImageUrlNoMessageLogic(

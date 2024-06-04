@@ -21,7 +21,7 @@ void main() {
 
   // PRUEBAS //
   testWidgets('Eliminar artículos correctamente.', (WidgetTester tester) async {
-     await tester.pumpWidget(const MyApp(
+    await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
     await tester.pumpAndSettle();
@@ -59,11 +59,11 @@ void main() {
     // Click en eliminar
     await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('DeleteIcon')));
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar articulo
     await tester.tap(find.byKey(const Key('0')));
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 2));
     await tester.tap(find.byKey(const Key('1')));
     await tester.pumpAndSettle(Duration(seconds: 2));
 
@@ -77,7 +77,9 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Comprobar mensaje
-    expect(find.text('Los artículos han sido eliminados'), findsOneWidget, reason: "'La categoría ha sido eliminada correctamente' text not found");
+    expect(find.text('Los artículos han sido eliminados'), findsOneWidget,
+        reason:
+            "'La categoría ha sido eliminada correctamente' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));

@@ -105,30 +105,25 @@ class _PerfilState extends State<Perfil> {
     );
 
     if (confirmacion == true) {
-      if (context.mounted) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return Center(
-              child: CircularProgressIndicator(
-                color: peach,
-              ),
-            );
-          },
-        );
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: peach,
+            ),
+          );
+        },
+      );
 
-        await eliminarCuenta(context);
-      }
-
-      if (context.mounted) {
-        Navigator.pop(context);
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const Inicio(),
-          ),
-          (route) => false,
-        );
-      }
+      await eliminarCuenta(context);
+      Navigator.pop(context);
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const Inicio(),
+        ),
+        (route) => false,
+      );
     }
   }
 

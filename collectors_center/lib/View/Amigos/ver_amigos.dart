@@ -270,6 +270,7 @@ class _VerAmigosState extends State<VerAmigos> {
                   itemBuilder: (context, index) {
                     final solicitud = amigos[index];
                     return GestureDetector(
+                      key: Key('$index'),
                       onTap: () async {
                         bool internet = await conexionInternt(context);
                         if (internet) {

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - lib/View/Categorias/ver_categorias.dart</title>
+  <title>LCOV - filtered_coverage.info - lib/View/Categorias/ver_categorias.dart</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">filtered_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">65</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-06-03 19:21:41</td>
+            <td class="headerValue">2024-06-04 14:31:02</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -192,7 +192,7 @@
 <a name="130"><span class="lineNum">     130 </span>            : </a>
 <a name="131"><span class="lineNum">     131 </span><span class="lineCov">          7 :   Widget buildCategoryItem(String category) {</span></a>
 <a name="132"><span class="lineNum">     132 </span><span class="lineCov">          7 :     return GestureDetector(</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          4 :       onTap: () =&gt; handleCategoryTap(category),</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          8 :       onTap: () =&gt; handleCategoryTap(category),</span></a>
 <a name="134"><span class="lineNum">     134 </span><span class="lineCov">          7 :       child: Container(</span></a>
 <a name="135"><span class="lineNum">     135 </span>            :         margin: const EdgeInsets.all(12),</a>
 <a name="136"><span class="lineNum">     136 </span><span class="lineCov">          7 :         decoration: BoxDecoration(</span></a>
@@ -233,19 +233,19 @@
 <a name="171"><span class="lineNum">     171 </span>            :     }</a>
 <a name="172"><span class="lineNum">     172 </span>            :   }</a>
 <a name="173"><span class="lineNum">     173 </span>            : </a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          2 :   Future&lt;void&gt; handleCategoryTap(String category) async {</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">          4 :     bool internet = await conexionInternt(context);</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          4 :   Future&lt;void&gt; handleCategoryTap(String category) async {</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">          8 :     bool internet = await conexionInternt(context);</span></a>
 <a name="176"><span class="lineNum">     176 </span>            :     if (internet) {</a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">          2 :       if (isEdit) {</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">          4 :       if (isEdit) {</span></a>
 <a name="178"><span class="lineNum">     178 </span><span class="lineNoCov">          0 :         await borrar(category);</span></a>
 <a name="179"><span class="lineNum">     179 </span><span class="lineNoCov">          0 :         setState(() {</span></a>
 <a name="180"><span class="lineNum">     180 </span><span class="lineNoCov">          0 :           isEdit = false;</span></a>
 <a name="181"><span class="lineNum">     181 </span>            :         });</a>
 <a name="182"><span class="lineNum">     182 </span>            :       } else {</a>
-<a name="183"><span class="lineNum">     183 </span><span class="lineCov">          2 :         Navigator.push(</span></a>
-<a name="184"><span class="lineNum">     184 </span><span class="lineCov">          2 :           context,</span></a>
-<a name="185"><span class="lineNum">     185 </span><span class="lineCov">          2 :           MaterialPageRoute(</span></a>
-<a name="186"><span class="lineNum">     186 </span><span class="lineCov">          4 :             builder: (context) =&gt; EditarCategoria(categoryName: category),</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">          4 :         Navigator.push(</span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineCov">          4 :           context,</span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">          4 :           MaterialPageRoute(</span></a>
+<a name="186"><span class="lineNum">     186 </span><span class="lineCov">          8 :             builder: (context) =&gt; EditarCategoria(categoryName: category),</span></a>
 <a name="187"><span class="lineNum">     187 </span>            :           ),</a>
 <a name="188"><span class="lineNum">     188 </span>            :         );</a>
 <a name="189"><span class="lineNum">     189 </span>            :       }</a>

@@ -6,7 +6,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -25,14 +24,14 @@ void main() {
   //     isLoggedIn: false,
   //   ));
   //   await tester.pumpAndSettle();
-// 
+//
   //   // Verify the 'Acceder' button is present
   //   expect(find.byKey(const Key('Acceder')), findsOneWidget);
-// 
+//
   //   // Tap the 'Acceder' button
   //   await tester.tap(find.byKey(const Key('Registrarse')));
   //   await tester.pumpAndSettle();
-// 
+//
   //   // Verify the email and password fields are present
   //   expect(find.byKey(const Key('NombreUsuario')), findsOneWidget,
   //       reason: "Email field not found");
@@ -42,7 +41,7 @@ void main() {
   //       reason: "Password field not found");
   //   expect(find.byKey(const Key('confPass')), findsOneWidget,
   //       reason: "Email field not found");
-// 
+//
   //   // Enter email and password
   //   await tester.enterText(find.byKey(const Key('NombreUsuario')), "Amigo1");
   //   await tester.enterText(
@@ -59,23 +58,23 @@ void main() {
   //   // Verify 'Bienvenido' text is displayed
   //   expect(find.text('Bienvenido'), findsOneWidget,
   //       reason: "'Bienvenido' text not found");
-// 
+//
   //   await Future.delayed(const Duration(seconds: 5));
   // });
-// 
+//
   // testWidgets('Crear cuenta de Amigo2', (WidgetTester tester) async {
   //   await tester.pumpWidget(const MyApp(
   //     isLoggedIn: false,
   //   ));
   //   await tester.pumpAndSettle();
-// 
+//
   //   // Verify the 'Acceder' button is present
   //   expect(find.byKey(const Key('Acceder')), findsOneWidget);
-// 
+//
   //   // Tap the 'Acceder' button
   //   await tester.tap(find.byKey(const Key('Registrarse')));
   //   await tester.pumpAndSettle();
-// 
+//
   //   // Verify the email and password fields are present
   //   expect(find.byKey(const Key('NombreUsuario')), findsOneWidget,
   //       reason: "Email field not found");
@@ -85,7 +84,7 @@ void main() {
   //       reason: "Password field not found");
   //   expect(find.byKey(const Key('confPass')), findsOneWidget,
   //       reason: "Email field not found");
-// 
+//
   //   // Enter email and password
   //   await tester.enterText(find.byKey(const Key('NombreUsuario')), "Amigo2");
   //   await tester.enterText(
@@ -102,7 +101,7 @@ void main() {
   //   // Verify 'Bienvenido' text is displayed
   //   expect(find.text('Bienvenido'), findsOneWidget,
   //       reason: "'Bienvenido' text not found");
-// 
+//
   //   await Future.delayed(const Duration(seconds: 5));
   // });
 
@@ -161,7 +160,7 @@ void main() {
     // Espera
     await Future.delayed(const Duration(seconds: 5));
   });
-  
+
   testWidgets('Aceptar solicitud de amistad a un amigo.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
@@ -252,14 +251,17 @@ void main() {
 
     // Comprobar mensaje
     await tester.pump(Duration(seconds: 5));
-    expect(find.text('No se puede enviar solicitud porque ya es tu amigo'), findsOneWidget,
-        reason: "'No se puede enviar solicitud porque ya es tu amigo' text not found");
+    expect(find.text('No se puede enviar solicitud porque ya es tu amigo'),
+        findsOneWidget,
+        reason:
+            "'No se puede enviar solicitud porque ya es tu amigo' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
   });
 
-  testWidgets('Enviar solicitud de amistad a alguien que ya se le envió solicitud.',
+  testWidgets(
+      'Enviar solicitud de amistad a alguien que ya se le envió solicitud.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,

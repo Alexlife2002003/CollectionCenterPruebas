@@ -234,7 +234,9 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
                                 _objectList[i],
                                 i + 1 < _objectList.length
                                     ? _objectList[i + 1]
-                                    : null),
+                                    : null,
+                                Key(i.toString()),
+                                Key((i + 1).toString())),
                         ],
                       ),
                   ],
@@ -247,7 +249,8 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
     );
   }
 
-  Widget _buildObjectRow(MyObject object1, MyObject? object2) {
+  Widget _buildObjectRow(
+      MyObject object1, MyObject? object2, Key keyimage1, Key keyimage2) {
     final String imageUrl1 = object1.imageUrl;
     final String? imageUrl2 = object2?.imageUrl;
 
@@ -298,6 +301,7 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
                                           offset: Offset(2, 2))
                                     ]),
                                     child: CachedNetworkImage(
+                                      key: keyimage1,
                                       imageUrl: imageUrl,
                                       fit: BoxFit.cover,
                                       width: 188,
@@ -375,6 +379,7 @@ class _VerColeccionesAmigosState extends State<VerColeccionesAmigos> {
                                                 offset: Offset(2, 2))
                                           ]),
                                       child: CachedNetworkImage(
+                                        key: keyimage2,
                                         imageUrl: imageUrl,
                                         fit: BoxFit.cover,
                                         width: 188,

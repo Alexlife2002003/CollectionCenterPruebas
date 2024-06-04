@@ -69,7 +69,7 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar categoría
-    await tester.tap(find.text('Perro').last);
+    await tester.tap(find.text('ranas').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Click a editar
@@ -78,7 +78,7 @@ void main() {
 
     expect(find.byKey(const Key('Nombre')), findsOneWidget,
         reason: "Descripcion field not found");
-    await tester.enterText(find.byKey(const Key('Nombre')), "ranas");
+    await tester.enterText(find.byKey(const Key('Nombre')), "Perro");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
@@ -128,7 +128,7 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar categoría
-    await tester.tap(find.text('Perro').last);
+    await tester.tap(find.text('EsteEsUnNombreMuyLar').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Click a editar

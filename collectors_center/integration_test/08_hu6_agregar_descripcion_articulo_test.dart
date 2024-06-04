@@ -178,9 +178,7 @@ void main() {
     await tester.tap(find.byKey(const Key('Guardar')));
     await tester.pumpAndSettle(Duration(seconds: 1));
     await tester.pumpAndSettle(Duration(seconds: 1));
-    expect(
-        find.text(
-            'La descripción debe contener al menos 10 caracteres'),
+    expect(find.text('La descripción debe contener al menos 10 caracteres'),
         findsOneWidget,
         reason:
             "'La descripción debe contener al menos 10 caracteres' text not found");
@@ -239,8 +237,7 @@ void main() {
     await tester.tap(find.byKey(const Key('Guardar')));
     await tester.pumpAndSettle(Duration(seconds: 1));
     await tester.pumpAndSettle(Duration(seconds: 1));
-    expect(
-        find.text('Descripción no puede ser igual al nombre del artículo'),
+    expect(find.text('Descripción no puede ser igual al nombre del artículo'),
         findsOneWidget,
         reason:
             "'Descripción no puede ser igual al nombre del artículo' text not found");
@@ -301,8 +298,7 @@ void main() {
     await tester.pumpAndSettle(Duration(seconds: 1));
     await tester.pumpAndSettle(Duration(seconds: 1));
     expect(
-        find.text(
-            'Descripción no puede ser igual al nombre de la categoría'),
+        find.text('Descripción no puede ser igual al nombre de la categoría'),
         findsOneWidget,
         reason:
             "'Descripción no puede ser igual al nombre de la categoría' text not found");

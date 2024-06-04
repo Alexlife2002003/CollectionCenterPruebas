@@ -20,8 +20,7 @@ void main() {
   });
 
   // PRUEBAS //
-  testWidgets(
-      'Modificar descripción de menos de 15 caracteres a categoría.',
+  testWidgets('Modificar descripción de menos de 15 caracteres a categoría.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
@@ -53,7 +52,7 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar categoría
-    await tester.tap(find.text('Categoria 1.1231421').last);
+    await tester.tap(find.text('ranas').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Click a editar descripcion
@@ -77,7 +76,8 @@ void main() {
 
     // Mensaje
     expect(
-        find.text('La descripción debe tener al menos 15 caracteres si no está vacía'),
+        find.text(
+            'La descripción debe tener al menos 15 caracteres si no está vacía'),
         findsOneWidget,
         reason:
             "'La descripción debe tener al menos 15 caracteres si no está vacía ' text not found");
@@ -118,7 +118,7 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar categoría
-    await tester.tap(find.text('Categoria 1.1231421').last);
+    await tester.tap(find.text('EsteEsUnNombreMuyLar').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Click a editar descripcion
@@ -128,7 +128,8 @@ void main() {
         reason: "Descripcion field not found");
 
     // Cambiar descripción
-    await tester.enterText(find.byKey(const Key('Descripcion')), "Categoria 1.1231421");
+    await tester.enterText(
+        find.byKey(const Key('Descripcion')), "EsteEsUnNombreMuyLar");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
@@ -142,7 +143,8 @@ void main() {
 
     // Mensaje
     expect(
-        find.text('La descripción no puede ser igual al nombre de la categoría'),
+        find.text(
+            'La descripción no puede ser igual al nombre de la categoría'),
         findsOneWidget,
         reason:
             "'La descripción no puede ser igual al nombre de la categoría' text not found");
@@ -150,8 +152,7 @@ void main() {
     await Future.delayed(const Duration(seconds: 5));
   });
 
-    testWidgets(
-      'Modificar descripción a categoría exitosamente.',
+  testWidgets('Modificar descripción a categoría exitosamente.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
@@ -183,7 +184,7 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Seleccionar categoría
-    await tester.tap(find.text('Categoria 1.1231421').last);
+    await tester.tap(find.text('ranas').last);
     await tester.pumpAndSettle(const Duration(seconds: 2));
 
     // Click a editar descripcion
@@ -193,7 +194,8 @@ void main() {
         reason: "Descripcion field not found");
 
     // Cambiar descripción
-    await tester.enterText(find.byKey(const Key('Descripcion')), "Aqui voy a poner de que trata la categoría o tal vez no, pero bueno...");
+    await tester.enterText(find.byKey(const Key('Descripcion')),
+        "Aqui voy a poner de que trata la categoría o tal vez no, pero bueno...");
     await tester.pumpAndSettle();
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();

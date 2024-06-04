@@ -20,9 +20,7 @@ void main() {
   });
 
   // PRUEBAS //
-  testWidgets(
-      'Eliminar descripción de artículo.',
-      (WidgetTester tester) async {
+  testWidgets('Eliminar descripción de artículo.', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
     ));
@@ -78,12 +76,12 @@ void main() {
     // Seleccionar artículo
     await tester.tap(find.byKey(const Key('0')));
     await tester.pumpAndSettle(Duration(seconds: 2));
-    
+
     // Editar descrpción
     await tester.tap(find.byKey(const Key('edit')));
     await tester.pumpAndSettle(Duration(seconds: 4));
-    
-     // Eliminar descrición
+
+    // Eliminar descrición
     await tester.tap(find.byKey(const Key('delete')));
     await tester.pumpAndSettle(Duration(seconds: 4));
 
@@ -99,12 +97,9 @@ void main() {
     await Future.delayed(const Duration(seconds: 1));
 
     // Mensaje
-    expect(find.text('Descripción borrada exitosamente'),
-        findsOneWidget,
-        reason:
-            "'Se han guardado los cambios' text not found");
+    expect(find.text('Descripción borrada exitosamente'), findsOneWidget,
+        reason: "'Se han guardado los cambios' text not found");
 
     await Future.delayed(const Duration(seconds: 5));
   });
-
 }

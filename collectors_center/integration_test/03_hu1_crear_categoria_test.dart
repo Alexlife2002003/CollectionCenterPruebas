@@ -75,8 +75,7 @@ void main() {
     await Future.delayed(const Duration(seconds: 5));
   });
 
-  testWidgets(
-    'Creación de categoría con nombre mayor a 20 caracteres.',
+  testWidgets('Creación de categoría con nombre mayor a 20 caracteres.',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp(
       isLoggedIn: false,
@@ -243,7 +242,8 @@ void main() {
         find.text(
             'La descripción debe contener letras y tener al menos 15 caracteres'),
         findsOneWidget,
-        reason: "'La descripción debe contener letras y tener al menos 15 caracteres' text not found");
+        reason:
+            "'La descripción debe contener letras y tener al menos 15 caracteres' text not found");
 
     // Espera
     await Future.delayed(const Duration(seconds: 5));
