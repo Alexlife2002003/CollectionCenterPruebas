@@ -26,6 +26,33 @@ Nuestra aplicación móvil ayuda a los coleccionistas de 16 a 25 años a presumi
 |   :----------:  |
 |![registro][Registro]|
 
+## 📚 Comandos Testing
+Hacer un analisis del codigo
+```sh
+dart analyze
+```
+formatear codigo
+```sh
+dart format .
+```
+Realizar pruebas de integracion con coverage
+```sh
+flutter run integratation_test/nombre_prueba.dart --coverage
+```
+Juntar todos los coverage
+```sh
+lcov -a coverage/01.info -a coverage/widgets.info -a coverage/02.info -a coverage/03.info -a coverage/04.info -a coverage/05.info -a coverage/06.info -a coverage/07.info -a coverage/08.info -a coverage/09.info -a coverage/10.info -a coverage/11.info -a coverage/12.info -a coverage/13.info -a coverage/14.info -a coverage/15.info -o coverage/combined_coverage.info
+```
+Mostrar el coverage en html
+```sh
+genhtml coverage/combined_coverage.info -o coverage/html
+```
+Revisiar complejidad ciclomatica
+```sh
+flutter pub run dart_code_metrics:metrics lib
+```
+
+
 
 ## 📚 Dependencies
 
@@ -43,6 +70,9 @@ Nuestra aplicación móvil ayuda a los coleccionistas de 16 a 25 años a presumi
 |[cached_network_image](https://pub.dev/packages/cached_network_image)|Newest version|Flutter library to load and cache network images. Can also be used with placeholder and error widgets.|
 |[image](https://pub.dev/packages?q=image)|Newest version|Dart Image Library provides server and web apps the ability to load, manipulate, and save images with various image file formats.|
 |[shared_preferences](https://pub.dev/packages/shared_preferences)| Newest version|Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android|
+|[coverage](https://pub.dev/packages/coverage)| 1.8.0 |Flutter plugin for calculating code coverage|
+|[dart_code_metrics](https://pub.dev/documentation/dart_code_metrics/latest/)| 4.19.2 |Flutter plugin for calculating code coverage|
+
 ### Prerequisites
 
 -   Flutter
